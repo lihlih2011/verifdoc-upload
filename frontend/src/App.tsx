@@ -42,6 +42,7 @@ import Developer from "./pages/Dashboard/Developer";
 import SolutionsPage from "./pages/Landing/SolutionsPage";
 import ResourcesPage from "./pages/Landing/ResourcesPage";
 import CompanyPage from "./pages/Landing/CompanyPage";
+import ContactPage from "./pages/Landing/ContactPage";
 import ProDashboard from "./pages/Dashboard/ProDashboard";
 import CareersPage from "./pages/Landing/CareersPage";
 import PrivacyPolicyPage from "./pages/Landing/PrivacyPolicyPage";
@@ -75,6 +76,7 @@ export default function App() {
             <Route path="/solutions" element={<SolutionsPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/company" element={<CompanyPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Route>
 
           {/* Pages Légales Standalone */}

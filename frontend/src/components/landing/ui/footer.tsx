@@ -31,10 +31,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-gray-200 mb-4">Produit</h4>
             <ul className="space-y-2">
-              <li><Link to="/features" className="hover:text-primary-400 transition-colors">Fonctionnalités</Link></li>
-              <li><Link to="/pricing" className="hover:text-primary-400 transition-colors">Tarifs</Link></li>
-              <li><Link to="/api" className="hover:text-primary-400 transition-colors">API</Link></li>
-              <li><Link to="/changelog" className="hover:text-primary-400 transition-colors">Changelog</Link></li>
+              <li><Link to="/solutions" className="hover:text-primary-400 transition-colors">Fonctionnalités</Link></li>
+              <li><Link to="/solutions" className="hover:text-primary-400 transition-colors">Tarifs</Link></li>
+              <li><Link to="/solutions" className="hover:text-primary-400 transition-colors">API</Link></li>
+              <li><Link to="/resources" className="hover:text-primary-400 transition-colors">Changelog</Link></li>
             </ul>
           </div>
 
@@ -42,10 +42,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-gray-200 mb-4">Ressources</h4>
             <ul className="space-y-2">
-              <li><Link to="/docs" className="hover:text-primary-400 transition-colors">Documentation</Link></li>
-              <li><Link to="/blog" className="hover:text-primary-400 transition-colors">Blog</Link></li>
-              <li><Link to="/community" className="hover:text-primary-400 transition-colors">Communauté</Link></li>
-              <li><Link to="/help" className="hover:text-primary-400 transition-colors">Support</Link></li>
+              <li><Link to="/resources" className="hover:text-primary-400 transition-colors">Documentation</Link></li>
+              <li><Link to="/resources" className="hover:text-primary-400 transition-colors">Blog</Link></li>
+              <li><Link to="/company" className="hover:text-primary-400 transition-colors">A propos</Link></li>
+              <li><Link to="/contact" className="hover:text-primary-400 transition-colors">Support</Link></li>
             </ul>
           </div>
 
@@ -55,7 +55,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link to="/privacy" className="hover:text-primary-400 transition-colors">Confidentialité</Link></li>
               <li><Link to="/terms" className="hover:text-primary-400 transition-colors">CGU / CGV</Link></li>
-              <li><Link to="/security" className="hover:text-primary-400 transition-colors">Sécurité</Link></li>
+              <li><Link to="/company" className="hover:text-primary-400 transition-colors">Sécurité</Link></li>
             </ul>
           </div>
 

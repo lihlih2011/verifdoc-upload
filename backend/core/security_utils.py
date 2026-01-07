@@ -3,8 +3,10 @@ from typing import Optional
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 
+import os
+
 # Configuration (In a real app, use env vars)
-SECRET_KEY = "SECRET_KEY_GOES_HERE_CHANGE_ME_IN_PROD"
+SECRET_KEY = os.getenv("SECRET_KEY", "SECRET_KEY_GOES_HERE_CHANGE_ME_IN_PROD")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 1440 # 24 Hours
 

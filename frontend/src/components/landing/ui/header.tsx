@@ -37,6 +37,9 @@ export default function Header() {
               <li className="px-3 py-2 hover:text-white transition-colors cursor-pointer">
                 <Link to="/company" className="flex items-center gap-1 hover:text-primary-300">Entreprise</Link>
               </li>
+              <li className="px-3 py-2 hover:text-white transition-colors cursor-pointer">
+                <Link to="/contact" className="flex items-center gap-1 hover:text-primary-300">Contact</Link>
+              </li>
             </ul>
           </nav>
 

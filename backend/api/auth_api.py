@@ -13,18 +13,25 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
+from pydantic import BaseModel
+
+class UserCreate(BaseModel):
+    email: str
+    password: str
+    full_name: Optional[str] = None
+
 @router.post("/register")
-def register(email: str, password: str, background_tasks: BackgroundTasks, full_name: str = None, db: Session = Depends(get_db)):
+def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     # Check existing
-    db_user = db.query(User).filter(User.email == email).first()
+    db_user = db.query(User).filter(User.email == user.email).first()
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     
     # Hash Password
-    hashed_pwd = SecurityUtils.get_password_hash(password)
+    hashed_pwd = SecurityUtils.get_password_hash(user.password)
     
     # Create User
-    new_user = User(email=email, hashed_password=hashed_pwd, full_name=full_name)
+    new_user = User(email=user.email, hashed_password=hashed_pwd, full_name=user.full_name)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)

@@ -82,12 +82,10 @@ export const AuthPage: React.FC = () => {
                     return;
                 }
 
-                await axios.post(`${API_URL}/api/auth/register`, null, {
-                    params: {
-                        email: email,
-                        password: password,
-                        full_name: email.split('@')[0]
-                    }
+                await axios.post(`${API_URL}/api/auth/register`, {
+                    email: email,
+                    password: password,
+                    full_name: email.split('@')[0]
                 });
 
                 // Auto-login
