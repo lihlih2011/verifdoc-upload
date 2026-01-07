@@ -738,7 +738,9 @@ export default function LandingPageV2() {
                     <div className="flex items-center gap-3 group cursor-pointer">
                         <div className="relative">
                             <div className="absolute inset-0 bg-blue-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
-                            <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-10 w-auto relative z-10" />
+                            <div className="bg-white rounded-full p-1.5 shadow-lg shadow-blue-500/20 relative z-10">
+                                <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-8 w-auto object-contain" />
+                            </div>
                         </div>
                         <span className="text-xl font-bold text-white tracking-tight hidden sm:block group-hover:text-blue-400 transition-colors">VERIFDOC</span>
                     </div>
