@@ -11,6 +11,8 @@ import {
     AlertCircle
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../config/api';
+import axios from 'axios';
 
 export const AuthPage: React.FC = () => {
     // const { t } = useTranslation();
@@ -41,83 +43,97 @@ export const AuthPage: React.FC = () => {
         return regex.test(pwd);
     };
 
-    const handleCredentialsSubmit = async (e: React.FormEvent) => {
+    const handleAuthSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Submit logic started");
         setLoading(true);
         setError("");
 
-        // Validation (Inscription)
-        if (!isLogin && !validatePassword(password)) {
-            setLoading(false);
-            console.log("Validation failed");
-            setError("Le mot de passe doit contenir 8 caractères, une majuscule et un chiffre.");
-            return;
-        }
-
-        // Simulation verification credentials
-        setTimeout(() => {
-            setLoading(false);
+        try {
             if (isLogin) {
-                // If login, match mock demo accounts or generic
-                if (email === "demo@verifdoc.io" && password !== "demo123") {
-                    setError("Identifiants incorrects (Essayez demo123)");
+                // LOGIN FLOW
+                const formData = new URLSearchParams();
+                formData.append('username', email);
+                formData.append('password', password);
+
+                const response = await axios.post(`${API_URL}/api/auth/token`, formData, {
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+
+                const { access_token, role, full_name, credits } = response.data;
+
+                login(access_token, {
+                    full_name: full_name || email.split('@')[0],
+                    email: email,
+                    role: role,
+                    credits: credits
+                });
+
+                if (role === 'admin' || role === 'superadmin') {
+                    navigate('/dashboard/admin');
+                } else {
+                    navigate('/dashboard');
+                }
+
+            } else {
+                // REGISTER FLOW
+                if (!validatePassword(password)) {
+                    setLoading(false);
+                    setError("Le mot de passe doit contenir 8 caractères, une majuscule et un chiffre.");
                     return;
                 }
-                setStep('2fa');
-            } else {
-                setStep('2fa');
+
+                await axios.post(`${API_URL}/api/auth/register`, null, {
+                    params: {
+                        email: email,
+                        password: password,
+                        full_name: email.split('@')[0]
+                    }
+                });
+
+                // Auto-login
+                const formData = new URLSearchParams();
+                formData.append('username', email);
+                formData.append('password', password);
+
+                const loginResponse = await axios.post(`${API_URL}/api/auth/token`, formData, {
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+
+                const { access_token, role, full_name, credits } = loginResponse.data;
+
+                login(access_token, {
+                    full_name: full_name || email.split('@')[0],
+                    email: email,
+                    role: role,
+                    credits: credits
+                });
+
+                navigate('/dashboard');
             }
-        }, 1000);
-    };
-
-    /* MOCK MODE TEMPORAIRE POUR DEMO */
-    const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault();
-        // Simulation connexion réussie directe
-        localStorage.setItem('token', 'fake-demo-token');
-        localStorage.setItem('user', JSON.stringify({ name: 'Admin Demo', role: 'admin' }));
-        window.location.href = '/dashboard/admin';
-        return;
-    };
-
-    /* ANCIEN CODE DESACTIVE
-    const handleLogin = async (e: React.FormEvent) => {
-      e.preventDefault();
-      // ... code réseau ...
-    };
-    */
-    const handle2FASubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        // Simulation verify code
-        setTimeout(() => {
+        } catch (err: any) {
+            console.error(err);
+            if (err.response) {
+                setError(err.response.data.detail || "Une erreur est survenue.");
+            } else {
+                setError("Impossible de contacter le serveur.");
+            }
+        } finally {
             setLoading(false);
-            // SUCCESS LOGIN
-            login("demo-token-jwt-secure-123", {
-                full_name: email.split('@')[0],
-                email: email,
-                role: "admin",
-                credits: 100
-            });
-            navigate('/dashboard');
-        }, 1500);
+        }
     };
 
     const handleOtpChange = (index: number, value: string) => {
-        if (value.length > 1) value = value[0]; // Only 1 char
+        if (value.length > 1) value = value[0];
         const newCode = [...twoFACode];
         newCode[index] = value;
         setTwoFACode(newCode);
 
-        // Auto-focus next input
         if (value && index < 5) {
             otpRefs.current[index + 1]?.focus();
         }
     };
 
     const handleOtpKeyDown = (index: number, e: React.KeyboardEvent) => {
-        // Backspace handling
         if (e.key === 'Backspace' && !twoFACode[index] && index > 0) {
             otpRefs.current[index - 1]?.focus();
         }
@@ -187,7 +203,7 @@ export const AuthPage: React.FC = () => {
                                 </p>
                             </div>
 
-                            <form onSubmit={handle2FASubmit}>
+                            <form onSubmit={handleAuthSubmit}>
                                 <div className="flex justify-center gap-2 mb-8">
                                     {twoFACode.map((digit, idx) => (
                                         <input
@@ -238,7 +254,7 @@ export const AuthPage: React.FC = () => {
                                 </div>
                             )}
 
-                            <form onSubmit={handleLogin} className="space-y-5">
+                            <form onSubmit={handleAuthSubmit} className="space-y-5">
                                 <div className="space-y-1.5">
                                     <label className="text-sm font-bold text-slate-700">Email professionnel</label>
                                     <div className="relative">
