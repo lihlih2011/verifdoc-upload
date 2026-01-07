@@ -765,7 +765,7 @@ export default function LandingPageV2() {
                             {t('nav.login')}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
                         </Link>
-                        <Link to="/signup" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg transition-all shadow-[0_0_20px_-5px_rgba(37,99,235,0.5)] border border-blue-400/20 hover:scale-105 active:scale-95">
+                        <Link to="/contact" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg transition-all shadow-[0_0_20px_-5px_rgba(37,99,235,0.5)] border border-blue-400/20 hover:scale-105 active:scale-95">
                             {t('nav.book_demo')}
                         </Link>
                     </div>
@@ -792,7 +792,7 @@ export default function LandingPageV2() {
                             {t('hero.subtitle')}
                         </p>
                         <div className="flex flex-col sm:flex-row items-start gap-4 mb-12">
-                            <Link to="/signup" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
+                            <Link to="/contact" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
                                 {t('hero.cta_start')} <ArrowRight size={18} />
                             </Link>
                             <a href="#pricing" className="w-full sm:w-auto px-8 py-4 bg-slate-800/50 border border-slate-700 text-white font-medium rounded-xl hover:bg-slate-800 transition-colors backdrop-blur-sm">
