@@ -1,6 +1,6 @@
 import React, { useState, FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageSelector } from '../../components/LanguageSelector';
+import LanguageSelector from '../../components/LanguageSelector';
 import PricingPlans from '../../components/dashboard/PricingPlans';
 import { ReferralView } from '../../components/dashboard/ReferralView';
 import { HelpView } from '../../components/dashboard/HelpView';
