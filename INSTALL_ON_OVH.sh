@@ -66,11 +66,19 @@ EOF
 
 # 6. Launch Application
 echo "🔥 Building and starting containers..."
+
+# Determine correct command (docker-compose vs docker compose)
+if command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE_CMD="docker-compose"
+else
+    DOCKER_COMPOSE_CMD="docker compose"
+fi
+
 # Stop any existing containers to free up ports
-sudo docker compose -f docker-compose.prod.yml down --remove-orphans || true
+sudo $DOCKER_COMPOSE_CMD -f docker-compose.prod.yml down --remove-orphans || true
 
 # Start fresh
-sudo docker compose -f docker-compose.prod.yml up -d --build
+sudo $DOCKER_COMPOSE_CMD -f docker-compose.prod.yml up -d --build
 
 # 7. Final Verification
 echo ""
