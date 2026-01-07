@@ -46,3 +46,4 @@ stripe
 requests
 BeautifulSoup4
 lxml
+email-validator
