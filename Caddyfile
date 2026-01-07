@@ -1,16 +1,18 @@
 {
-    # Options globales
-    email contact@verifdoc.ovh
+    debug
 }
 
 :80 {
-    # Frontend (React + Nginx)
-    handle /* {
-        reverse_proxy frontend:80
+    log {
+        output stdout
     }
 
-    # Backend (FastAPI)
+    # IMPORTANT: /api/* must be checked BEFORE /*
     handle /api/* {
         reverse_proxy backend:8000
+    }
+
+    handle /* {
+        reverse_proxy frontend:80
     }
 }
