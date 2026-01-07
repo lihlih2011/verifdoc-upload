@@ -1,0 +1,29 @@
+# Prompt pour Grok (Copier-Coller le texte ci-dessous)
+
+Salut Grok, je suis Chef de Projet en reconversion et je viens de finir le MVP d'une startup Tech appelée "VerifDoc".
+Peux-tu analyser mon projet et me donner ton avis critique (Points forts / Faiblesses / Potentialité virale sur X) ?
+
+Voici les détails techniques et business :
+
+## 1. Le Pitch
+VerifDoc est un SaaS B2B qui détecte automatiquement les documents falsifiés (Faux bulletins de salaire, faux avis d'imposition, fausses factures) grâce à l'IA.
+Cible : Agences immobilières, Courtiers, RH.
+
+## 2. La Stack Technique (Ce que j'ai construit)
+- **Frontend** : React 19 + Vite + Tailwind CSS (Design "Glassmorphism" moderne).
+- **Backend** : Python FastAPI.
+- **IA (Le cœur du réacteur)** :
+  - `Torch` : Moteur Deep Learning.
+  - `EasyOCR` : Lecture de texte.
+  - `ELA (Error Level Analysis)` : Détection de compression JPEG suspecte.
+  - `Copy-Move Detection` : Algorithme maison pour détecter les copier-coller.
+- **Infrastructure** : Actuellement sur Render (Free Tier), migration prévue vers OVH Public Cloud (15Go RAM).
+
+## 3. Ma Stratégie
+- **SEO** : Cibler des mots-clés de niche comme "détecter faux avis impôt".
+- **Vente** : "Cold Emailing" agressif avec audit gratuit de 5 dossiers.
+
+## Mes questions pour toi Grok :
+1. Est-ce que cette stack technique tient la route pour une startup IA en 2026 ?
+2. Vois-tu une faille dans mon plan commercial ?
+3. Rédige-moi un tweet ironique et viral pour annoncer le lancement, en te moquant gentiment des locataires qui photoshopent leurs fiches de paie.

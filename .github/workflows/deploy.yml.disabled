@@ -1,0 +1,25 @@
+name: Deploy to OVH (v2.0.4)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.OVH_HOST }}
+        username: ${{ secrets.OVH_USER }}
+        key: ${{ secrets.OVH_SSH_KEY }}
+        script: |
+          cd verifdoc-upload
+          # FORCE RESET (Fix Conflicts)
+          git fetch --all
+          git reset --hard origin/main
+          # CLEAN & RESTART
+          sudo docker-compose down
+          sudo docker system prune -af # Clean space
+          sudo docker-compose up -d --build --remove-orphans

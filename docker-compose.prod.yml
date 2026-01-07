@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    image: ghcr.io/lihlih2011/verifdoc-upload/backend:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    restart: always
+
+  frontend:
+    image: ghcr.io/lihlih2011/verifdoc-upload/frontend:latest
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: always

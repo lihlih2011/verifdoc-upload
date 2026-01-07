@@ -1,0 +1,18 @@
+.git
+.gitignore
+.vscode
+.venv
+__pycache__
+node_modules
+dist
+build
+*.db
+*.sqlite3
+*.log
+tmp
+uploads
+heatmaps
+reports
+dataset.zip
+VerifDoc Beta.7z
+verifdoc_colab_pack.zip

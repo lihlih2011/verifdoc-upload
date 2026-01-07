@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["python310", "nodejs", "git", "gcc", "zlib", "libjpeg", "openjpeg", "libimagequant", "freetype", "make", "cmake"]
+
+[phases.install]
+cmds = [
+    "pip install -r backend/requirements.txt",
+    "cd frontend && npm install && npm run build"
+]
+
+[phases.start]
+cmd = "uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"

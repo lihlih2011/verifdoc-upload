@@ -1,0 +1,9 @@
+{
+    "odoo": {
+        "url": "https://veifdocio1.odoo.com",
+        "db": "veifdocio1",
+        "user": "algoriadev@hotmail.com",
+        "key": "3be5952310ef4261577f5c92f596b40777ec0406",
+        "active": true
+    }
+}

@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # --- BACKEND ---
+  backend:
+    build:
+      context: ../
+      dockerfile: backend/Dockerfile
+    container_name: verifdoc_backend_prod
+    restart: always
+    environment:
+      - DATABASE_URL=sqlite:///./verifdoc.db # Pour la prod, switch to PostgreSQL recommandé
+      - SECRET_KEY=${SECRET_KEY:-CHANGE_ME_IN_PROD_PLEASE}
+      - ALLOWED_ORIGINS=https://verifdoc.io,https://www.verifdoc.io,http://localhost
+    volumes:
+      - ../backend/db:/app/backend/db
+      - ../backend/assets:/app/backend/assets
+      - ../results:/app/results
+      - ../logs:/app/logs
+    networks:
+      - verifdoc_net
+
+  # --- FRONTEND (Nginx Static Serve) ---
+  frontend:
+    build:
+      context: ../
+      dockerfile: frontend/Dockerfile.prod
+    container_name: verifdoc_frontend_prod
+    restart: always
+    networks:
+      - verifdoc_net
+
+  # --- REVERSE PROXY (Gateway) ---
+  nginx:
+    image: nginx:alpine
+    container_name: verifdoc_gateway
+    restart: always
+    ports:
+      - "80:80"
+      #- "443:443" # Décommenter après config SSL
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - verifdoc_net
+
+networks:
+  verifdoc_net:
+    driver: bridge
