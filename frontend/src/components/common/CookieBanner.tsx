@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function CookieBanner() {
+    const { t } = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -34,14 +36,13 @@ export default function CookieBanner() {
                 </div>
 
                 <div className="flex-1">
-                    <h3 className="text-white font-bold text-lg mb-2">Confidentialité & Transparence 🍪</h3>
+                    <h3 className="text-white font-bold text-lg mb-2">{t('cookies_banner.title')} 🍪</h3>
                     <p className="text-slate-400 text-sm leading-relaxed">
-                        Nous utilisons des cookies essentiels pour sécuriser votre session et analyser anonymement le trafic.
-                        Aucune donnée personnelle n'est revendue. Vos documents sont chiffrés et supprimés après analyse.
+                        {t('cookies_banner.description')}
                     </p>
                     <div className="mt-2 text-xs">
-                        <Link to="/confidentialite" className="text-blue-400 hover:text-blue-300 underline underline-offset-2 mr-4">Politique de confidentialité</Link>
-                        <Link to="/cgv" className="text-slate-500 hover:text-slate-400 underline underline-offset-2">Conditions d'utilisation</Link>
+                        <Link to="/confidentialite" className="text-blue-400 hover:text-blue-300 underline underline-offset-2 mr-4">{t('footer.privacy')}</Link>
+                        <Link to="/cgv" className="text-slate-500 hover:text-slate-400 underline underline-offset-2">{t('footer.terms')}</Link>
                     </div>
                 </div>
 
@@ -50,13 +51,13 @@ export default function CookieBanner() {
                         onClick={handleDecline}
                         className="px-6 py-2.5 rounded-lg border border-slate-600 text-slate-300 font-bold text-sm hover:bg-slate-800 transition-colors uppercase tracking-wide"
                     >
-                        Refuser
+                        {t('cookies_banner.decline')}
                     </button>
                     <button
                         onClick={handleAccept}
                         className="px-8 py-2.5 rounded-lg bg-blue-600 text-white font-bold text-sm hover:bg-blue-500 shadow-lg shadow-blue-900/20 transition-all uppercase tracking-wide flex-1 md:flex-none whitespace-nowrap"
                     >
-                        Tout Accepter
+                        {t('cookies_banner.accept')}
                     </button>
                 </div>
             </div>
