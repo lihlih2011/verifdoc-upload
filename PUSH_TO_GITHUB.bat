@@ -1,6 +1,6 @@
 @echo off
 echo ===================================================
-echo   MISE A JOUR & ENVOI VERS GITHUB
+echo   MISE A JOUR ^& ENVOI VERS GITHUB
 echo ===================================================
 echo.
 echo 1. Sauvegarde des changements...
@@ -13,6 +13,7 @@ git push -u origin main
 
 echo.
 echo TERMINÉ ! 
-echo Allez maintenant sur Render.com pour que le déploiement redémarre.
+echo Vos modifications sont sur GitHub. 
+echo MAINTENANT : Lancez "INSTALL_ON_OVH.sh" sur le serveur pour appliquer la mise à jour !
 echo.
 pause
