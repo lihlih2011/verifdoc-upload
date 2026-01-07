@@ -74,30 +74,7 @@ results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..
 os.makedirs(results_dir, exist_ok=True)
 app.mount("/results", StaticFiles(directory=results_dir), name="results")
 
-# GDPR / "Zero Day" Cleaner Task
-import time
-import shutil
-from fastapi_utils.tasks import repeat_every
-
-@app.on_event("startup")
-@repeat_every(seconds=3600)  # Run every hour
-def remove_expired_files():
-    """
-    RGPD Compliance: Delete heatmaps older than 1 hour.
-    """
-    now = time.time()
-    cutoff = now - 3600 # 1 Hour
-
-    if os.path.exists(heatmaps_dir):
-        for filename in os.listdir(heatmaps_dir):
-            file_path = os.path.join(heatmaps_dir, filename)
-            try:
-                if os.path.isfile(file_path):
-                    t = os.path.getmtime(file_path)
-                    if t < cutoff:
-                        os.remove(file_path)
-            except Exception as e:
-                print(f"Error cleaning file {file_path}: {e}")
+# Cleanup task removed for stability
 
 # Routes with Proper Prefixes for Frontend
 print("DEBUG: Including Routers...")

@@ -46,4 +46,3 @@ stripe
 requests
 BeautifulSoup4
 lxml
-fastapi-utils
