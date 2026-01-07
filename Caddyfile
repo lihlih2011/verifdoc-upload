@@ -2,7 +2,7 @@
     debug
 }
 
-:80 {
+www.verifdoc.io, verifdoc.io {
     log {
         output stdout
     }
