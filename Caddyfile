@@ -1,0 +1,16 @@
+{
+    # Options globales
+    email contact@verifdoc.ovh
+}
+
+:80 {
+    # Frontend (React + Nginx)
+    handle /* {
+        reverse_proxy frontend:80
+    }
+
+    # Backend (FastAPI)
+    handle /api/* {
+        reverse_proxy backend:8000
+    }
+}

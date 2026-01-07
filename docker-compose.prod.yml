@@ -11,8 +11,9 @@ services:
     env_file: .env.prod
     environment:
       - DATABASE_URL=postgresql://user:password@db:5432/verifdoc
-    ports:
-      - "8000:8000"
+    # Ports handled by Caddy
+    expose:
+      - "8000"
     volumes:
       - ./uploads:/app/uploads
       - ./results:/app/results
@@ -26,8 +27,9 @@ services:
       dockerfile: frontend/Dockerfile
     container_name: verifdoc_frontend
     restart: always
-    ports:
-      - "80:80"
+    # Ports handled by Caddy
+    expose:
+      - "80"
 
   # 3. LA MÉMOIRE (Base de données)
   db:
@@ -40,10 +42,24 @@ services:
       - POSTGRES_DB=verifdoc
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  # 4. LE PORTIER (HTTPS Automatique)
-  # caddy:
-  #   image: caddy:2-alpine
-  #   ... (Configuration Caddy à venir)
+
+  # 4. LE PORTIER (Reverse Proxy / HTTPS)
+  caddy:
+    image: caddy:2-alpine
+    container_name: verifdoc_caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - backend
 
 volumes:
   postgres_data:
+  caddy_data:
+  caddy_config:
