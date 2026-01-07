@@ -1,6 +1,6 @@
 # Frontend Dockerfile
 # Stage 1: Build
-FROM node:20-alpine as build
+FROM node:20-bookworm as build
 WORKDIR /app
 COPY frontend/package*.json ./
 RUN npm install
