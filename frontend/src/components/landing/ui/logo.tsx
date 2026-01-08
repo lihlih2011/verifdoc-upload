@@ -7,7 +7,7 @@ export default function Logo() {
       <img
         src="/images/verifdoc-logo-real.png"
         alt="VerifDoc"
-        className="h-10 w-auto object-contain"
+        className="h-14 w-auto object-contain transition-transform hover:scale-105"
       />
     </Link>
   )

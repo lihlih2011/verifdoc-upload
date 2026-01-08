@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import DocumentScroller from '../components/landing/demo/DocumentScroller';
+import FreeTrialUpload from '../components/landing/demo/FreeTrialUpload';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -735,14 +737,11 @@ export default function LandingPageV2() {
             {/* NAVBAR */}
             <nav className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "bg-[#020617]/90 backdrop-blur-md border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)]" : "bg-transparent")}>
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <div className="flex items-center gap-3 group cursor-pointer">
+                    <div className="flex items-center group cursor-pointer">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-blue-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
-                            <div className="bg-white rounded-full p-1.5 shadow-lg shadow-blue-500/20 relative z-10">
-                                <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-8 w-auto object-contain" />
-                            </div>
+                            <div className="absolute inset-0 bg-blue-500 blur-2xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                            <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-14 md:h-16 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105" />
                         </div>
-                        <span className="text-xl font-bold text-white tracking-tight hidden sm:block group-hover:text-blue-400 transition-colors">VERIFDOC</span>
                     </div>
                     {/* DESKTOP NAV */}
                     <div className="hidden md:flex items-center gap-1 p-1 bg-white/5 rounded-full border border-white/5 backdrop-blur-sm">
@@ -793,23 +792,16 @@ export default function LandingPageV2() {
                         <p className="text-lg md:text-xl text-slate-400 mb-8 leading-relaxed max-w-lg">
                             {t('hero.subtitle')}
                         </p>
-                        <div className="flex flex-col sm:flex-row items-start gap-4 mb-12">
-                            <Link to="/contact" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
-                                {t('hero.cta_start')} <ArrowRight size={18} />
-                            </Link>
-                            <a href="#pricing" className="w-full sm:w-auto px-8 py-4 bg-slate-800/50 border border-slate-700 text-white font-medium rounded-xl hover:bg-slate-800 transition-colors backdrop-blur-sm">
-                                {t('hero.cta_sales')}
-                            </a>
-                        </div>
+                        <FreeTrialUpload />
                         <div className="flex items-center gap-8 text-slate-500 text-sm font-medium">
                             <div className="flex items-center gap-2"><CheckCircle2 className="text-blue-500" size={16} /> Démo gratuite</div>
                             <div className="flex items-center gap-2"><CheckCircle2 className="text-blue-500" size={16} /> Pas de carte requise</div>
                         </div>
                     </div>
 
-                    {/* RIGHT COLUMN: SIMULATOR (RESTORED TO HERO) */}
-                    <div className="relative flex flex-col items-center">
-                        <UploadSimulator />
+                    {/* RIGHT COLUMN: LIVE DEMO (SCROLLER) */}
+                    <div className="relative flex flex-col items-center w-full max-w-lg mx-auto lg:mx-0">
+                        <DocumentScroller />
                     </div>
                 </div>
             </section>
@@ -1050,7 +1042,6 @@ export default function LandingPageV2() {
                         </div>
                     </div>
                     {/* COMPARISON SLIDER */}
-                    <ComparisonSlider />
                 </div>
             </section>
 
@@ -1101,37 +1092,154 @@ export default function LandingPageV2() {
                 </div>
             </section>
 
-            {/* TARIFS (PRICING) */}
-            <section id="pricing" className="py-24 bg-[#050914] border-t border-white/5">
-                <div className="max-w-7xl mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-4">{t('pricing.title')}</h2>
-                    <p className="text-slate-400 mb-16 max-w-2xl mx-auto">{t('pricing.subtitle')}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
-                        {/* START */}
-                        <div className="bg-slate-900/20 border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all">
-                            <h3 className="font-bold text-white text-xl mb-2">{t('pricing.start.title')}</h3>
-                            <div className="text-4xl font-bold text-white mb-6">{t('pricing.start.price')}<span className="text-sm text-slate-500 font-normal">{t('pricing.start.period')}</span></div>
-                            <ul className="space-y-4 text-sm text-slate-400 mb-8"><li className="flex gap-3"><CheckCircle2 size={16} className="text-blue-500" /> {t('pricing.start.features.verifications')}</li><li className="flex gap-3"><CheckCircle2 size={16} className="text-blue-500" /> {t('pricing.start.features.ocr')}</li></ul>
-                            <Link to="/signup?plan=start" className="block w-full py-3 bg-slate-800 text-white text-center rounded-lg font-medium hover:bg-slate-700 transition-colors">{t('pricing.start.cta')}</Link>
+            {/* TARIFS (PRICING) - PREMIUM 4-COLUMN DESIGN */}
+            <section id="pricing" className="py-32 bg-[#020617] relative overflow-hidden">
+                {/* Decorative background elements */}
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+
+                <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+                    <div className="text-center mb-24">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
+                            <Landmark size={14} /> Pricing & Forensic Plans
                         </div>
-                        {/* EXPERT */}
-                        <div className="bg-slate-900/80 border border-blue-500/50 rounded-2xl p-8 relative transform md:-translate-y-4 shadow-2xl shadow-blue-900/20">
-                            <div className="absolute top-0 right-0 py-1 px-3 bg-blue-600 text-white text-[10px] font-bold rounded-bl-xl rounded-tr-xl">{t('pricing.recommended')}</div>
-                            <h3 className="font-bold text-white text-xl mb-2">{t('pricing.expert.title')}</h3>
-                            <div className="text-4xl font-bold text-white mb-6">{t('pricing.expert.price')}<span className="text-sm text-slate-500 font-normal">{t('pricing.expert.period')}</span></div>
-                            <ul className="space-y-4 text-sm text-slate-300 mb-8"><li className="flex gap-3"><CheckCircle2 size={16} className="text-emerald-500" /> {t('pricing.expert.features.verifications')}</li><li className="flex gap-3"><CheckCircle2 size={16} className="text-emerald-500" /> <span className="font-bold text-white">{t('pricing.expert.features.ela')}</span></li><li className="flex gap-3"><CheckCircle2 size={16} className="text-emerald-500" /> {t('pricing.expert.features.photoshop')}</li></ul>
-                            <Link to="/signup?plan=expert" className="block w-full py-3 bg-blue-600 text-white text-center rounded-lg font-bold hover:bg-blue-500 transition-colors">{t('pricing.expert.cta')}</Link>
+                        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">{t('pricing.title')}</h2>
+                        <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">{t('pricing.subtitle')}</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+
+                        {/* 1. ESSENTIEL */}
+                        <div className="group bg-slate-900/30 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:border-blue-500/20 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-blue-500/5">
+                            <div className="mb-8">
+                                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-blue-600/20 transition-colors">
+                                    <ShieldCheck size={24} className="text-blue-400" />
+                                </div>
+                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.essentiel.title')}</h3>
+                                <p className="text-slate-500 text-sm mb-6 line-clamp-2">{t('pricing.essentiel.desc')}</p>
+                                <div className="flex flex-col mb-1">
+                                    <div className="flex items-baseline gap-1">
+                                        <span className="text-4xl font-bold text-white">{t('pricing.essentiel.price')}</span>
+                                        <span className="text-slate-500 text-sm font-medium">{t('pricing.essentiel.unit')}</span>
+                                    </div>
+                                    <p className="text-xs text-slate-400 mt-1">{t('pricing.essentiel.commitment')}</p>
+                                </div>
+                            </div>
+                            <div className="h-px bg-white/5 w-full mb-8"></div>
+                            <ul className="space-y-4 mb-10 flex-grow text-sm">
+                                {Object.values(t('pricing.essentiel.features', { returnObjects: true })).map((feature: any, i: number) => (
+                                    <li key={i} className="flex gap-3 items-start text-slate-400 group-hover:text-slate-300 transition-colors">
+                                        <Check size={16} className="text-blue-500 shrink-0 mt-0.5" />
+                                        <span>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link to="/signup?plan=essentiel" className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-center rounded-2xl font-bold transition-all group-hover:border-blue-500/40">
+                                {t('pricing.essentiel.cta')}
+                            </Link>
                         </div>
-                        {/* ENTREPRISE */}
-                        <div className="bg-slate-900/20 border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all">
-                            <h3 className="font-bold text-white text-xl mb-2">{t('pricing.enterprise.title')}</h3>
-                            <div className="text-4xl font-bold text-white mb-6">{t('pricing.enterprise.price')}</div>
-                            <ul className="space-y-4 text-sm text-slate-400 mb-8"><li className="flex gap-3"><CheckCircle2 size={16} className="text-blue-500" /> {t('pricing.enterprise.features.volume')}</li><li className="flex gap-3"><CheckCircle2 size={16} className="text-blue-500" /> {t('pricing.enterprise.features.sla')}</li></ul>
-                            <Link to="/contact" className="block w-full py-3 bg-slate-800 text-white text-center rounded-lg font-medium hover:bg-slate-700 transition-colors">{t('pricing.enterprise.cta')}</Link>
+
+                        {/* 2. CONFORMITÉ - POPULAR */}
+                        <div className="relative group bg-slate-900/60 backdrop-blur-md border border-blue-500/30 rounded-3xl p-8 transition-all duration-500 flex flex-col shadow-2xl shadow-blue-500/10 lg:scale-105 lg:z-10">
+                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 py-1.5 px-4 bg-blue-600 text-white text-[10px] font-black rounded-full tracking-widest uppercase border border-blue-400 shadow-xl shadow-blue-600/20">
+                                {t('pricing.recommended')}
+                            </div>
+                            <div className="mb-8">
+                                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-600/30">
+                                    <Users size={24} className="text-white" />
+                                </div>
+                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.conformite.title')}</h3>
+                                <p className="text-slate-400 text-sm mb-6 line-clamp-2">{t('pricing.conformite.desc')}</p>
+                                <div className="flex flex-col mb-1">
+                                    <div className="flex items-baseline gap-1">
+                                        <span className="text-4xl font-bold text-white">{t('pricing.conformite.price')}</span>
+                                        <span className="text-slate-400 text-sm font-medium">{t('pricing.conformite.unit')}</span>
+                                    </div>
+                                    <p className="text-xs text-blue-200/60 mt-1">{t('pricing.conformite.commitment')}</p>
+                                </div>
+                            </div>
+                            <div className="h-px bg-blue-500/20 w-full mb-8"></div>
+                            <ul className="space-y-4 mb-10 flex-grow text-sm">
+                                {Object.values(t('pricing.conformite.features', { returnObjects: true })).map((feature: any, i: number) => (
+                                    <li key={i} className="flex gap-3 items-start text-slate-300">
+                                        <CheckCircle2 size={16} className="text-blue-400 shrink-0 mt-0.5" />
+                                        <span>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link to="/signup?plan=pro" className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white text-center rounded-2xl font-bold transition-all shadow-lg hover:shadow-blue-600/30 transform hover:-translate-y-1">
+                                {t('pricing.conformite.cta')}
+                            </Link>
                         </div>
+
+                        {/* 3. FORENSIQUE */}
+                        <div className="group bg-slate-900/30 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:border-purple-500/20 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-purple-500/5">
+                            <div className="mb-8">
+                                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-purple-600/20 transition-colors">
+                                    <ScanLine size={24} className="text-purple-400" />
+                                </div>
+                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.forensique.title')}</h3>
+                                <p className="text-slate-500 text-sm mb-6 line-clamp-2">{t('pricing.forensique.desc')}</p>
+                                <div className="flex flex-col mb-1">
+                                    <div className="flex items-baseline gap-1">
+                                        <span className="text-4xl font-bold text-white">{t('pricing.forensique.price')}</span>
+                                        <span className="text-slate-500 text-sm font-medium">{t('pricing.forensique.unit')}</span>
+                                    </div>
+                                    <p className="text-xs text-slate-400 mt-1">{t('pricing.forensique.commitment')}</p>
+                                </div>
+                            </div>
+                            <div className="h-px bg-white/5 w-full mb-8"></div>
+                            <ul className="space-y-4 mb-10 flex-grow text-sm">
+                                {Object.values(t('pricing.forensique.features', { returnObjects: true })).map((feature: any, i: number) => (
+                                    <li key={i} className="flex gap-3 items-start text-slate-400 group-hover:text-slate-300 transition-colors">
+                                        <Check size={16} className="text-purple-500 shrink-0 mt-0.5" />
+                                        <span className={i < 2 ? "font-bold text-white" : ""}>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link to="/signup?plan=forensic" className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-center rounded-2xl font-bold transition-all group-hover:border-purple-500/40">
+                                {t('pricing.forensique.cta')}
+                            </Link>
+                        </div>
+
+                        {/* 4. ENTERPRISE */}
+                        <div className="group bg-slate-800/20 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:border-emerald-500/20 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-emerald-500/5">
+                            <div className="mb-8">
+                                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-emerald-600/20 transition-colors">
+                                    <Building2 size={24} className="text-emerald-400" />
+                                </div>
+                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.enterprise.title')}</h3>
+                                <p className="text-slate-500 text-sm mb-6 line-clamp-2">{t('pricing.enterprise.desc')}</p>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-4xl font-bold text-white">{t('pricing.enterprise.price')}</span>
+                                </div>
+                            </div>
+                            <div className="h-px bg-white/5 w-full mb-8"></div>
+                            <ul className="space-y-4 mb-10 flex-grow text-sm">
+                                {Object.values(t('pricing.enterprise.features', { returnObjects: true })).map((feature: any, i: number) => (
+                                    <li key={i} className="flex gap-3 items-start text-slate-400 group-hover:text-slate-300 transition-colors">
+                                        <Check size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                                        <span>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link to="/contact" className="w-full py-4 bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-500/20 text-emerald-400 text-center rounded-2xl font-bold transition-all group-hover:border-emerald-500/50">
+                                {t('pricing.enterprise.cta')}
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Security Badge - REFINED */}
+                    <div className="mt-24 pt-12 border-t border-white/5 flex flex-wrap justify-center items-center gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+                        <div className="flex items-center gap-3"><ShieldCheck size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">SECURITY GRADE</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">AAA+ COMPLIANT</p></div></div>
+                        <div className="flex items-center gap-3"><Lock size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">END-TO-END</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">AES-256 ENCRYPTION</p></div></div>
+                        <div className="flex items-center gap-3"><Globe2 size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">GDPR SOVEREIGN</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">EU DATA CENTERS</p></div></div>
+                        <div className="flex items-center gap-3"><Scale size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">REGULATED</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">ACPR/AMF READY</p></div></div>
                     </div>
                 </div>
             </section>
+
+
 
             {/* NOTRE HISTOIRE - SECTION */}
             <section className="py-24 bg-white border-t border-slate-100 border-b">
@@ -1185,7 +1293,9 @@ export default function LandingPageV2() {
                 <div className="max-w-7xl mx-auto px-6 py-16">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                         <div className="col-span-1">
-                            <div className="flex items-center gap-2 mb-6 text-blue-600"><img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-8 w-auto mix-blend-multiply" /><span className="text-lg font-bold tracking-tight text-slate-900">VERIFDOC</span></div>
+                            <div className="flex items-center mb-6">
+                                <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 w-auto transition-all hover:brightness-110" />
+                            </div>
                             <p className="mb-6 leading-relaxed text-slate-500">Vérifiez vos PDFs avec l'IA. Détectez instantanément les faux documents grâce à notre technologie d'IA avancée.</p>
                             <div className="flex gap-4"><a href="#" className="text-slate-400 hover:text-blue-600 transition-colors"><Twitter size={20} /></a><a href="#" className="text-slate-400 hover:text-blue-600 transition-colors"><Linkedin size={20} /></a></div>
                         </div>

@@ -131,38 +131,71 @@
         }
     },
     "pricing": {
-        "title": "Transparent Pricing",
-        "subtitle": "Choose the power you need.",
-        "recommended": "RECOMMENDED",
-        "start": {
-            "title": "Start",
-            "price": "€99",
-            "period": "/month",
+        "title": "Digital Trust Solutions",
+        "subtitle": "State-of-the-art forensic technology, tailored to your security challenges.",
+        "recommended": "POPULAR",
+        "essentiel": {
+            "title": "Core Essential",
+            "price": "€0.79",
+            "unit": "/verification",
+            "commitment": "€99 monthly commitment",
+            "desc": "Designed for companies focused on meeting minimum compliance requirements.",
             "features": {
-                "verifications": "500 Verifications",
-                "ocr": "Standard OCR"
+                "id": "Identity Verification",
+                "funds": "Source of Funds Check",
+                "address": "Address Validation",
+                "decision": "AI-Automated Decision",
+                "mla": "AML / LMA Screening",
+                "multilingual": "Multilingual KYC Process"
             },
-            "cta": "Choose Start"
+            "cta": "Choose this plan"
         },
-        "expert": {
-            "title": "Expert",
-            "price": "€299",
-            "period": "/month",
+        "conformite": {
+            "title": "Compliance Pro",
+            "price": "€0.45",
+            "unit": "/verification",
+            "commitment": "€299 monthly commitment",
+            "desc": "Optimize your compliance strategy with integrated anti-money laundering filtering.",
             "features": {
-                "verifications": "2,000 Verifications",
-                "ela": "ELA Forensic Analysis",
-                "photoshop": "Photoshop Detection"
+                "biometry": "Biometric & Deepfake Detection",
+                "monitoring": "Continuous KYC Surveillance",
+                "expiry": "Document Expiry Alerts",
+                "branding": "Brand/Logo Customization",
+                "negative_media": "Negative Media Monitoring (OSINT)",
+                "rules": "Dynamic Rules Engine"
             },
-            "cta": "Choose Expert"
+            "cta": "Choose this plan"
+        },
+        "forensique": {
+            "title": "Forensic Elite",
+            "price": "€0.25",
+            "unit": "/verification",
+            "commitment": "€599 monthly commitment",
+            "desc": "Go beyond compliance with state-of-the-art fraud detection and forensic analysis.",
+            "features": {
+                "pixel": "Pixel-Level Forensic Analysis",
+                "prnu": "PRNU Sensor Fingerprinting",
+                "lattice": "Neural Lattice Analysis",
+                "stream": "Dynamic Verification Streams",
+                "metadata": "XMP/Exif Metadata Audit",
+                "ela": "Forensic ELA 2.0 Analysis"
+            },
+            "cta": "Choose this plan"
         },
         "enterprise": {
-            "title": "Enterprise",
-            "price": "Quote",
+            "title": "Institutional",
+            "price": "Custom",
+            "unit": "",
+            "desc": "Designed for large-scale enterprises with significant volumes.",
             "features": {
-                "volume": "Unlimited Volume",
-                "sla": "Custom SLA"
+                "blockchain": "Immutable Blockchain Audit",
+                "slack": "Dedicated Forensic Expert",
+                "air_gap": "On-Premise/Air-Gapped Setup",
+                "api": "High-Frequency API Automation",
+                "sso": "Single Sign-On (SSO)",
+                "sovereign": "EU Data Sovereignty"
             },
-            "cta": "Contact Us"
+            "cta": "Contact us"
         }
     },
     "history": {

@@ -143,11 +143,8 @@ export const AuthPage: React.FC = () => {
             {/* LEFT COLUMN - VISUAL */}
             <div className="hidden lg:flex w-1/2 bg-[#020617] relative overflow-hidden flex-col justify-between p-12 text-white">
                 <div className="z-10 relative">
-                    <div className="flex items-center gap-3">
-                        <div className="bg-white rounded-full p-2 shadow-xl">
-                            <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-10 w-auto object-contain" />
-                        </div>
-                        <span className="text-2xl font-bold text-white tracking-tight">VERIFDOC</span>
+                    <div className="flex items-center">
+                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 w-auto object-contain brightness-110 drop-shadow-2xl" />
                     </div>
                 </div>
 

@@ -115,6 +115,14 @@ from backend.api import admin_dashboard
 app.include_router(admin_dashboard.router)
 from backend.api.payment_api import router as payment_router
 app.include_router(payment_router, prefix="/api/payment", tags=["Paiement"])
+
+# Public Demo API
+from backend.api import public_api
+app.include_router(public_api.router)
+
+# Batch API (Enterprise Volume)
+from backend.api import batch_api
+app.include_router(batch_api.router)
 # --------------------------------------------------------------------
 
 @app.get("/")

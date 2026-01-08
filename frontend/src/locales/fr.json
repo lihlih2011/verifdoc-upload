@@ -131,38 +131,71 @@
         }
     },
     "pricing": {
-        "title": "Tarification Transparente",
-        "subtitle": "Choisissez la puissance dont vous avez besoin.",
-        "recommended": "RECOMMANDÉ",
-        "start": {
-            "title": "Start",
-            "price": "99 €",
-            "period": "/mois",
+        "title": "Solutions de Confiance Numérique",
+        "subtitle": "Une technologie forensique de pointe, adaptée à vos enjeux de sécurité.",
+        "recommended": "POPULAIRE",
+        "essentiel": {
+            "title": "Cœur Essentiel",
+            "price": "0,79 €",
+            "unit": "/vérification",
+            "commitment": "Engagement mensuel de 99 €",
+            "desc": "Conçu pour les entreprises soucieuses de respecter les exigences minimales de conformité.",
             "features": {
-                "verifications": "500 Vérifications",
-                "ocr": "OCR Standard"
+                "id": "Vérification d'Identité",
+                "funds": "Provenance des Fonds",
+                "address": "Vérification d'Adresse",
+                "decision": "Décision Automatisée IA",
+                "mla": "Dépistage LCB-FT / LMA",
+                "multilingual": "Processus KYC Multilingue"
             },
-            "cta": "Choisir Start"
+            "cta": "Choisir ce forfait"
         },
-        "expert": {
-            "title": "Expert",
-            "price": "299 €",
-            "period": "/mois",
+        "conformite": {
+            "title": "Conformité Pro",
+            "price": "0,45 €",
+            "unit": "/vérification",
+            "commitment": "Engagement mensuel de 299 €",
+            "desc": "Optimisez votre stratégie de conformité grâce à un filtrage anti-blanchiment intégré.",
             "features": {
-                "verifications": "2,000 Vérifications",
-                "ela": "Analyse Forensique ELA",
-                "photoshop": "Détection Photoshop"
+                "biometry": "Détection Biométrique & Deepfake",
+                "monitoring": "Surveillance KYC continue",
+                "expiry": "Avis d'expiration documents",
+                "branding": "Personnalisation Brand/Logo",
+                "negative_media": "Veille Médias Négatifs (OSINT)",
+                "rules": "Moteur de Règles Dynamiques"
             },
-            "cta": "Choisir Expert"
+            "cta": "Choisir ce forfait"
+        },
+        "forensique": {
+            "title": "Forensique Élite",
+            "price": "0,25 €",
+            "unit": "/vérification",
+            "commitment": "Engagement mensuel de 599 €",
+            "desc": "Allez au-delà de la conformité avec une détection des fraudes et une analyse forensic de pointe.",
+            "features": {
+                "pixel": "Analyse Forensique des Pixels",
+                "prnu": "Empreinte de Capteur PRNU",
+                "lattice": "Analyse de Structure Neuronal",
+                "stream": "Capture Dynamique des Flux",
+                "metadata": "Audit de Métadonnées XMP/Exif",
+                "ela": "Analyse Forensique ELA 2.0"
+            },
+            "cta": "Choisir ce forfait"
         },
         "enterprise": {
-            "title": "Entreprise",
-            "price": "Sur Devis",
+            "title": "Institutionnel",
+            "price": "Sur Mesure",
+            "unit": "",
+            "desc": "Conçu pour les entreprises opérant à grande échelle avec des volumes importants.",
             "features": {
-                "volume": "Volume Illimité",
-                "sla": "Custom SLA"
+                "blockchain": "Chaîne de Preuve Blockchain",
+                "slack": "Expert Forensique Dédié",
+                "air_gap": "Déploiement On-Premise/SIA",
+                "api": "Automatisation API Haute Fréquence",
+                "sso": "Authentification Unique (SSO)",
+                "sovereign": "Souveraineté des Données (FR)"
             },
-            "cta": "Nous Contacter"
+            "cta": "Contactez-nous"
         }
     },
     "history": {

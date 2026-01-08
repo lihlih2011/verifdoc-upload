@@ -50,7 +50,7 @@ L'expérience utilisateur qui fait signer les contrats.
 | ID | Tâche | Description | Score Z | Prio | Statut |
 |----|-------|-------------|---------|------|--------|
 | **4.1** | **Upload Fix & Feedback** | Bouton téléchargement PDF robuste et feedback visuel. | 5/10 | **P0** | [x] |
-| **4.2** | **Landing Page Pro** | Design style "Stripe" pour la page d'accueil publique. | 3/10 | P2 | [ ] |
+| **4.2** | **Landing Page Pro** | Design style "Stripe" pour la page d'accueil publique. | 3/10 | P2 | [x] |
 | **4.3** | **Mobile Responsiveness** | Adapter le dashboard pour tablette/mobile. | 4/10 | P2 | [ ] |
 
 ---
@@ -60,8 +60,8 @@ L'intelligence conversationnelle pour guider les visiteurs et supporter les clie
 
 | ID | Tâche | Description | Score Z | Prio | Statut |
 |----|-------|-------------|---------|------|--------|
-| **5.1** | **Smart Sales Chatbot (Landing)** | Chatbot d'accueil intelligent pour qualifier les leads et répondre aux questions commerciales (Pricing, Features, Compliance). Basé sur LLM RAG. | 8/10 | P1 | [ ] |
-| **5.2** | **Support & Expert Bot (Dashboard)** | Assistant technique pour les clients connectés. Capable d'expliquer les résultats d'analyse et de prédire les questions fréquentes sur la fraude. Base de connaissances technique avancée. | 9/10 | P1 | [ ] |
+| **5.1** | **Smart Sales Chatbot (Landing)** | Chatbot d'accueil intelligent pour qualifier les leads et répondre aux questions commerciales. | 8/10 | P1 | [x] |
+| **5.2** | **Support & Expert Bot (Dashboard)** | Assistant technique pour les clients connectés. Explique les résultats d'analyse. | 9/10 | P1 | [x] |
 
 
 ### Phase 6 : Vitrine Commerciale & Monétisation (Terminé)
