@@ -51,7 +51,8 @@ L'expérience utilisateur qui fait signer les contrats.
 |----|-------|-------------|---------|------|--------|
 | **4.1** | **Upload Fix & Feedback** | Bouton téléchargement PDF robuste et feedback visuel. | 5/10 | **P0** | [x] |
 | **4.2** | **Landing Page Pro** | Design style "Stripe" pour la page d'accueil publique. | 3/10 | P2 | [x] |
-| **4.3** | **Mobile Responsiveness** | Adapter le dashboard pour tablette/mobile. | 4/10 | P2 | [ ] |
+| **4.3** | **Live Demo Experience** | Carrousel Interactif + Upload Gratuit + Protection Empreinte. | 6/10 | P1 | [x] |
+| **4.4** | **Mobile Responsiveness** | Adapter le dashboard pour tablette/mobile. | 4/10 | P2 | [ ] |
 
 ---
 
@@ -69,6 +70,8 @@ L'intelligence conversationnelle pour guider les visiteurs et supporter les clie
   - [x] Design "Cyber-Souverain" Dark Mode & Split-Screen.
   - [x] Logo 3D Flottant & Animations.
   - [x] Formulaire Lead Capture.
+  - [x] **Live Demo Module** (Visualisation Temps Réel).
+  - [x] **Anti-Abus** (Fingerprinting Device).
 
 - [x] **Tâche 6.2 : Système de Paiement**
   - [x] Backend : Endpoint `/checkout-session`.
@@ -82,6 +85,8 @@ L'intelligence conversationnelle pour guider les visiteurs et supporter les clie
 - [x] **Tâche 7.3 : Historique & Doublons**
   - [x] Hachage SHA-256 et base de données `DocumentRecord`.
   - [x] Rapport PDF Haute-Fidélité avec tableau multi-couches.
+- [x] **Tâche 7.4 : Batch API (Enterprise)**
+  - [x] Endpoint `batch/upload` pour analyse de volume.
 
 ## 🛑 JOURNAL DES BLOQUANTS & IDÉES (BACKLOG)
 - [ ] **Déploiement Production** : Exécuter `setup_ssl.sh` sur le VPS.
@@ -91,9 +96,9 @@ L'intelligence conversationnelle pour guider les visiteurs et supporter les clie
 ---
 
 **DERNIÈRE ACTION AUTOMATIQUE :**
-- Intégration complète : Spectre + Sémantique + Historique.
-- Refonte UX Landing Page (Split Layout).
-- Génération PDF V3 (Tableau technique détaillé).
+- Déploiement "Live Demo" Complet.
+- Intégration API Publique & Batch.
+- Mise à jour Requirements & Packaging.
 
 **SUIVANT SUGGÉRÉ :**
-👉 **Tests End-to-End** : Valider le parcours complet utilisateur (Inscription -> Analyse -> PDF).
+👉 **Mise en Production (Deploy)** : Le code est prêt pour le serveur de prod.
