@@ -25,37 +25,49 @@ export default function Header() {
             <Logo />
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex md:grow">
-            <ul className="flex grow justify-center flex-wrap items-center gap-1 text-sm font-medium text-gray-300">
-              <li className="px-3 py-2 hover:text-white transition-colors cursor-pointer">
-                <Link to="/solutions" className="flex items-center gap-1 hover:text-primary-300">Solutions</Link>
-              </li>
-              <li className="px-3 py-2 hover:text-white transition-colors cursor-pointer">
-                <Link to="/resources" className="flex items-center gap-1 hover:text-primary-300">Ressources</Link>
-              </li>
-              <li className="px-3 py-2 hover:text-white transition-colors cursor-pointer">
-                <Link to="/company" className="flex items-center gap-1 hover:text-primary-300">Entreprise</Link>
-              </li>
-              <li className="px-3 py-2 hover:text-white transition-colors cursor-pointer">
-                <Link to="/contact" className="flex items-center gap-1 hover:text-primary-300">Contact</Link>
-              </li>
+          {/* Desktop Navigation Professional */}
+          <nav className="hidden md:flex md:grow justify-center">
+            <ul className="flex items-center gap-8 text-sm font-medium">
+              {[
+                ["Solutions", "/solutions"],
+                ["Tarifs", "/#pricing"],
+                ["Entreprise", "/company"],
+                ["Contact", "/contact"]
+              ].map(([label, href]) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    className="relative text-gray-300 transition-colors duration-300 hover:text-white group py-2"
+                  >
+                    {label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          {/* Desktop sign in links */}
-          <ul className="flex flex-1 items-center justify-end gap-3">
+          {/* Desktop sign in links with Premium CTA */}
+          <ul className="flex flex-1 items-center justify-end gap-4">
             <li>
-              <Link to="/signin" className="text-sm font-medium text-gray-300 hover:text-white px-3 py-2 transition-colors">
+              <Link
+                to="/signin"
+                className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+              >
                 Connexion
               </Link>
             </li>
             <li>
               <Link
                 to="/signup"
-                className="btn-sm rounded-full bg-gradient-to-r from-primary-600 to-purple-600 py-[6px] px-4 text-white hover:shadow-[0_0_15px_rgba(217,70,239,0.5)] transition-all duration-300"
+                className="group relative inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:from-blue-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900"
               >
-                Essayer
+                <span className="relative flex items-center gap-2">
+                  Essayer Gratuitement
+                  <svg className="w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
               </Link>
             </li>
           </ul>
