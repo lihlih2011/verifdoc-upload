@@ -30,7 +30,7 @@ Il est aligné avec le **STRATEGIC_BLUEPRINT.md** (Plan Global 2026).
 | **2.1** | **Backend Paiement** | API Stripe, Plans (19€, 49€), Gestion Crédits. | 8/10 | [x] |
 | **2.2** | **Page Pricing** | Interface Frontend pour choisir son plan (Card Design). | 5/10 | [x] |
 | **2.3** | **Webhook Stripe** | Créditer automatiquement le compte après paiement réussi. | 9/10 | [x] |
-| **2.4** | **CRM Link** | Connecter les inscriptions "Free Trial" à HubSpot/Log. | 6/10 | [~] |
+| **2.4** | **CRM Link** | Connecter les inscriptions "Free Trial" à HubSpot/Log. | 6/10 | [x] |
 
 ---
 
@@ -40,7 +40,7 @@ Il est aligné avec le **STRATEGIC_BLUEPRINT.md** (Plan Global 2026).
 | ID | Tâche | Description | Score Z | Statut |
 |----|-------|-------------|---------|--------|
 | **3.1** | **Auth Dashboard** | Connexion sécurisée (JWT) et protection des routes. | 7/10 | [x] |
-| **3.2** | **Historique** | Vue liste des documents analysés avec statut. | 6/10 | [~] |
+| **3.2** | **Historique** | Vue liste des documents analysés avec statut. | 6/10 | [x] |
 | **3.3** | **Export PDF** | Télécharger le rapport de preuve (Certificat). | 5/10 | [x] |
 | **3.4** | **Multi-Utilisateur** | Gestion d'équipe (Admin/Membre) pour les entreprises. | 8/10 | [ ] |
 
