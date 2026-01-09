@@ -130,12 +130,42 @@ app.include_router(batch_api.router)
 async def read_root(request: Request):
     return {"message": "Welcome to VerifDoc Backend (Secured & GDPR Compliant)"}
 
+from sqlalchemy.sql import text
+
 @app.get("/health")
-async def health_check():
+async def health_check(db: SessionLocal = Depends(get_db)):
     """
-    Health check endpoint to verify the backend is running.
+    Production Health Check.
+    Validates DB connection and basic AI Engine readiness.
     """
-    return {"status": "ok"}
+    health_status = {
+        "status": "ok",
+        "database": "unknown",
+        "version": settings.VERSION
+    }
+    
+    # Check Database
+    try:
+        db.execute(text("SELECT 1"))
+        health_status["database"] = "connected"
+    except Exception as e:
+        health_status["database"] = f"error: {str(e)}"
+        health_status["status"] = "degraded"
+        # logger.error(f"Health Check DB Error: {e}") # Logger not imported yet
+
+    # Check ML Engine (Basic import check)
+    try:
+        import torch
+        health_status["ml_engine"] = "available"
+        if torch.cuda.is_available():
+            health_status["cuda_available"] = True
+        else:
+             health_status["cuda_available"] = False
+    except ImportError:
+        health_status["ml_engine"] = "missing_libs"
+        health_status["status"] = "degraded"
+
+    return health_status
 
 # SERVE FRONTEND (SPA)
 if os.path.exists("frontend/dist"):
