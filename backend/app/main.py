@@ -135,7 +135,7 @@ async def read_root(request: Request):
 from sqlalchemy.sql import text
 
 @app.get("/health")
-async def health_check(db: SessionLocal = Depends(get_db)):
+async def health_check(db: Session = Depends(get_db)):
     """
     Production Health Check.
     Validates DB connection and basic AI Engine readiness.
