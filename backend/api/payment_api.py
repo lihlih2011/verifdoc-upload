@@ -9,31 +9,32 @@ import os
 router = APIRouter()
 
 # --- CONFIGURATION STRIPE ---
-# Dans un vrai projet, mettez ceci dans .env
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "sk_test_PLACEHOLDER")
 stripe.api_key = STRIPE_SECRET_KEY
 
-DOMAIN = "http://localhost:5173" # URL du Frontend
+# Dynamic Domain for Production vs Dev
+DOMAIN = os.getenv("FRONTEND_URL", "https://verifdoc.io") if os.getenv("VERIFDOC_ENV") == "production" else "http://localhost:5173"
 
-# --- PACKS DÉFINIS ---
+# --- PACKS DÉFINIS (Alignés avec le Business Plan) ---
 PACKS = {
-    "pack_essential": {
-        "name": "Plan Essentiel (Base)",
-        "amount": 9900, # $99.00
-        "currency": "usd",
-        "credits": 200 # Approx equivalent to $0.79/check logic
+    "pack_starter": {
+        "name": "Pack Découverte (Crédits)",
+        "amount": 1900, # 19.00€
+        "currency": "eur",
+        "credits": 50
     },
-    "pack_compliance": {
-        "name": "Plan Conformité (Populaire)",
-        "amount": 29900, # $299.00
-        "currency": "usd",
-        "credits": 700 
+    "pack_pro": {
+        "name": "Abonnement PRO (Mensuel)",
+        "amount": 4900, # 49.00€
+        "currency": "eur",
+        "credits": 200, # 200 crédits/mois
+        "type": "subscription" # Future handling for recurring
     },
-    "pack_forensic": {
-        "name": "Plan Service Judiciaire (V3)",
-        "amount": 59900, # $599.00
-        "currency": "usd",
-        "credits": 2400
+    "pack_agency": {
+        "name": "Pack Agence / Volume",
+        "amount": 19900, # 199.00€
+        "currency": "eur",
+        "credits": 1000
     }
 }
 
