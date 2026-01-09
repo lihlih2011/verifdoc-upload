@@ -113,6 +113,8 @@ app.include_router(settings.router)
 app.include_router(purge.router)
 from backend.api import admin_dashboard
 app.include_router(admin_dashboard.router)
+from backend.api import webhook_api
+app.include_router(webhook_api.router)
 from backend.api.payment_api import router as payment_router
 app.include_router(payment_router, prefix="/api/payment", tags=["Paiement"])
 
