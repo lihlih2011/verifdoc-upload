@@ -29,7 +29,7 @@ Il est aligné avec le **STRATEGIC_BLUEPRINT.md** (Plan Global 2026).
 |----|-------|-------------|---------|--------|
 | **2.1** | **Backend Paiement** | API Stripe, Plans (19€, 49€), Gestion Crédits. | 8/10 | [x] |
 | **2.2** | **Page Pricing** | Interface Frontend pour choisir son plan (Card Design). | 5/10 | [x] |
-| **2.3** | **Webhook Stripe** | Créditer automatiquement le compte après paiement réussi. | 9/10 | [ ] |
+| **2.3** | **Webhook Stripe** | Créditer automatiquement le compte après paiement réussi. | 9/10 | [x] |
 | **2.4** | **CRM Link** | Connecter les inscriptions "Free Trial" à HubSpot/Log. | 6/10 | [~] |
 
 ---
