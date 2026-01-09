@@ -42,7 +42,8 @@ async def analyze_public_document(file: UploadFile = File(...)):
             vision_image_path = temp_filename
             try:
                 extracted_text = ocr_engine.extract_text_from_image(content)
-            except: pass
+            except Exception as e:
+                print(f"⚠️ OCR Failed (Ignored): {e}")
             
         elif ext == 'pdf':
             # Convert 1st page to image for Forensic Vision
@@ -58,27 +59,38 @@ async def analyze_public_document(file: UploadFile = File(...)):
                     
                     # Also extract text from PDF directly (better than OCR)
                     extracted_text = page.get_text()
+            except ImportError:
+                print("⚠️ PyMuPDF not installed. Skipping PDF Vision.")
             except Exception as e:
                 print(f"⚠️ PDF Conversion Failed: {e}")
 
         # A. Metadata Layer
-        meta_report = metadata_inspector.inspect(temp_filename)
+        meta_report = {"risk_score": 0, "details": "N/A"}
+        try:
+            meta_report = metadata_inspector.inspect(temp_filename)
+        except Exception as e:
+            print(f"⚠️ Metadata Inspector Failed: {e}")
         
         # B. Spectral Layer (Image Only)
         spectral_res = {"verdict": "neutre", "score": 0, "details": "N/A"}
         if vision_image_path:
-            spectral_res = spectral_engine.analyze(vision_image_path)
+            try:
+                spectral_res = spectral_engine.analyze(vision_image_path)
+            except Exception as e:
+                print(f"⚠️ Spectral Engine Failed: {e}")
         
         # C. Semantic Layer (OCR + Logic)
         semantic_res = {"verdict": "neutre", "score": 0, "details": "Non analysé"}
         if extracted_text:
             try:
                 semantic_res = semantic_engine.analyze(extracted_text)
-            except: pass
+            except Exception as e:
+                print(f"⚠️ Semantic Engine Failed: {e}")
         
         # Cleanup Image if created
         if vision_image_path and vision_image_path != temp_filename and os.path.exists(vision_image_path):
-            os.remove(vision_image_path)
+            try: os.remove(vision_image_path)
+            except: pass
 
         # 4. FUSION SCORES
         confidence = 1.0
@@ -113,8 +125,15 @@ async def analyze_public_document(file: UploadFile = File(...)):
         }
 
     except Exception as e:
-        print(f"ERROR Public Analysis: {e}")
-        raise HTTPException(status_code=500, detail="Erreur interne lors de l'analyse.")
+        print(f"CRITICAL ERROR Public Analysis: {e}")
+        # Return a safe fallback instead of 500 to keep the UI alive
+        return {
+            "verdict": "SUSPECT", 
+            "confidence": 50, 
+            "details": ["Erreur interne analyse (Backend)"],
+            "meta_score": 0, 
+            "spectral_score": 0
+        }
     finally:
         # Cleanup
         if os.path.exists(temp_filename):
