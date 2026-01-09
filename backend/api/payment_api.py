@@ -15,26 +15,28 @@ stripe.api_key = STRIPE_SECRET_KEY
 # Dynamic Domain for Production vs Dev
 DOMAIN = os.getenv("FRONTEND_URL", "https://verifdoc.io") if os.getenv("VERIFDOC_ENV") == "production" else "http://localhost:5173"
 
-# --- PACKS DÉFINIS (Alignés avec le Business Plan) ---
+# --- PACKS DÉFINIS (Plan Tarifaire Actuel) ---
 PACKS = {
-    "pack_starter": {
-        "name": "Pack Découverte (Crédits)",
-        "amount": 1900, # 19.00€
+    "pack_essential": {
+        "name": "Plan Essentiel (Base)",
+        "amount": 9900, # 99.00
         "currency": "eur",
-        "credits": 50
+        "credits": 200,
+        "description": "Pour les besoins ponctuels."
     },
-    "pack_pro": {
-        "name": "Abonnement PRO (Mensuel)",
-        "amount": 4900, # 49.00€
+    "pack_compliance": {
+        "name": "Plan Conformité (Populaire)",
+        "amount": 29900, # 299.00
         "currency": "eur",
-        "credits": 200, # 200 crédits/mois
-        "type": "subscription" # Future handling for recurring
+        "credits": 700, 
+        "description": "Idéal pour les agences immobilières."
     },
-    "pack_agency": {
-        "name": "Pack Agence / Volume",
-        "amount": 19900, # 199.00€
+    "pack_forensic": {
+        "name": "Plan Service Judiciaire (V3)",
+        "amount": 59900, # 599.00
         "currency": "eur",
-        "credits": 1000
+        "credits": 2400,
+        "description": "Pour un volume d'analyse élevé."
     }
 }
 
