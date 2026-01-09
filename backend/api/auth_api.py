@@ -7,7 +7,7 @@ from typing import Optional
 from backend.app.database import get_db
 from backend.app.models import User
 from backend.core.security_utils import SecurityUtils
-from backend.core.crm_sync import CRMSync
+from backend.core.crm import crm_client
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -36,10 +36,14 @@ def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = 
     db.commit()
     db.refresh(new_user)
 
-    # Sync to External CRM (HubSpot/Zapier)
+    # Sync to External CRM (HubSpot/Brevo/Log)
     if background_tasks:
-        user_data = {"id": new_user.id, "email": new_user.email, "full_name": new_user.full_name}
-        background_tasks.add_task(CRMSync.sync_new_user, user_data)
+        background_tasks.add_task(
+            crm_client.create_lead, 
+            email=new_user.email, 
+            first_name=new_user.full_name or "Utilisateur", 
+            source="Signup Flow"
+        )
 
     return {"message": "User created successfully", "user_id": new_user.id}
 

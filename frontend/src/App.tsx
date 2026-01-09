@@ -24,7 +24,7 @@ import Invoices from "./pages/Dashboard/Invoices";
 import Finance from "./pages/Dashboard/Finance";
 import Tickets from "./pages/Dashboard/Tickets";
 import SystemLogs from "./pages/Dashboard/SystemLogs";
-import HistoryAdmin from "./pages/Dashboard/HistoryAdmin";
+import HistoryPage from "./pages/Dashboard/HistoryPage";
 import Webhooks from "./pages/Dashboard/Webhooks";
 import { HRTeam, LegalDocs, LiveChat, KnowledgeBase, GpuHealth, AdminSettings, CompliancePage, ApiKeysPage } from "./pages/Dashboard/AdminPlaceholders";
 
@@ -133,7 +133,7 @@ export default function App() {
               {/* CRM & Sales */}
               <Route path="clients" element={<Clients />} />
               <Route path="prospects" element={<CRM />} />
-              <Route path="history" element={<HistoryAdmin />} />
+              <Route path="history" element={<HistoryPage />} />
 
               <Route path="invoices" element={<Invoices />} />
 
