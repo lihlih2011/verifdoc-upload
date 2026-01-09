@@ -32,7 +32,10 @@ import LandingLayout from "./layout/LandingLayout";
 import LandingPageV2 from "./pages/LandingPageV2";
 import SimpleLegalPage from "./components/common/SimpleLegalPage";
 import { TERMS_OF_SERVICE_CONTENT } from "./data/legalContent";
-import CookieBanner from "./components/common/CookieBanner";
+// Replaced with new CookieConsent
+import CookieConsent from "./components/common/CookieConsent";
+import ChatWidget from "./components/common/ChatWidget";
+
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
@@ -62,8 +65,10 @@ export default function App() {
   return (
     <>
       <Router>
-        <CookieBanner />
         <ScrollToTop />
+        <CookieConsent />
+        <ChatWidget />
+
         <Routes>
           {/* Standalone New Landing Page V2 */}
           <Route path="/" element={<LandingPageV2 />} />
