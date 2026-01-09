@@ -66,9 +66,16 @@ async def analyze_document(
     if current_user.organization:
         user_subscription = current_user.organization.subscription_plan
 
-    credit_system = CreditSystem(db)
-    if not credit_system.consume_credit(org_id_int, user_id_int, cost=1, description=f"Analyse {filename}"):
+    # 1. CRÉDITS (Simplifié : Solde Utilisateur)
+    COST = 1
+    if current_user.credits_balance < COST:
          raise HTTPException(status_code=402, detail="⚠️ CRÉDITS ÉPUISÉS !")
+    
+    # Débit direct
+    current_user.credits_balance -= COST
+    db.add(current_user) # Ensure update is tracked
+    db.commit() # Save logic happens later or now? Better commit now to be safe.
+    db.commit()
 
     # 2. Validation Format
     sector_rules = SECTOR_RULES.get(user_sector, SECTOR_RULES["other"])
