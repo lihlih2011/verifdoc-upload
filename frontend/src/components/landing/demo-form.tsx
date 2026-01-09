@@ -22,11 +22,31 @@ export default function DemoForm() {
             return;
         }
 
-        // 2. Simulate API Sirene Check
-        setTimeout(() => {
-            setStatus('success');
-            setMsg('Société vérifiée ! Un expert vous contactera sous 24h.');
-        }, 1500);
+        // 2. Call Backend API
+        try {
+            const apiUrl = import.meta.env.VITE_API_URL || "";
+            const response = await fetch(`${apiUrl}/api/leads/`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, company, siret, source: "Landing Demo Form" })
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setMsg('Demande reçue ! Un expert vous contactera sous 24h.');
+                // Reset form
+                setEmail('');
+                setCompany('');
+                setSiret('');
+            } else {
+                setStatus('error');
+                setMsg("Erreur lors de l'envoi. Veuillez réessayer.");
+            }
+        } catch (error) {
+            console.error("Lead Error", error);
+            setStatus('error');
+            setMsg("Erreur de connexion serveur.");
+        }
     };
 
     return (
