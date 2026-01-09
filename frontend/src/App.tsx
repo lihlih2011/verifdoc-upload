@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-
 import { AuthPage } from "./pages/AuthPage";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
@@ -32,7 +31,7 @@ import LandingLayout from "./layout/LandingLayout";
 import LandingPageV2 from "./pages/LandingPageV2";
 import SimpleLegalPage from "./components/common/SimpleLegalPage";
 import { TERMS_OF_SERVICE_CONTENT } from "./data/legalContent";
-// Replaced with new CookieConsent
+
 import CookieConsent from "./components/common/CookieConsent";
 import ChatWidget from "./components/common/ChatWidget";
 
@@ -47,6 +46,7 @@ import ResourcesPage from "./pages/Landing/ResourcesPage";
 import CompanyPage from "./pages/Landing/CompanyPage";
 import ContactPage from "./pages/Landing/ContactPage";
 import ProDashboard from "./pages/Dashboard/ProDashboard";
+import PartnersPage from "./pages/Landing/PartnersPage"; // NEW IMPORT
 import CareersPage from "./pages/Landing/CareersPage";
 import PrivacyPolicyPage from "./pages/Landing/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/Landing/TermsOfServicePage";
@@ -82,6 +82,7 @@ export default function App() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/company" element={<CompanyPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/partners" element={<PartnersPage />} /> {/* NEW ROUTE */}
           </Route>
 
           {/* Pages Légales Standalone */}
