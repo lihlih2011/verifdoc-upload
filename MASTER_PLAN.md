@@ -1,7 +1,7 @@
 # 📋 VERIFDOC - MASTER PLAN (ROADMAP DYNAMIQUE)
 
 Ce fichier est la source de vérité unique pour le développement du projet.
-Il est aligné avec le **STRATEGIC_BLUEPRINT.md** (Plan Global 2026).
+Il est aligné avec le **STRATEGIC_BLUEPRINT.md** (Plan Global 2026) et le **ARCHITECTURE_STARTUP.md** (Architecture Technique).
 
 ## 🧠 SYSTÈME DE PRIORISATION
 - **SCORE Z (Complexité/Impact)** : De 1 (Facile, Faible impact) à 10 (Critique, Haut impact).
