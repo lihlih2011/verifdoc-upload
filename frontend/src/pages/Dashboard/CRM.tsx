@@ -34,7 +34,7 @@ export default function CRM() {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             alert("Contrat généré ! ID: " + res.data.contract_id);
-            window.open("http://localhost:8000/preview_contract.html", "_blank"); // Temporary
+            window.open(`${API_URL}/preview_contract.html`, "_blank"); // Temporary
         } catch (e) {
             alert("Erreur génération contrat");
         }

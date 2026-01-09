@@ -50,8 +50,8 @@ export default function FreeTrialUpload() {
             const formData = new FormData();
             formData.append('file', file);
 
-            // Determine API URL (Vite Env or Default)
-            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+            // Determine API URL (Use relative path in Prod for Caddy routing)
+            const apiUrl = import.meta.env.VITE_API_URL || '';
 
             const response = await fetch(`${apiUrl}/api/public/analyze`, {
                 method: 'POST',
@@ -205,8 +205,8 @@ export default function FreeTrialUpload() {
                                 className="text-center"
                             >
                                 <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 ring-1 ${analysisResult.verdict === 'VALID' ? 'bg-emerald-500/10 ring-emerald-500/50' :
-                                        analysisResult.verdict === 'SUSPECT' ? 'bg-yellow-500/10 ring-yellow-500/50' :
-                                            'bg-red-500/10 ring-red-500/50'
+                                    analysisResult.verdict === 'SUSPECT' ? 'bg-yellow-500/10 ring-yellow-500/50' :
+                                        'bg-red-500/10 ring-red-500/50'
                                     }`}>
                                     {analysisResult.verdict === 'VALID' ? <CheckCircle2 className="text-emerald-500" size={32} /> :
                                         analysisResult.verdict === 'SUSPECT' ? <AlertTriangle className="text-yellow-500" size={32} /> :
@@ -224,13 +224,13 @@ export default function FreeTrialUpload() {
                                     <div className="flex justify-between items-center mb-1">
                                         <span className="text-slate-400 text-xs uppercase font-bold">Score de Confiance</span>
                                         <span className={`font-mono font-bold ${analysisResult.confidence > 80 ? 'text-emerald-400' :
-                                                analysisResult.confidence > 50 ? 'text-yellow-400' : 'text-red-400'
+                                            analysisResult.confidence > 50 ? 'text-yellow-400' : 'text-red-400'
                                             }`}>{analysisResult.confidence}/100</span>
                                     </div>
                                     <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
                                         <div
                                             className={`h-full ${analysisResult.confidence > 80 ? 'bg-emerald-500' :
-                                                    analysisResult.confidence > 50 ? 'bg-yellow-500' : 'bg-red-500'
+                                                analysisResult.confidence > 50 ? 'bg-yellow-500' : 'bg-red-500'
                                                 }`}
                                             style={{ width: `${analysisResult.confidence}%` }}
                                         ></div>

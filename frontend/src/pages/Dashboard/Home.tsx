@@ -21,7 +21,7 @@ export default function Home() {
       if (!token) return;
 
       try {
-        const balanceRes = await axios.get("http://localhost:8000/api/billing/balance", {
+        const balanceRes = await axios.get(`${API_URL}/api/billing/balance`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setClientData(balanceRes.data);
