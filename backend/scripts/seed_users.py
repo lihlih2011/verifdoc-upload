@@ -1,14 +1,29 @@
 from sqlalchemy.orm import Session
 from backend.app.database import SessionLocal, Base, engine
-from backend.app.models import User
-from backend.core.security_utils import SecurityUtils
+from backend.app.models import User, Organization
 
-# Create tables if they don't exist (just in case)
-Base.metadata.create_all(bind=engine)
+# ...
 
 def seed_users():
     db: Session = SessionLocal()
     try:
+        # 0. Create Default Organization
+        default_org_name = "VerifDoc HQ"
+        org = db.query(Organization).filter(Organization.name == default_org_name).first()
+        if not org:
+            print(f"Creating Default Organization: {default_org_name}")
+            org = Organization(
+                name=default_org_name,
+                subscription_plan="enterprise",
+                credits_balance=99999
+            )
+            db.add(org)
+            db.commit() # Commit needed to get org.id
+            db.refresh(org)
+            print(f" -> Organization Created with ID: {org.id}")
+        else:
+            print(f"Organization already exists: {org.name} (ID: {org.id})")
+
         # 1. Create ADMIN
         admin_email = "admin@verifdoc.io"
         admin = db.query(User).filter(User.email == admin_email).first()
@@ -19,12 +34,18 @@ def seed_users():
                 hashed_password=SecurityUtils.get_password_hash("admin123"),
                 full_name="Super Admin",
                 role="admin",
-                credits_balance=9999
+                credits_balance=9999,
+                organization_id=org.id
             )
             db.add(admin)
         else:
             print(f"Admin user already exists: {admin_email}")
-            # Ensure role is correct in case it was changed
+            # Fix Organization Link if missing
+            if not admin.organization_id:
+                admin.organization_id = org.id
+                print(" -> Linked Admin to Default Org")
+                db.add(admin)
+            
             if admin.role != "admin":
                 admin.role = "admin"
                 print(" -> Fixed Admin Role")
@@ -39,11 +60,16 @@ def seed_users():
                 hashed_password=SecurityUtils.get_password_hash("client123"),
                 full_name="Jean Client",
                 role="user",
-                credits_balance=50
+                credits_balance=50,
+                organization_id=org.id
             )
             db.add(client)
         else:
             print(f"Client user already exists: {client_email}")
+            if not client.organization_id:
+                client.organization_id = org.id
+                print(" -> Linked Client to Default Org")
+                db.add(client)
 
         db.commit()
     finally:
