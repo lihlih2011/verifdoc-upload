@@ -2,7 +2,7 @@
     {
         "category": "technique",
         "question": "Mon fichier PDF n'est pas accepté lors de l'upload.",
-        "answer": "Assurez-vous que votre fichier est au format PDF standard, qu'il ne dépasse pas 10Mo et qu'il n'est pas protégé par un mot de passe. Si le problème persiste, essayez de le ré-enregistrer via 'Imprimer en PDF'."
+        "answer": "Assurez-vous que votre fichier est au format PDF standard, qu'il ne dépasse pas 10Mo et qu'il n'est pas protégé par un mot de passe."
     },
     {
         "category": "technique",
@@ -10,43 +10,93 @@
         "answer": "Une erreur serveur temporaire est survenue. Nos équipes sont notifiées automatiquement. Veuillez réessayer dans quelques minutes."
     },
     {
+        "category": "technique",
+        "question": "Mon image est floue, sera-t-elle acceptée ?",
+        "answer": "Notre système détecte automatiquement le flou. Si l'image est illisible, elle sera rejetée sans consommer de crédit. Veuillez scanner le document à nouveau."
+    },
+    {
+        "category": "technique",
+        "question": "Puis-je analyser plusieurs fichiers en même temps ?",
+        "answer": "Oui, le multi-upload est activé. Vous pouvez glisser jusqu'à 50 fichiers simultanément dans la zone de dépôt."
+    },
+    {
+        "category": "technique",
+        "question": "Quelle est la précision de l'IA ?",
+        "answer": "Notre IA a un taux de précision de 98% sur les documents standards (Factures, Identité, RIB). Cependant, une révision humaine reste conseillée pour les cas 'Suspects'."
+    },
+    {
         "category": "facturation",
         "question": "Comment acheter des crédits supplémentaires ?",
-        "answer": "Rendez-vous dans la section 'Finance' ou cliquez sur votre solde en haut à droite. Sélectionnez un pack (Essentiel, Pro ou Forensic) et procédez au paiement sécurisé via Stripe."
+        "answer": "Rendez-vous dans la section 'Finance' ou cliquez sur votre solde en haut à droite. Sélectionnez un pack (Essentiel, Pro ou Forensic) et payez via Stripe."
     },
     {
         "category": "facturation",
         "question": "Où trouver mes factures ?",
-        "answer": "Vos factures sont disponibles dans l'onglet 'Factures & Abonnements' de votre espace administrateur. Vous pouvez les télécharger au format PDF."
+        "answer": "Vos factures sont disponibles dans l'onglet 'Factures & Abonnements' de votre espace administrateur. Elles sont téléchargeables en PDF."
+    },
+    {
+        "category": "facturation",
+        "question": "Les crédits expirent-ils ?",
+        "answer": "Non, vos crédits prépayés n'ont pas de date d'expiration tant que votre compte reste actif."
+    },
+    {
+        "category": "facturation",
+        "question": "Puis-je me faire rembourser ?",
+        "answer": "Les packs de crédits ne sont pas remboursables une fois entamés. Contactez le support pour tout litige commercial."
     },
     {
         "category": "sav",
         "question": "Comment contacter le support client humain ?",
-        "answer": "Si ce chatbot ne suffit pas, vous pouvez ouvrir un ticket dans l'onglet 'Support / Tickets' ou nous écrire à support@verifdoc.io. Réponse sous 24h ouvrées."
+        "answer": "Si ce chatbot ne suffit pas, ouvrez un ticket dans l'onglet 'Support / Tickets' ou écrivez à support@verifdoc.io. Réponse sous 24h ouvrées."
     },
     {
         "category": "sav",
-        "question": "Je veux supprimer mon compte.",
-        "answer": "Conformément au RGPD, vous pouvez demander la suppression de votre compte et de toutes vos données depuis les 'Paramètres' > 'Zone Danger' > 'Supprimer mon compte'."
+        "question": "Horaires du support technique ?",
+        "answer": "Notre support humain est disponible du Lundi au Vendredi, de 9h00 à 18h00 (Heure de Paris)."
     },
     {
-        "category": "technique",
-        "question": "Quels formats sont supportés ?",
-        "answer": "Nous supportons actuellement les fichiers PDF (natifs et scannés), ainsi que les images JPG/PNG pour le secteur Finance et Immobilier."
+        "category": "juridique",
+        "question": "Je veux supprimer mon compte (RGPD).",
+        "answer": "Conformément au RGPD, vous pouvez supprimer votre compte depuis 'Paramètres' > 'Zone Danger'. Toutes vos données seront effacées sous 30 jours."
     },
     {
-        "category": "analyse",
-        "question": "Que signifie le verdict 'Suspect' ?",
-        "answer": "Le verdict 'Suspect' signifie que nos algorithmes ont détecté une anomalie (métadonnées incohérentes, traces de retouche). Une vérification humaine est recommandée."
+        "category": "juridique",
+        "question": "Mes documents sont-ils stockés ?",
+        "answer": "Les documents sources sont conservés 30 jours pour audit puis supprimés automatiquement. Seuls les rapports d'analyse (anonymisés) sont archivés."
     },
     {
-        "category": "analyse",
-        "question": "Le rapport est-il une preuve juridique ?",
-        "answer": "Le rapport VerifDoc est un élément de preuve technique solide (commencement de preuve par écrit), mais ne remplace pas une expertise judiciaire assermentée."
+        "category": "juridique",
+        "question": "Le rapport est-il une preuve en justice ?",
+        "answer": "C'est un commencement de preuve par écrit technique, très utile pour la compliance, mais il ne remplace pas une expertise judiciaire ordonnée par un tribunal."
     },
     {
-        "category": "analyse",
-        "question": "Comment comprendre les pourcentages ?",
-        "answer": "Le Score de Confiance (0-100%) indique la probabilité d'authenticité. Plus il est proche de 100%, plus le document est sûr. En dessous de 50%, le risque de fraude est critique."
+        "category": "api",
+        "question": "Où trouver ma clé API ?",
+        "answer": "Votre clé API (Secret Key) est disponible dans 'Développeurs' > 'Clés API'. Ne la partagez jamais."
+    },
+    {
+        "category": "api",
+        "question": "Quelle est la limite de rate-limit ?",
+        "answer": "L'API standard est limitée à 100 requêtes par minute. Contactez-nous pour augmenter ce quota (Offre Enterprise)."
+    },
+    {
+        "category": "api",
+        "question": "Avez-vous des Webhooks ?",
+        "answer": "Oui, vous pouvez configurer des Webhooks dans 'Développeurs' pour recevoir les résultats d'analyse en temps réel sur votre serveur."
+    },
+    {
+        "category": "usage",
+        "question": "Quels types de fraudes détectez-vous ?",
+        "answer": "Nous détectons : Modification de texte (montants, dates), Copier-Coller (tampons, signatures), Génération IA, et incohérences de métadonnées (Photoshop)."
+    },
+    {
+        "category": "usage",
+        "question": "Acceptez-vous les relevés bancaires ?",
+        "answer": "Oui, les relevés bancaires (PDF natifs) sont parfaitement analysés. Les scans (images) sont acceptés mais moins précis sur l'OCR des chiffres."
+    },
+    {
+        "category": "usage",
+        "question": "Puis-je analyser une carte d'identité ?",
+        "answer": "Oui, notre module KYD (Know Your Document) vérifie la cohérence MRZ et les sécurités visuelles des CNI et Passeports."
     }
 ]
