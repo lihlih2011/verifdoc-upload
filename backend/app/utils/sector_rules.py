@@ -26,7 +26,7 @@ SECTOR_RULES: dict[Literal[
 ], SectorRule] = {
     "finance": {
         "required_signatures": 2,
-        "allowed_formats": ["pdf"],
+        "allowed_formats": ["pdf", "png", "jpg", "jpeg"],
         "max_file_size_mb": 10,
         "proof_level": "strict",
         "messages": {
