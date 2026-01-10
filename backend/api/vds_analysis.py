@@ -196,6 +196,9 @@ async def analyze_document(
         download_target_path = final_pdf_path
     except Exception as e:
         print(f"PDF Error: {e}")
+        import traceback
+        traceback.print_exc() # Print full stack trace
+        raise e # Force crash to see error in frontend/logs
 
     # 9. Stockage DB
     s_path = str(download_target_path).replace("\\", "/")
