@@ -129,11 +129,11 @@ class PremiumPDF(FPDF):
                  self.image(self.logo_path, x=60, y=120, w=90) 
              except: pass
 
-        # Overlay Diagonal Text
-        self.set_font('Arial', 'B', 80)
-        self.set_text_color(245, 245, 245)
+        # Overlay Diagonal Text (Subtle Watermark)
+        self.set_font('Arial', 'B', 50)
+        self.set_text_color(252, 252, 252)
         self.rotate(45, 105, 148)
-        self.text(40, 190, "VERIFDOC")
+        self.text(40, 190, "VERIFDOC CERTIFIED")
         self.rotate(0)
 
     def footer(self):
@@ -234,18 +234,19 @@ class ReportGenerator:
         ai_prob = int(fraud_risk * 100)
         
         # Colors & Tiers
+        # Colors & Tiers (Professional Naming)
         if trust_score >= 900:
-            tier, color_rgb = "TIER 1 - ELITE", (22, 163, 74)
-            desc_text = "Authenticité Garantie"
-        elif trust_score >= 700:
-            tier, color_rgb = "TIER 2 - VERIFIE", (37, 99, 235)
-            desc_text = "Conforme Standards"
+            tier, color_rgb = "NIVEAU A - EXCELLENT", (22, 163, 74)
+            desc_text = "Authenticité Confirmée"
+        elif trust_score >= 750:
+            tier, color_rgb = "NIVEAU B - SATISFAISANT", (37, 99, 235)
+            desc_text = "Conforme aux Standards"
         elif trust_score >= 500:
-            tier, color_rgb = "TIER 3 - ATTENTION", (234, 179, 8)
-            desc_text = "Anomalies Détectées"
+            tier, color_rgb = "NIVEAU C - A VERIFIER", (234, 179, 8)
+            desc_text = "Anomalies Mineures"
         else:
-            tier, color_rgb = "TIER 4 - CRITIQUE", (220, 38, 38)
-            desc_text = "Falsification Probable"
+            tier, color_rgb = "NIVEAU D - RISQUE CRITIQUE", (220, 38, 38)
+            desc_text = "Preuves de Falsification"
 
         # --- LAYOUT GRID ---
         
