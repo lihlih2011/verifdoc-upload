@@ -11,6 +11,9 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onAnalysisComplete }) => {
     const [isUploading, setIsUploading] = useState(false);
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState<string | null>(null);
+    const [totalFiles, setTotalFiles] = useState(0);
+    const [currentFileIndex, setCurrentFileIndex] = useState(0);
+    const [processedCount, setProcessedCount] = useState(0);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleDragOver = (e: React.DragEvent) => {
@@ -25,8 +28,8 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onAnalysisComplete }) => {
     const handleDrop = (e: React.DragEvent) => {
         e.preventDefault();
         setIsDragOver(false);
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            handleFileUpload(e.dataTransfer.files[0]);
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            handleBatchUpload(Array.from(e.dataTransfer.files));
         }
     };
 
@@ -37,59 +40,55 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onAnalysisComplete }) => {
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            handleFileUpload(e.target.files[0]);
-            // Reset input value to allow re-uploading the same file if needed
+        if (e.target.files && e.target.files.length > 0) {
+            handleBatchUpload(Array.from(e.target.files));
             e.target.value = "";
         }
     };
 
-    const handleFileUpload = async (file: File) => {
+    const handleBatchUpload = async (files: File[]) => {
         setIsUploading(true);
         setError(null);
-        setProgress(0);
+        setTotalFiles(files.length);
+        setCurrentFileIndex(0);
+        setProcessedCount(0);
 
+        for (let i = 0; i < files.length; i++) {
+            setCurrentFileIndex(i + 1);
+            await uploadSingleFile(files[i]);
+            setProcessedCount(prev => prev + 1);
+        }
+
+        setIsUploading(false);
+        setTotalFiles(0);
+    };
+
+    const uploadSingleFile = async (file: File) => {
+        setProgress(0);
         const formData = new FormData();
         formData.append("file", file);
 
         try {
             const token = localStorage.getItem("token");
-
-            // Simulate progress for better UX if file is small
+            // Fake progress for UI responsiveness
             const simulateProgress = setInterval(() => {
-                setProgress(prev => {
-                    if (prev >= 95) {
-                        clearInterval(simulateProgress);
-                        return 95;
-                    }
-                    return prev + 5;
-                });
-            }, 100);
+                setProgress(prev => (prev >= 90 ? 90 : prev + 10));
+            }, 200);
 
             const response = await axios.post(`${API_URL}/api/vds/analyze`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${token}`
-                },
-                onUploadProgress: () => {
-                    // We rely mostly on the real progress, but the simulation helps start it instantly
-                },
+                }
             });
 
             clearInterval(simulateProgress);
             setProgress(100);
-
-            // Small delay to show 100%
-            setTimeout(() => {
-                onAnalysisComplete(response.data);
-                setIsUploading(false);
-            }, 500);
+            onAnalysisComplete(response.data); // Notify parent (Home)
 
         } catch (err: any) {
-            console.error("Upload error:", err);
-            const msg = err.response?.data?.detail || err.message || "Erreur inconnue";
-            setError(`Échec analyse : ${msg}`);
-            setIsUploading(false);
+            console.error("Upload error for file", file.name, err);
+            setError(`Erreur sur ${file.name}: ${err.message}`);
         }
     };
 
@@ -113,6 +112,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onAnalysisComplete }) => {
 
                 <input
                     type="file"
+                    multiple
                     ref={fileInputRef}
                     onChange={handleFileChange}
                     className="hidden"
@@ -137,7 +137,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onAnalysisComplete }) => {
                             </div>
 
                             <h3 className="text-xl font-bold text-white mb-1">
-                                Analyse IA en cours...
+                                Analyse IA en cours ({currentFileIndex}/{totalFiles})
                             </h3>
                             <p className="text-sm text-primary-300 mb-6">Extraction des métadonnées & détection de fraudes</p>
 
