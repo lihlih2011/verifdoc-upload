@@ -54,6 +54,8 @@ import RealEstatePage from "./pages/Landing/RealEstatePage"; // NEW IMPORT
 import BankingPage from "./pages/Landing/BankingPage"; // NEW IMPORT
 import PrivacyPolicyPage from "./pages/Landing/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/Landing/TermsOfServicePage";
+import DevelopersPage from "./pages/Landing/DevelopersPage"; // NEW IMPORT
+import UseCasesPage from "./pages/Landing/UseCasesPage"; // NEW IMPORT
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 export default function App() {
@@ -90,6 +92,8 @@ export default function App() {
             <Route path="/resources/:slug" element={<ResourcePost />} />
 
             <Route path="/company" element={<CompanyPage />} />
+            <Route path="/developers" element={<DevelopersPage />} />
+            <Route path="/use-cases" element={<UseCasesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/partners" element={<PartnersPage />} />
           </Route>
