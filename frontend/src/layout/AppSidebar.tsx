@@ -28,22 +28,32 @@ const navItems: NavItem[] = [
     subItems: [{ name: "SCANNER & ANALYSE", path: "/dashboard", pro: false }],
   },
   {
+    icon: <ListIcon />,
+    name: "Historique", // Moved from CRM
+    path: "/dashboard/history",
+  },
+  {
     icon: <PlugInIcon />,
     name: "INTÉGRATION ODOO",
     path: "/dashboard/webhooks",
+    // @ts-ignore
+    adminOnly: true
   },
   {
     icon: <UserCircleIcon />,
     name: "CRM & Dossiers",
+    // @ts-ignore
+    adminOnly: true,
     subItems: [
       { name: "Mes Clients", path: "/dashboard/clients", pro: false },
       { name: "Prospects", path: "/dashboard/prospects", pro: false },
-      { name: "Historique", path: "/dashboard/history", pro: false },
     ],
   },
   {
     icon: <BoxCubeIcon />,
     name: "Entreprise (ERP)",
+    // @ts-ignore
+    adminOnly: true,
     subItems: [
       { name: "Facturation", path: "/dashboard/finance", pro: false },
       { name: "Équipe", path: "/dashboard/team", pro: false },
@@ -87,10 +97,20 @@ const AppSidebar: React.FC = () => {
   const { user } = useAuth();
   const location = useLocation();
 
+  // Filter Main Items
+  const filteredNavItems = navItems.filter(item => {
+    // @ts-ignore
+    if (item.adminOnly && user?.role !== 'admin') return false;
+    return true;
+  });
+
   const filteredOthersItems = othersItems.filter(item => {
     if (item.name === "Administration") {
       return user?.role === "admin";
     }
+    // Also hide Developer tools for clients
+    if (item.name === "Développeurs" && user?.role !== 'admin') return false;
+
     return true;
   });
 
@@ -252,7 +272,7 @@ const AppSidebar: React.FC = () => {
             >
               Principal
             </h2>
-            {renderMenuItems(navItems, "main")}
+            {renderMenuItems(filteredNavItems, "main")}
           </div>
 
           <div>
