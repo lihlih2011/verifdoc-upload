@@ -22,6 +22,16 @@ class UserCreate(BaseModel):
 
 @router.post("/register")
 def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+    # 0. Check Email Professionnel (Blacklist)
+    personal_domains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "live.com", "icloud.com", "orange.fr", "free.fr", "sfr.fr", "wanadoo.fr"]
+    email_domain = user.email.split("@")[-1].lower()
+    
+    if email_domain in personal_domains:
+        raise HTTPException(
+            status_code=400, 
+            detail="⚠️ Inscription réservée aux professionnels. Veuillez utiliser une adresse email professionnelle."
+        )
+
     # Check existing
     db_user = db.query(User).filter(User.email == user.email).first()
     if db_user:

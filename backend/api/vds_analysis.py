@@ -51,7 +51,7 @@ async def analyze_document(
             document_id=file_hash[:12],
             result_type=existing_scan.verdict,
             subscription="cached",
-            sector="archive",
+            sector="other",
             created_at=existing_scan.created_at,
             file_path=existing_scan.report_path or "/dashboard",
             verdict=existing_scan.verdict,

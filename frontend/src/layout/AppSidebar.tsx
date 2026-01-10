@@ -12,6 +12,7 @@ import {
   UserCircleIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
+import { useAuth } from "../context/AuthContext";
 
 type NavItem = {
   name: string;
@@ -83,7 +84,15 @@ const othersItems: NavItem[] = [
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+  const { user } = useAuth();
   const location = useLocation();
+
+  const filteredOthersItems = othersItems.filter(item => {
+    if (item.name === "Administration") {
+      return user?.role === "admin";
+    }
+    return true;
+  });
 
   const [openSubmenu, setOpenSubmenu] = useState<{
     type: "main" | "others";
@@ -98,7 +107,7 @@ const AppSidebar: React.FC = () => {
   useEffect(() => {
     let submenuMatched = false;
     ["main", "others"].forEach((menuType) => {
-      const items = menuType === "main" ? navItems : othersItems;
+      const items = menuType === "main" ? navItems : filteredOthersItems;
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
@@ -255,7 +264,7 @@ const AppSidebar: React.FC = () => {
             >
               Configuration
             </h2>
-            {renderMenuItems(othersItems, "others")}
+            {renderMenuItems(filteredOthersItems, "others")}
           </div>
         </nav>
       </div>
