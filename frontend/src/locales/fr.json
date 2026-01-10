@@ -85,6 +85,180 @@
         "recruitment": {
             "title": "Ressources Humaines",
             "desc": "Vérification des CV, diplômes et certificats pour éviter les bad hires."
+        },
+        "legal": {
+            "title": "Juridique",
+            "desc": "Authentification des pièces de procédure et contrats signés."
+        },
+        "fintech": {
+            "title": "Fintech & Crypto",
+            "desc": "Onboarding AML rapide et sûr pour les plateformes régulées."
+        },
+        "insurance": {
+            "title": "Assurance",
+            "desc": "Détection de fausses factures sinistres et pièces justificatives."
+        }
+    },
+    "nav": {
+        "solutions": "Solutions",
+        "developers": "Développeurs",
+        "company": "Entreprise",
+        "careers": "Carrières",
+        "login": "Connexion",
+        "book_demo": "Réserver une Démo"
+    },
+    "features": {
+        "title_start": "Technologie",
+        "title_end": "Forensique",
+        "description": "Notre IA ne se contente pas de lire le texte. Elle analyse la structure binaire, les métadonnées et les incohérences invisibles à l'œil nu.",
+        "ai_detection": {
+            "title": "Détection Spectrale",
+            "desc": "Analyse des artefacts de compression et des modifications de pixels."
+        },
+        "fast_results": {
+            "title": "Résultats Instantanés",
+            "desc": "Réponse API en moins de 3 secondes par document."
+        },
+        "secure_handling": {
+            "title": "Traitement Sécurisé",
+            "desc": "Chiffrement de bout en bout et suppression automatique."
+        },
+        "enterprise_security": {
+            "title": "Sécurité Entreprise",
+            "desc": "SLA garantis, SSO, et conformité ISO 27001."
+        }
+    },
+    "pricing": {
+        "title": "Tarification Transparente",
+        "subtitle": "Pas de coûts cachés. Choisissez la puissance dont vous avez besoin pour sécuriser votre croissance.",
+        "recommended": "RECOMMANDÉ",
+        "essentiel": {
+            "title": "Essentiel",
+            "desc": "Pour les petites équipes qui veulent sécuriser leurs dossiers locataires.",
+            "price": "199€",
+            "unit": "/mois",
+            "commitment": "Engagement annuel",
+            "features": [
+                "100 vérifications / mois",
+                "Détection Faux Simple",
+                "Support Email 24h",
+                "1 Utilisateur"
+            ],
+            "cta": "Commencer l'essai"
+        },
+        "conformite": {
+            "title": "Pro",
+            "desc": "La solution standard pour les agences immobilières et PME.",
+            "price": "499€",
+            "unit": "/mois",
+            "commitment": "Engagement annuel",
+            "features": [
+                "1 000 vérifications / mois",
+                "Détection Avancée (Meta)",
+                "API Accès",
+                "3 Utilisateurs",
+                "Rapports Certifiés"
+            ],
+            "cta": "Démarrer"
+        },
+        "forensique": {
+            "title": "Forensique",
+            "desc": "Pour les experts fraude et les services financiers.",
+            "price": "999€",
+            "unit": "/mois",
+            "commitment": "Engagement annuel",
+            "features": [
+                "5 000 vérifications / mois",
+                "Analyse Spectrale Complète",
+                "Support Prioritaire",
+                "Utilisateurs Illimités",
+                "Webhooks"
+            ],
+            "cta": "Contacter l'équipe"
+        },
+        "enterprise": {
+            "title": "Enterprise",
+            "desc": "Volume illimité et déploiement sur mesure (On-Premise).",
+            "price": "Sur Mesure",
+            "features": [
+                "Volume Illimité",
+                "Hébergement Dédié",
+                "SLA Personnalisé",
+                "Audit de Sécurité",
+                "Gestionnaire de Compte"
+            ],
+            "cta": "Nous Contacter"
+        }
+    },
+    "trust": {
+        "title": "ÉCOSYSTÈME DE CONFIANCE",
+        "estonia": "E-RESIDENCY PARTNER",
+        "bodies": "RECONNU PAR"
+    },
+    "history": {
+        "badge": "NOTRE HISTOIRE",
+        "title": "Nés de la lutte contre la fraude",
+        "image_caption": "L'équipe fondatrice, Paris 2024",
+        "p1": "Tout a commencé quand nous avons réalisé que 30% des dossiers locataires contenaient au moins un faux document.",
+        "p2": "Face à l'industrialisation de la fraude (kits de faux sur Telegram), les méthodes manuelles ne suffisaient plus.",
+        "p3": "Nous avons uni des experts en vision par ordinateur et des anciens officiers de police pour créer le premier rempart numérique automatisé.",
+        "partner_label": "PARTENAIRE SÉCURITÉ",
+        "partner_name": "Ministère de l'Intérieur (Incubateur)"
+    },
+    "footer": {
+        "product": "Produit",
+        "company": "Société",
+        "legal": "Légal",
+        "how_it_works": "Comment ça marche",
+        "pricing": "Tarifs",
+        "testimonials": "Témoignages",
+        "about": "À Propos",
+        "contact": "Contact",
+        "privacy": "Confidentialité",
+        "terms": "CGU / CGV",
+        "iso": "Conforme ISO 27001",
+        "rgpd": "Données en France",
+        "ai_act": "AI Act Ready",
+        "disclaimer": "VerifDoc ne remplace pas l'expertise humaine juridiquement contraignante dans tous les contextes. En cas de doute, consultez un expert."
+    },
+    "simulator": {
+        "queue_title": "FILE D'ATTENTE"
+    },
+    "simulator_demo": {
+        "ai_detection_tooltip": "IA : Analyse en cours...",
+        "original": "Original",
+        "critical_alert": "ALERTE CRITIQUE",
+        "score_fake": "Score de Fraude : 98%",
+        "suspect_amount": "MONTANT SUSPECT",
+        "types": {
+            "caf": "Attestation CAF",
+            "cpam": "Indemnités CPAM",
+            "titre": "Titre de Séjour",
+            "pole": "Pôle Emploi",
+            "paie": "Bulletin de Paie",
+            "master": "Diplôme Master",
+            "impot": "Avis d'Impôt",
+            "facture": "Facture"
+        },
+        "alerts": {
+            "caf": "Montant Incohérent",
+            "cpam": "Dates Chevauchantes",
+            "mrz": "MRZ Invalide",
+            "pole": "Droits Modifiés",
+            "paie": "Cumul Net Faux",
+            "sign": "Signature Suspecte",
+            "2d_doc": "2D-Doc Manquant",
+            "iban": "IBAN Blacklisté"
+        },
+        "zones": {
+            "rsa": "Montant RSA",
+            "period": "Période Indem.",
+            "mrz": "Bande MRZ",
+            "net": "Net à Payer",
+            "annual": "Cumul Annuel",
+            "rector": "Sceau Rectorat",
+            "cachet": "Cachet Fisc",
+            "bank": "Coordonnées Bancaires"
         }
     }
 }

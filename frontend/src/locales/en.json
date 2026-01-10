@@ -85,6 +85,180 @@
         "recruitment": {
             "title": "Human Resources",
             "desc": "Verification of CVs, diplomas, and certificates to avoid bad hires."
+        },
+        "legal": {
+            "title": "Legal",
+            "desc": "Authentication of legal proceedings and signed contracts."
+        },
+        "fintech": {
+            "title": "Fintech & Crypto",
+            "desc": "Fast and safe AML onboarding for regulated platforms."
+        },
+        "insurance": {
+            "title": "Insurance",
+            "desc": "Detection of fake insurance claims and supporting documents."
+        }
+    },
+    "nav": {
+        "solutions": "Solutions",
+        "developers": "Developers",
+        "company": "Company",
+        "careers": "Careers",
+        "login": "Login",
+        "book_demo": "Book a Demo"
+    },
+    "features": {
+        "title_start": "Forensic",
+        "title_end": "Technology",
+        "description": "Our AI does not just read text. It analyzes binary structure, metadata, and inconsistencies invisible to the naked eye.",
+        "ai_detection": {
+            "title": "Spectral Detection",
+            "desc": "Analysis of compression artifacts and pixel modifications."
+        },
+        "fast_results": {
+            "title": "Instant Results",
+            "desc": "API response in less than 3 seconds per document."
+        },
+        "secure_handling": {
+            "title": "Secure Handling",
+            "desc": "End-to-end encryption and automatic deletion."
+        },
+        "enterprise_security": {
+            "title": "Enterprise Security",
+            "desc": "Guaranteed SLAs, SSO, and ISO 27001 compliance."
+        }
+    },
+    "pricing": {
+        "title": "Transparent Pricing",
+        "subtitle": "No hidden costs. Choose the power you need to secure your growth.",
+        "recommended": "RECOMMENDED",
+        "essentiel": {
+            "title": "Essential",
+            "desc": "For small teams wanting to secure tenant files.",
+            "price": "199€",
+            "unit": "/mo",
+            "commitment": "Annual commitment",
+            "features": [
+                "100 checks / month",
+                "Simple Forgery Detection",
+                "24h Email Support",
+                "1 User"
+            ],
+            "cta": "Start Trial"
+        },
+        "conformite": {
+            "title": "Pro",
+            "desc": "Standard solution for real estate agencies and SMEs.",
+            "price": "499€",
+            "unit": "/mo",
+            "commitment": "Annual commitment",
+            "features": [
+                "1,000 checks / month",
+                "Advanced Detection (Meta)",
+                "API Access",
+                "3 Users",
+                "Certified Reports"
+            ],
+            "cta": "Start Now"
+        },
+        "forensique": {
+            "title": "Forensic",
+            "desc": "For fraud experts and financial services.",
+            "price": "999€",
+            "unit": "/mo",
+            "commitment": "Annual commitment",
+            "features": [
+                "5,000 checks / month",
+                "Full Spectral Analysis",
+                "Priority Support",
+                "Unlimited Users",
+                "Webhooks"
+            ],
+            "cta": "Contact Sales"
+        },
+        "enterprise": {
+            "title": "Enterprise",
+            "desc": "Unlimited volume and custom deployment (On-Premise).",
+            "price": "Custom",
+            "features": [
+                "Unlimited Volume",
+                "Dedicated Hosting",
+                "Custom SLA",
+                "Security Audit",
+                "Account Manager"
+            ],
+            "cta": "Contact Us"
+        }
+    },
+    "trust": {
+        "title": "TRUST ECOSYSTEM",
+        "estonia": "E-RESIDENCY PARTNER",
+        "bodies": "RECOGNIZED BY"
+    },
+    "history": {
+        "badge": "OUR STORY",
+        "title": "Born from the fight against fraud",
+        "image_caption": "Founding Team, Paris 2024",
+        "p1": "It all started when we realized that 30% of tenant files contained at least one fake document.",
+        "p2": "Faced with the industrialization of fraud (fake kits on Telegram), manual methods were no longer sufficient.",
+        "p3": "We united computer vision experts and former police officers to create the first automated digital bulwark.",
+        "partner_label": "SECURITY PARTNER",
+        "partner_name": "Ministry of Interior (Incubator)"
+    },
+    "footer": {
+        "product": "Product",
+        "company": "Company",
+        "legal": "Legal",
+        "how_it_works": "How it works",
+        "pricing": "Pricing",
+        "testimonials": "Testimonials",
+        "about": "About",
+        "contact": "Contact",
+        "privacy": "Privacy",
+        "terms": "Terms of Service",
+        "iso": "ISO 27001 Compliant",
+        "rgpd": "Data in France",
+        "ai_act": "AI Act Ready",
+        "disclaimer": "VerifDoc does not replace legally binding human expertise in all contexts. In case of doubt, consult an expert."
+    },
+    "simulator": {
+        "queue_title": "QUEUE"
+    },
+    "simulator_demo": {
+        "ai_detection_tooltip": "AI: Analysis in progress...",
+        "original": "Original",
+        "critical_alert": "CRITICAL ALERT",
+        "score_fake": "Fraud Score: 98%",
+        "suspect_amount": "SUSPECT AMOUNT",
+        "types": {
+            "caf": "CAF Certificate",
+            "cpam": "Health Insurance",
+            "titre": "Residency Permit",
+            "pole": "Unemployment",
+            "paie": "Payslip",
+            "master": "Master Diploma",
+            "impot": "Tax Notice",
+            "facture": "Invoice"
+        },
+        "alerts": {
+            "caf": "Inconsistent Amount",
+            "cpam": "Overlapping Dates",
+            "mrz": "Invalid MRZ",
+            "pole": "Rights Modified",
+            "paie": "Wrong Net Total",
+            "sign": "Suspect Signature",
+            "2d_doc": "Missing 2D-Doc",
+            "iban": "Blacklisted IBAN"
+        },
+        "zones": {
+            "rsa": "RSA Amount",
+            "period": "Indem. Period",
+            "mrz": "MRZ Strip",
+            "net": "Net to Pay",
+            "annual": "Annual Total",
+            "rector": "Rector Seal",
+            "cachet": "Tax Stamp",
+            "bank": "Bank Details"
         }
     }
 }
