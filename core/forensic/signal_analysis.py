@@ -26,6 +26,21 @@ class SignalForensicEngine:
             print(f"[-] AI Model Load Error: {e}")
             self.model = None
 
+    def detect_blur(self, image_path: str, threshold: float = 100.0) -> tuple[bool, float]:
+        """
+        Detects if image is too blurry using Laplacian Variance.
+        Returns: (is_blurry, variance_score)
+        """
+        try:
+            img = cv2.imread(image_path)
+            if img is None: return True, 0.0
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            variance = cv2.Laplacian(gray, cv2.CV_64F).var()
+            return variance < threshold, variance
+        except Exception as e:
+            print(f"Error in Blur Detection: {e}")
+            return False, 999.0
+
     def predict_forgery(self, image_path: str) -> float:
         """
         Uses the Deep Learning model to predict forgery probability.
@@ -220,12 +235,15 @@ class SignalForensicEngine:
             return 0
 
     def analyze(self, image_path: str, context: dict = None) -> dict:
+        is_blurry, blur_score = self.detect_blur(image_path)
         ela_score, heatmap_path = self.perform_ela(image_path, context=context)
         luminance_suspicious = self.analyze_luminance_gradient(image_path)
         noise_score = self.perform_noise_analysis(image_path)
         ai_score = self.predict_forgery(image_path)
         
         results = {
+            "is_blurry": is_blurry,
+            "blur_score": blur_score,
             "ela_score": ela_score,
             "heatmap_path": heatmap_path,
             "luminance_anomaly": luminance_suspicious,
