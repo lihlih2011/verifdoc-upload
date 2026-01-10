@@ -31,7 +31,13 @@ def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = 
     hashed_pwd = SecurityUtils.get_password_hash(user.password)
     
     # Create User
-    new_user = User(email=user.email, hashed_password=hashed_pwd, full_name=user.full_name)
+    new_user = User(
+        email=user.email, 
+        hashed_password=hashed_pwd, 
+        full_name=user.full_name,
+        credits_balance=10, # Welcome Bonus
+        organization_id=1   # Default Org
+    )
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
