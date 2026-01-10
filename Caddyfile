@@ -8,8 +8,15 @@ www.verifdoc.io, verifdoc.io {
     }
 
     # IMPORTANT: /api/* must be checked BEFORE /*
+    # API Proxy
     handle /api/* {
         reverse_proxy backend:8000
+    }
+
+    # Serve static results (PDFs)
+    handle_path /results/* {
+        root * /srv/results
+        file_server
     }
 
     handle /* {
