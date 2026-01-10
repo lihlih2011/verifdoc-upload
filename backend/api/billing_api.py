@@ -24,9 +24,9 @@ def purchase_pack(pack_id: str, current_user: User = Depends(get_current_user), 
     - business: 499€ -> 1500 Credits
     """
     packs = {
-        "starter": {"credits": 150, "price": 149},
-        "pro": {"credits": 500, "price": 249},
-        "business": {"credits": 3000, "price": 899}
+        "essentiel": {"credits": 100, "price": 199},
+        "pro": {"credits": 1000, "price": 499},
+        "forensic": {"credits": 5000, "price": 999}
     }
     
     if pack_id not in packs:

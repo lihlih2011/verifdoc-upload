@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+import API_URL from '../../config/api';
 import { X, Check, ShieldCheck, Zap, Diamond, Crown, Activity } from 'lucide-react';
 
 interface PricingModalProps {
@@ -8,40 +10,40 @@ interface PricingModalProps {
 
 const PLANS = [
     {
-        id: 'plan_essentiel',
+        id: 'essentiel',
         name: 'Essentiel',
-        credits: 125,
-        price: '99',
-        period: '/mois',
+        credits: 100,
+        price: '199',
+        period: '/pack',
         icon: <ShieldCheck className="w-6 h-6 text-blue-400" />,
-        features: ['125 Vérifications /mois', 'Détection standard', 'Support Email', '1 Utilisateur'],
+        features: ['100 Crédits', 'Détection standard', 'Support Email', '1 Utilisateur'],
         color: 'border-slate-800 bg-slate-900/50',
-        cta: 'Commencer',
+        cta: 'Acheter Pack',
         ctaColor: 'bg-slate-800 hover:bg-slate-700'
     },
     {
-        id: 'plan_compliance',
-        name: 'Compliance',
-        credits: 665,
-        price: '299',
-        period: '/mois',
+        id: 'pro',
+        name: 'Pro',
+        credits: 1000,
+        price: '499',
+        period: '/pack',
         icon: <Zap className="w-6 h-6 text-amber-400" />,
-        features: ['665 Vérifications /mois', 'Module AML inclus', 'API REST Access', '3 Utilisateurs', 'Support Prioritaire'],
+        features: ['1 000 Crédits', 'Module AML inclus', 'API Access', '3 Utilisateurs', 'Rapports Certifiés'],
         color: 'border-amber-500/50 bg-amber-500/5 shadow-[0_0_40px_-10px_rgba(245,158,11,0.2)]',
         best: true,
-        cta: 'Choisir Compliance',
+        cta: 'Choisir Pro',
         ctaColor: 'bg-amber-500 hover:bg-amber-400 text-black'
     },
     {
-        id: 'plan_forensic',
+        id: 'forensic',
         name: 'Forensic',
-        credits: 2596,
-        price: '599',
-        period: '/mois',
+        credits: 5000,
+        price: '999',
+        period: '/pack',
         icon: <Diamond className="w-6 h-6 text-indigo-400" />,
-        features: ['2596 Vérifications /mois', 'IA Forensique Avancée (DeepFake)', 'Analyse Spectrale', 'Utilisateurs Illimités', 'Account Manager Dédié'],
+        features: ['5 000 Crédits', 'IA Forensique Avancée', 'Analyse Spectrale', 'Utilisateurs Illimités', 'Webhooks'],
         color: 'border-indigo-500/50 bg-indigo-500/5',
-        cta: 'Passer au niveau Forensic',
+        cta: 'Acheter Forensic',
         ctaColor: 'bg-indigo-600 hover:bg-indigo-500'
     }
 ];
@@ -54,18 +56,29 @@ export default function PricingModal({ isOpen, onClose }: PricingModalProps) {
     const handleBuy = async (planId: string) => {
         setLoading(planId);
         try {
-            // Simulation d'appel API paiement (à adapter selon backend)
-            // const response = await axios.post(`${API_URL}/api/payment/create-subscription`, ...);
-
-            // Pour la démo, on simule une redirection
-            setTimeout(() => {
-                alert(`Redirection vers le paiement Stripe pour le plan ${planId}...`);
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("Vous devez être connecté pour acheter des crédits.");
                 setLoading(null);
-                onClose();
-            }, 1000);
+                return;
+            }
+
+            // Appel API réel (Mock Purchase)
+            await axios.post(`${API_URL}/api/billing/purchase-pack?pack_id=${planId}`, {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            // Succès
+            // eslint-disable-next-line no-restricted-globals
+            if (confirm("Paiement simulé réussi ! Crédits ajoutés. Recharger la page ?")) {
+                window.location.reload();
+            }
+            onClose();
 
         } catch (err) {
             console.error(err);
+            alert("Erreur lors de l'achat. Veuillez réessayer.");
+        } finally {
             setLoading(null);
         }
     };
