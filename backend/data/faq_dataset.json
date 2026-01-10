@@ -98,5 +98,230 @@
         "category": "usage",
         "question": "Puis-je analyser une carte d'identité ?",
         "answer": "Oui, notre module KYD (Know Your Document) vérifie la cohérence MRZ et les sécurités visuelles des CNI et Passeports."
+    },
+    {
+        "category": "facturation",
+        "question": "Combien coûte le pack Essentiel ?",
+        "answer": "Le pack Essentiel est affiché à 199€. Il inclut un volume de crédits adapté à votre usage. Voir la page Tarifs pour le détail."
+    },
+    {
+        "category": "facturation",
+        "question": "Le plan Essentiel inclut-il l'API ?",
+        "answer": "Oui, tous nos packs (y compris le pack Essentiel) donnent un accès complet à l'API Rest."
+    },
+    {
+        "category": "facturation",
+        "question": "Combien coûte le pack Pro ?",
+        "answer": "Le pack Pro est affiché à 499€. Il inclut un volume de crédits adapté à votre usage. Voir la page Tarifs pour le détail."
+    },
+    {
+        "category": "facturation",
+        "question": "Le plan Pro inclut-il l'API ?",
+        "answer": "Oui, tous nos packs (y compris le pack Essentiel) donnent un accès complet à l'API Rest."
+    },
+    {
+        "category": "facturation",
+        "question": "Combien coûte le pack Forensic ?",
+        "answer": "Le pack Forensic est affiché à 999€. Il inclut un volume de crédits adapté à votre usage. Voir la page Tarifs pour le détail."
+    },
+    {
+        "category": "facturation",
+        "question": "Le plan Forensic inclut-il l'API ?",
+        "answer": "Oui, tous nos packs (y compris le pack Essentiel) donnent un accès complet à l'API Rest."
+    },
+    {
+        "category": "facturation",
+        "question": "Combien coûte le pack Enterprise ?",
+        "answer": "Le pack Enterprise est affiché à Sur devis. Il inclut un volume de crédits adapté à votre usage. Voir la page Tarifs pour le détail."
+    },
+    {
+        "category": "facturation",
+        "question": "Le plan Enterprise inclut-il l'API ?",
+        "answer": "Oui, tous nos packs (y compris le pack Essentiel) donnent un accès complet à l'API Rest."
+    },
+    {
+        "category": "technique",
+        "question": "Je reçois une erreur 400, que faire ?",
+        "answer": "L'erreur 400 signifie : Requête invalide (Format de fichier non supporté ou paramètres manquants)."
+    },
+    {
+        "category": "technique",
+        "question": "Que signifie le code HTTP 400 ?",
+        "answer": "Requête invalide (Format de fichier non supporté ou paramètres manquants)."
+    },
+    {
+        "category": "technique",
+        "question": "Je reçois une erreur 401, que faire ?",
+        "answer": "L'erreur 401 signifie : Non autorisé (Clé API invalide ou session expirée)."
+    },
+    {
+        "category": "technique",
+        "question": "Que signifie le code HTTP 401 ?",
+        "answer": "Non autorisé (Clé API invalide ou session expirée)."
+    },
+    {
+        "category": "technique",
+        "question": "Je reçois une erreur 402, que faire ?",
+        "answer": "L'erreur 402 signifie : Paiement requis (Solde de crédits épuisé). Rechargez votre compte."
+    },
+    {
+        "category": "technique",
+        "question": "Que signifie le code HTTP 402 ?",
+        "answer": "Paiement requis (Solde de crédits épuisé). Rechargez votre compte."
+    },
+    {
+        "category": "technique",
+        "question": "Je reçois une erreur 403, que faire ?",
+        "answer": "L'erreur 403 signifie : Interdit (Votre IP ou compte est bloqué)."
+    },
+    {
+        "category": "technique",
+        "question": "Que signifie le code HTTP 403 ?",
+        "answer": "Interdit (Votre IP ou compte est bloqué)."
+    },
+    {
+        "category": "technique",
+        "question": "Je reçois une erreur 404, que faire ?",
+        "answer": "L'erreur 404 signifie : Non trouvé (L'ID du document ou l'endpoint n'existe pas)."
+    },
+    {
+        "category": "technique",
+        "question": "Que signifie le code HTTP 404 ?",
+        "answer": "Non trouvé (L'ID du document ou l'endpoint n'existe pas)."
+    },
+    {
+        "category": "technique",
+        "question": "Je reçois une erreur 429, que faire ?",
+        "answer": "L'erreur 429 signifie : Trop de requêtes (Rate limit dépassé). Ralentissez vos appels API."
+    },
+    {
+        "category": "technique",
+        "question": "Que signifie le code HTTP 429 ?",
+        "answer": "Trop de requêtes (Rate limit dépassé). Ralentissez vos appels API."
+    },
+    {
+        "category": "technique",
+        "question": "Je reçois une erreur 500, que faire ?",
+        "answer": "L'erreur 500 signifie : Erreur serveur interne. Veuillez réessayer plus tard."
+    },
+    {
+        "category": "technique",
+        "question": "Que signifie le code HTTP 500 ?",
+        "answer": "Erreur serveur interne. Veuillez réessayer plus tard."
+    },
+    {
+        "category": "usage",
+        "question": "Le format PDF est-il accepté ?",
+        "answer": "Oui, le format PDF est supporté par notre moteur d'analyse (sauf pour certains secteurs stricts qui exigent le PDF)."
+    },
+    {
+        "category": "usage",
+        "question": "Puis-je envoyer un fichier PDF ?",
+        "answer": "Absolument. Assurez-vous simplement qu'il ne dépasse pas 10 Mo."
+    },
+    {
+        "category": "usage",
+        "question": "Le format JPG est-il accepté ?",
+        "answer": "Oui, le format JPG est supporté par notre moteur d'analyse (sauf pour certains secteurs stricts qui exigent le PDF)."
+    },
+    {
+        "category": "usage",
+        "question": "Puis-je envoyer un fichier JPG ?",
+        "answer": "Absolument. Assurez-vous simplement qu'il ne dépasse pas 10 Mo."
+    },
+    {
+        "category": "usage",
+        "question": "Le format PNG est-il accepté ?",
+        "answer": "Oui, le format PNG est supporté par notre moteur d'analyse (sauf pour certains secteurs stricts qui exigent le PDF)."
+    },
+    {
+        "category": "usage",
+        "question": "Puis-je envoyer un fichier PNG ?",
+        "answer": "Absolument. Assurez-vous simplement qu'il ne dépasse pas 10 Mo."
+    },
+    {
+        "category": "usage",
+        "question": "Le format TIFF est-il accepté ?",
+        "answer": "Oui, le format TIFF est supporté par notre moteur d'analyse (sauf pour certains secteurs stricts qui exigent le PDF)."
+    },
+    {
+        "category": "usage",
+        "question": "Puis-je envoyer un fichier TIFF ?",
+        "answer": "Absolument. Assurez-vous simplement qu'il ne dépasse pas 10 Mo."
+    },
+    {
+        "category": "juridique",
+        "question": "Mes données sont-elles en sécurité ?",
+        "answer": "Nous sommes 100% conformes RGPD. Vos données sont hébergées en France (OVH) et chiffrées. Les fichiers sources sont supprimés automatiquement après 30 jours."
+    },
+    {
+        "category": "juridique",
+        "question": "Où sont hébergés les fichiers ?",
+        "answer": "Nous sommes 100% conformes RGPD. Vos données sont hébergées en France (OVH) et chiffrées. Les fichiers sources sont supprimés automatiquement après 30 jours."
+    },
+    {
+        "category": "juridique",
+        "question": "Êtes-vous conforme RGPD ?",
+        "answer": "Nous sommes 100% conformes RGPD. Vos données sont hébergées en France (OVH) et chiffrées. Les fichiers sources sont supprimés automatiquement après 30 jours."
+    },
+    {
+        "category": "juridique",
+        "question": "Qui a accès à mes documents ?",
+        "answer": "Nous sommes 100% conformes RGPD. Vos données sont hébergées en France (OVH) et chiffrées. Les fichiers sources sont supprimés automatiquement après 30 jours."
+    },
+    {
+        "category": "juridique",
+        "question": "Combien de temps gardez-vous les fichiers ?",
+        "answer": "Nous sommes 100% conformes RGPD. Vos données sont hébergées en France (OVH) et chiffrées. Les fichiers sources sont supprimés automatiquement après 30 jours."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Comment fonctionne le Webhooks ?",
+        "answer": "Vous pouvez recevoir les résultats en temps réel sur votre URL de callback."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Avez-vous une fonction Webhooks ?",
+        "answer": "Oui : Vous pouvez recevoir les résultats en temps réel sur votre URL de callback."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Comment fonctionne le API Keys ?",
+        "answer": "Gérez vos clés secrètes dans l'onglet Développeurs."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Avez-vous une fonction API Keys ?",
+        "answer": "Oui : Gérez vos clés secrètes dans l'onglet Développeurs."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Comment fonctionne le Multi-Upload ?",
+        "answer": "Glissez-déposez jusqu'à 50 fichiers à la fois."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Avez-vous une fonction Multi-Upload ?",
+        "answer": "Oui : Glissez-déposez jusqu'à 50 fichiers à la fois."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Comment fonctionne le Export CSV ?",
+        "answer": "Exportez tout votre historique d'analyse en un clic."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Avez-vous une fonction Export CSV ?",
+        "answer": "Oui : Exportez tout votre historique d'analyse en un clic."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Comment fonctionne le Dark Mode ?",
+        "answer": "L'interface s'adapte automatiquement à votre thème système."
+    },
+    {
+        "category": "fonctionnalités",
+        "question": "Avez-vous une fonction Dark Mode ?",
+        "answer": "Oui : L'interface s'adapte automatiquement à votre thème système."
     }
 ]
