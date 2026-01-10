@@ -38,10 +38,10 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4 text-lg">Légal</h4>
           <ul className="space-y-3 text-sm">
-            <li><a href="#" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30">CGU / CGV</a></li>
-            <li><a href="#" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30">Confidentialité</a></li>
-            <li><a href="#" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30">Mentions Légales</a></li>
-            <li><a href="#" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30">Sécurité des Données</a></li>
+            <li><a href="/terms" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30">CGU / CGV</a></li>
+            <li><a href="/privacy" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30">Confidentialité</a></li>
+            <li><a href="/mentions-legales" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30">Mentions Légales</a></li>
+            <li><a href="/sitemap.xml" className="hover:text-cyan-400 transition hover:underline decoration-cyan-400/30 text-xs opacity-70">Plan du Site (XML)</a></li>
           </ul>
         </div>
 
