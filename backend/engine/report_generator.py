@@ -340,4 +340,9 @@ class ReportGenerator:
         output_filename = f"VDS_REPORT_{doc_id}_{tstamp}.pdf"
         output_path = os.path.join(self.output_dir, output_filename)
         pdf.output(output_path)
-        return output_path, None
+        
+        # Read bytes for hash computation
+        with open(output_path, "rb") as f:
+            pdf_bytes = f.read()
+            
+        return output_path, pdf_bytes
