@@ -1,0 +1,52 @@
+[
+    {
+        "category": "technique",
+        "question": "Mon fichier PDF n'est pas accepté lors de l'upload.",
+        "answer": "Assurez-vous que votre fichier est au format PDF standard, qu'il ne dépasse pas 10Mo et qu'il n'est pas protégé par un mot de passe. Si le problème persiste, essayez de le ré-enregistrer via 'Imprimer en PDF'."
+    },
+    {
+        "category": "technique",
+        "question": "Erreur 500 lors de l'analyse.",
+        "answer": "Une erreur serveur temporaire est survenue. Nos équipes sont notifiées automatiquement. Veuillez réessayer dans quelques minutes."
+    },
+    {
+        "category": "facturation",
+        "question": "Comment acheter des crédits supplémentaires ?",
+        "answer": "Rendez-vous dans la section 'Finance' ou cliquez sur votre solde en haut à droite. Sélectionnez un pack (Essentiel, Pro ou Forensic) et procédez au paiement sécurisé via Stripe."
+    },
+    {
+        "category": "facturation",
+        "question": "Où trouver mes factures ?",
+        "answer": "Vos factures sont disponibles dans l'onglet 'Factures & Abonnements' de votre espace administrateur. Vous pouvez les télécharger au format PDF."
+    },
+    {
+        "category": "sav",
+        "question": "Comment contacter le support client humain ?",
+        "answer": "Si ce chatbot ne suffit pas, vous pouvez ouvrir un ticket dans l'onglet 'Support / Tickets' ou nous écrire à support@verifdoc.io. Réponse sous 24h ouvrées."
+    },
+    {
+        "category": "sav",
+        "question": "Je veux supprimer mon compte.",
+        "answer": "Conformément au RGPD, vous pouvez demander la suppression de votre compte et de toutes vos données depuis les 'Paramètres' > 'Zone Danger' > 'Supprimer mon compte'."
+    },
+    {
+        "category": "technique",
+        "question": "Quels formats sont supportés ?",
+        "answer": "Nous supportons actuellement les fichiers PDF (natifs et scannés), ainsi que les images JPG/PNG pour le secteur Finance et Immobilier."
+    },
+    {
+        "category": "analyse",
+        "question": "Que signifie le verdict 'Suspect' ?",
+        "answer": "Le verdict 'Suspect' signifie que nos algorithmes ont détecté une anomalie (métadonnées incohérentes, traces de retouche). Une vérification humaine est recommandée."
+    },
+    {
+        "category": "analyse",
+        "question": "Le rapport est-il une preuve juridique ?",
+        "answer": "Le rapport VerifDoc est un élément de preuve technique solide (commencement de preuve par écrit), mais ne remplace pas une expertise judiciaire assermentée."
+    },
+    {
+        "category": "analyse",
+        "question": "Comment comprendre les pourcentages ?",
+        "answer": "Le Score de Confiance (0-100%) indique la probabilité d'authenticité. Plus il est proche de 100%, plus le document est sûr. En dessous de 50%, le risque de fraude est critique."
+    }
+]
