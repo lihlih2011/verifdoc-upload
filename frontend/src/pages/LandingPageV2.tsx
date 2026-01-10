@@ -1140,149 +1140,110 @@ export default function LandingPageV2() {
                 </div>
             </section>
 
-            {/* TARIFS (PRICING) - PREMIUM 4-COLUMN DESIGN */}
-            <section id="pricing" className="py-32 bg-[#020617] relative overflow-hidden">
-                {/* Decorative background elements */}
+            {/* TARIFS (PRICING) - COMPACT CREDIT PACKS */}
+            <section id="pricing" className="py-24 bg-[#020617] relative overflow-hidden">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-
-                <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-                    <div className="text-center mb-24">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 tracking-widest uppercase">
-                            <Landmark size={14} /> Pricing & Forensic Plans
+                <div className="max-w-6xl mx-auto px-6 relative z-10">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-4 tracking-widest uppercase">
+                            <Landmark size={12} /> Pay as you go
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">{t('pricing.title')}</h2>
-                        <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">{t('pricing.subtitle')}</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Tarifs Simples. <span className="text-blue-500">Sans Engagement.</span></h2>
+                        <p className="text-slate-400 text-sm max-w-2xl mx-auto">Achetez des packs de vérifications valables à vie. Pas d'abonnement caché.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
 
                         {/* 1. ESSENTIEL */}
-                        <div className="group bg-slate-900/30 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:border-blue-500/20 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-blue-500/5">
-                            <div className="mb-8">
-                                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-blue-600/20 transition-colors">
-                                    <ShieldCheck size={24} className="text-blue-400" />
-                                </div>
-                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.essentiel.title')}</h3>
-                                <p className="text-slate-500 text-sm mb-6 line-clamp-2">{t('pricing.essentiel.desc')}</p>
-                                <div className="flex flex-col mb-1">
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl font-bold text-white">{t('pricing.essentiel.price')}</span>
-                                        <span className="text-slate-500 text-sm font-medium">{t('pricing.essentiel.unit')}</span>
-                                    </div>
-                                    <p className="text-xs text-slate-400 mt-1">{t('pricing.essentiel.commitment')}</p>
-                                </div>
+                        <div className="group bg-slate-900/40 backdrop-blur-sm border border-white/5 rounded-2xl p-5 hover:border-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/5">
+                            <div className="mb-4">
+                                <h3 className="text-white font-bold text-lg">Essentiel</h3>
+                                <p className="text-slate-500 text-xs mt-1">Petites équipes.</p>
                             </div>
-                            <div className="h-px bg-white/5 w-full mb-8"></div>
-                            <ul className="space-y-4 mb-10 flex-grow text-sm">
-                                {Object.values(t('pricing.essentiel.features', { returnObjects: true })).map((feature: any, i: number) => (
-                                    <li key={i} className="flex gap-3 items-start text-slate-400 group-hover:text-slate-300 transition-colors">
-                                        <Check size={16} className="text-blue-500 shrink-0 mt-0.5" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link to="/signup?plan=essentiel" className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-center rounded-2xl font-bold transition-all group-hover:border-blue-500/40">
-                                {t('pricing.essentiel.cta')}
+                            <div className="mb-4">
+                                <span className="text-2xl font-bold text-white">199€</span>
+                                <span className="text-slate-500 text-xs"> / pack</span>
+                            </div>
+                            <div className="space-y-2 mb-6 text-xs text-slate-400">
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-blue-500" /> <span className="text-white font-bold">100 crédits</span></div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Détection Standard</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Support Email</div>
+                            </div>
+                            <Link to="/signup?plan=essentiel" className="block w-full py-2.5 bg-white/5 hover:bg-white/10 text-white text-xs font-bold text-center rounded-lg transition-colors border border-white/5">
+                                Acheter Pack
                             </Link>
                         </div>
 
-                        {/* 2. CONFORMITÉ - POPULAR */}
-                        <div className="relative group bg-slate-900/60 backdrop-blur-md border border-blue-500/30 rounded-3xl p-8 transition-all duration-500 flex flex-col shadow-2xl shadow-blue-500/10 lg:scale-105 lg:z-10">
-                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 py-1.5 px-4 bg-blue-600 text-white text-[10px] font-black rounded-full tracking-widest uppercase border border-blue-400 shadow-xl shadow-blue-600/20">
-                                {t('pricing.recommended')}
+                        {/* 2. PRO (Mis en avant) */}
+                        <div className="relative group bg-slate-900/80 backdrop-blur-md border border-blue-500/40 rounded-2xl p-6 transition-all shadow-xl shadow-blue-900/20 lg:-mt-4 lg:mb-4 lg:z-10 bg-gradient-to-b from-blue-900/10 to-transparent">
+                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-blue-600 text-white text-[9px] font-bold rounded-full tracking-wider uppercase shadow-lg">
+                                Recommandé
                             </div>
-                            <div className="mb-8">
-                                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-600/30">
-                                    <Users size={24} className="text-white" />
-                                </div>
-                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.conformite.title')}</h3>
-                                <p className="text-slate-400 text-sm mb-6 line-clamp-2">{t('pricing.conformite.desc')}</p>
-                                <div className="flex flex-col mb-1">
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl font-bold text-white">{t('pricing.conformite.price')}</span>
-                                        <span className="text-slate-400 text-sm font-medium">{t('pricing.conformite.unit')}</span>
-                                    </div>
-                                    <p className="text-xs text-blue-200/60 mt-1">{t('pricing.conformite.commitment')}</p>
-                                </div>
+                            <div className="mb-4">
+                                <h3 className="text-white font-bold text-xl">Pro</h3>
+                                <p className="text-blue-200/60 text-xs mt-1">Agences & PME.</p>
                             </div>
-                            <div className="h-px bg-blue-500/20 w-full mb-8"></div>
-                            <ul className="space-y-4 mb-10 flex-grow text-sm">
-                                {Object.values(t('pricing.conformite.features', { returnObjects: true })).map((feature: any, i: number) => (
-                                    <li key={i} className="flex gap-3 items-start text-slate-300">
-                                        <CheckCircle2 size={16} className="text-blue-400 shrink-0 mt-0.5" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link to="/signup?plan=pro" className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white text-center rounded-2xl font-bold transition-all shadow-lg hover:shadow-blue-600/30 transform hover:-translate-y-1">
-                                {t('pricing.conformite.cta')}
+                            <div className="mb-4">
+                                <span className="text-3xl font-bold text-white">499€</span>
+                                <span className="text-slate-400 text-xs"> / pack</span>
+                            </div>
+                            <div className="space-y-3 mb-8 text-xs text-slate-300">
+                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> <span className="text-white font-bold">1 000 crédits</span></div>
+                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> Détection Avancée (Meta)</div>
+                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> API Access</div>
+                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> Rapports Certifiés</div>
+                            </div>
+                            <Link to="/signup?plan=pro" className="block w-full py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold text-center rounded-xl transition-all shadow-lg hover:shadow-blue-500/25">
+                                Choisir ce pack
                             </Link>
                         </div>
 
                         {/* 3. FORENSIQUE */}
-                        <div className="group bg-slate-900/30 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:border-purple-500/20 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-purple-500/5">
-                            <div className="mb-8">
-                                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-purple-600/20 transition-colors">
-                                    <ScanLine size={24} className="text-purple-400" />
-                                </div>
-                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.forensique.title')}</h3>
-                                <p className="text-slate-500 text-sm mb-6 line-clamp-2">{t('pricing.forensique.desc')}</p>
-                                <div className="flex flex-col mb-1">
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl font-bold text-white">{t('pricing.forensique.price')}</span>
-                                        <span className="text-slate-500 text-sm font-medium">{t('pricing.forensique.unit')}</span>
-                                    </div>
-                                    <p className="text-xs text-slate-400 mt-1">{t('pricing.forensique.commitment')}</p>
-                                </div>
+                        <div className="group bg-slate-900/40 backdrop-blur-sm border border-white/5 rounded-2xl p-5 hover:border-purple-500/20 transition-all hover:shadow-lg hover:shadow-purple-500/5">
+                            <div className="mb-4">
+                                <h3 className="text-white font-bold text-lg">Forensique</h3>
+                                <p className="text-slate-500 text-xs mt-1">Experts & Finance.</p>
                             </div>
-                            <div className="h-px bg-white/5 w-full mb-8"></div>
-                            <ul className="space-y-4 mb-10 flex-grow text-sm">
-                                {Object.values(t('pricing.forensique.features', { returnObjects: true })).map((feature: any, i: number) => (
-                                    <li key={i} className="flex gap-3 items-start text-slate-400 group-hover:text-slate-300 transition-colors">
-                                        <Check size={16} className="text-purple-500 shrink-0 mt-0.5" />
-                                        <span className={i < 2 ? "font-bold text-white" : ""}>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link to="/signup?plan=forensic" className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-center rounded-2xl font-bold transition-all group-hover:border-purple-500/40">
-                                {t('pricing.forensique.cta')}
+                            <div className="mb-4">
+                                <span className="text-2xl font-bold text-white">999€</span>
+                                <span className="text-slate-500 text-xs"> / pack</span>
+                            </div>
+                            <div className="space-y-2 mb-6 text-xs text-slate-400">
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-purple-500" /> <span className="text-white font-bold">5 000 crédits</span></div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-purple-500" /> Analyse Spectrale</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Webhooks</div>
+                            </div>
+                            <Link to="/signup?plan=forensic" className="block w-full py-2.5 bg-white/5 hover:bg-white/10 text-white text-xs font-bold text-center rounded-lg transition-colors border border-white/5">
+                                Contacter Sales
                             </Link>
                         </div>
 
                         {/* 4. ENTERPRISE */}
-                        <div className="group bg-slate-800/20 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:border-emerald-500/20 transition-all duration-500 flex flex-col hover:shadow-2xl hover:shadow-emerald-500/5">
-                            <div className="mb-8">
-                                <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:bg-emerald-600/20 transition-colors">
-                                    <Building2 size={24} className="text-emerald-400" />
-                                </div>
-                                <h3 className="text-white font-bold text-xl mb-1">{t('pricing.enterprise.title')}</h3>
-                                <p className="text-slate-500 text-sm mb-6 line-clamp-2">{t('pricing.enterprise.desc')}</p>
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl font-bold text-white">{t('pricing.enterprise.price')}</span>
-                                </div>
+                        <div className="group bg-slate-950 backdrop-blur-sm border border-white/5 rounded-2xl p-5 hover:border-emerald-500/20 transition-all hover:shadow-lg hover:shadow-emerald-500/5">
+                            <div className="mb-4">
+                                <h3 className="text-white font-bold text-lg">Enterprise</h3>
+                                <p className="text-slate-500 text-xs mt-1">Grands Comptes.</p>
                             </div>
-                            <div className="h-px bg-white/5 w-full mb-8"></div>
-                            <ul className="space-y-4 mb-10 flex-grow text-sm">
-                                {Object.values(t('pricing.enterprise.features', { returnObjects: true })).map((feature: any, i: number) => (
-                                    <li key={i} className="flex gap-3 items-start text-slate-400 group-hover:text-slate-300 transition-colors">
-                                        <Check size={16} className="text-emerald-500 shrink-0 mt-0.5" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link to="/contact" className="w-full py-4 bg-emerald-600/10 hover:bg-emerald-600/20 border border-emerald-500/20 text-emerald-400 text-center rounded-2xl font-bold transition-all group-hover:border-emerald-500/50">
-                                {t('pricing.enterprise.cta')}
+                            <div className="mb-4">
+                                <span className="text-xl font-bold text-white">Sur Mesure</span>
+                            </div>
+                            <div className="space-y-2 mb-6 text-xs text-slate-400">
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-emerald-500" /> Volume Illimité</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-emerald-500" /> SLA & On-Premise</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-emerald-500" /> Audit Sécurité</div>
+                            </div>
+                            <Link to="/contact" className="block w-full py-2.5 bg-emerald-900/20 hover:bg-emerald-900/30 text-emerald-400 text-xs font-bold text-center rounded-lg transition-colors border border-emerald-500/20">
+                                Devis
                             </Link>
                         </div>
+
                     </div>
 
-                    {/* Security Badge - REFINED */}
-                    <div className="mt-24 pt-12 border-t border-white/5 flex flex-wrap justify-center items-center gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                        <div className="flex items-center gap-3"><ShieldCheck size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">SECURITY GRADE</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">AAA+ COMPLIANT</p></div></div>
-                        <div className="flex items-center gap-3"><Lock size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">END-TO-END</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">AES-256 ENCRYPTION</p></div></div>
-                        <div className="flex items-center gap-3"><Globe2 size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">GDPR SOVEREIGN</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">EU DATA CENTERS</p></div></div>
-                        <div className="flex items-center gap-3"><Scale size={28} className="text-blue-500" /><div><p className="text-white font-bold text-xs leading-none">REGULATED</p><p className="text-[10px] text-slate-500 font-mono tracking-widest">ACPR/AMF READY</p></div></div>
+                    {/* Security Badge - COMPACT */}
+                    <div className="mt-16 pt-8 border-t border-white/5 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                        <div className="flex items-center gap-2"><div className="w-1 h-8 bg-blue-500 rounded-full"></div><div><p className="text-white font-bold text-[10px] leading-none">AAA+ COMPLIANT</p><p className="text-[9px] text-slate-500 font-mono">SECURITY GRADE</p></div></div>
+                        <div className="flex items-center gap-2"><div className="w-1 h-8 bg-blue-500 rounded-full"></div><div><p className="text-white font-bold text-[10px] leading-none">AES-256</p><p className="text-[9px] text-slate-500 font-mono">ENCRYPTION</p></div></div>
+                        <div className="flex items-center gap-2"><div className="w-1 h-8 bg-blue-500 rounded-full"></div><div><p className="text-white font-bold text-[10px] leading-none">GDPR READY</p><p className="text-[9px] text-slate-500 font-mono">EU DATACENTERS</p></div></div>
                     </div>
                 </div>
             </section>
