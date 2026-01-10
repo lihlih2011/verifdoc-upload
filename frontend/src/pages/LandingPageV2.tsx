@@ -1344,7 +1344,7 @@ export default function LandingPageV2() {
                             <div className="flex items-center mb-6">
                                 <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 w-auto transition-all hover:brightness-110" />
                             </div>
-                            <p className="mb-6 leading-relaxed text-slate-500">Vérifiez vos PDFs avec l'IA. Détectez instantanément les faux documents grâce à notre technologie d'IA avancée.</p>
+                            <p className="mb-6 leading-relaxed text-slate-500">Vérifiez vos documents avec l'IA. Détectez instantanément les faux documents grâce à notre technologie d'IA avancée.</p>
                             <div className="flex gap-4"><a href="#" className="text-slate-400 hover:text-blue-600 transition-colors"><Twitter size={20} /></a><a href="#" className="text-slate-400 hover:text-blue-600 transition-colors"><Linkedin size={20} /></a></div>
                         </div>
                         <div><h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-xs">{t('footer.product')}</h4><ul className="space-y-3"><li><a href="#" className="hover:text-blue-600 transition-colors">{t('footer.how_it_works')}</a></li><li><a href="#" className="hover:text-blue-600 transition-colors">{t('footer.pricing')}</a></li><li><a href="#" className="hover:text-blue-600 transition-colors">{t('footer.testimonials')}</a></li><li><a href="#" className="hover:text-blue-600 transition-colors">{t('nav.book_demo')}</a></li></ul></div>

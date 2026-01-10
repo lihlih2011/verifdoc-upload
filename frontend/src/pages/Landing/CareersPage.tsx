@@ -55,35 +55,37 @@ const CareersPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-500/30">
+        <div className="min-h-screen bg-[#020617] font-sans selection:bg-blue-500/30 text-slate-300">
             {/* NAVBAR */}
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-3">
                         <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-10 w-auto" />
-                        <span className="text-xl font-bold text-slate-900 tracking-tight hidden sm:block">VERIFDOC</span>
+                        <span className="text-xl font-bold text-white tracking-tight hidden sm:block">VERIFDOC</span>
                     </Link>
                     <div className="flex gap-4">
-                        <Link to="/" className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Retour</Link>
+                        <Link to="/" className="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">Retour</Link>
                     </div>
                 </div>
             </nav>
 
             {/* HERO */}
-            <header className="pt-32 pb-20 px-6 bg-[#020617] text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-blue-600/10 opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+            <header className="pt-32 pb-20 px-6 relative overflow-hidden">
+                <div className="absolute inset-0 bg-blue-600/10 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-500/5 blur-[120px] pointer-events-none"></div>
+
                 <div className="max-w-4xl mx-auto text-center relative z-10">
                     <div className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-xs font-bold mb-6 tracking-wide uppercase">
                         Recrutement
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
                         Construisons la <span className="text-blue-500">confiance numérique</span>.
                     </h1>
                     <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
                         Rejoignez une équipe passionnée issue de la recherche (INEC) et travaillez sur des technologies de pointe pour lutter contre la fraude documentaire mondiale.
                     </p>
                     <div className="flex justify-center gap-4">
-                        <a href="#openings" className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all flex items-center gap-2">
+                        <a href="#openings" className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all flex items-center gap-2 shadow-lg shadow-blue-600/20 hover:scale-105">
                             Voir les offres <ArrowRight size={16} />
                         </a>
                     </div>
@@ -92,14 +94,14 @@ const CareersPage = () => {
 
             {/* JOBS LIST */}
             <section id="openings" className="py-20 px-6 max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b border-white/5 pb-8">
                     <div>
-                        <h2 className="text-3xl font-bold text-slate-900 mb-2">Postes Ouverts</h2>
-                        <p className="text-slate-500">Rejoignez-nous à Paris ou en Remote.</p>
+                        <h2 className="text-3xl font-bold text-white mb-2">Postes Ouverts</h2>
+                        <p className="text-slate-400">Rejoignez-nous à Paris ou en Remote.</p>
                     </div>
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                        <input type="text" placeholder="Rechercher un poste..." className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none w-full md:w-64" />
+                    <div className="relative w-full md:w-auto">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                        <input type="text" placeholder="Rechercher un poste..." className="pl-10 pr-4 py-3 bg-slate-900/50 border border-white/10 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none w-full md:w-80 text-white placeholder-slate-600 transition-all" />
                     </div>
                 </div>
 
@@ -110,31 +112,37 @@ const CareersPage = () => {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all group cursor-pointer"
+                            className="bg-slate-900/30 backdrop-blur-sm p-8 rounded-2xl border border-white/5 hover:border-blue-500/30 hover:bg-slate-800/50 transition-all group cursor-pointer shadow-lg hover:shadow-blue-500/5"
                             onClick={() => setSelectedJob(job.id)}
                         >
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">{job.title}</h3>
-                                    <div className="flex flex-wrap gap-4 text-sm text-slate-500 mb-4">
-                                        <div className="flex items-center gap-1"><Briefcase size={14} /> {job.department}</div>
-                                        <div className="flex items-center gap-1"><MapPin size={14} /> {job.location}</div>
-                                        <div className="flex items-center gap-1"><Clock size={14} /> {job.type}</div>
-                                        <div className="font-semibold text-slate-700">{job.salary}</div>
+                                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                                        <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">{job.title}</h3>
+                                        {job.id === 'data-scientist' && <span className="px-2 py-0.5 bg-purple-500/20 text-purple-300 text-[10px] font-bold uppercase tracking-wider rounded border border-purple-500/30">Hot</span>}
                                     </div>
-                                    <p className="text-slate-600 mb-4 line-clamp-2">
+
+                                    <div className="flex flex-wrap gap-6 text-sm text-slate-400 mb-6">
+                                        <div className="flex items-center gap-2"><Briefcase size={16} className="text-blue-500" /> {job.department}</div>
+                                        <div className="flex items-center gap-2"><MapPin size={16} className="text-emerald-500" /> {job.location}</div>
+                                        <div className="flex items-center gap-2"><Clock size={16} className="text-orange-500" /> {job.type}</div>
+                                        <div className="font-bold text-white bg-white/5 px-2 py-0.5 rounded border border-white/10">{job.salary}</div>
+                                    </div>
+
+                                    <p className="text-slate-400 mb-6 line-clamp-2 leading-relaxed max-w-3xl">
                                         {job.description}
                                     </p>
+
                                     <div className="flex gap-2 flex-wrap">
                                         {job.tags.map(tag => (
-                                            <span key={tag} className="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">
+                                            <span key={tag} className="px-3 py-1 bg-white/5 border border-white/5 text-slate-300 text-xs rounded-full font-medium group-hover:border-white/10 transition-colors">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
-                                <div className="shrink-0">
-                                    <button className="px-6 py-2 bg-slate-900 text-white font-bold rounded-lg group-hover:bg-blue-600 transition-colors w-full md:w-auto">
+                                <div className="shrink-0 self-center md:self-start mt-4 md:mt-0">
+                                    <button className="px-6 py-3 bg-white/5 text-white font-bold rounded-xl border border-white/10 group-hover:bg-blue-600 group-hover:border-blue-500 transition-all w-full md:w-auto hover:shadow-lg shadow-blue-500/20">
                                         Postuler
                                     </button>
                                 </div>
@@ -147,77 +155,77 @@ const CareersPage = () => {
             {/* APPLICATION MODAL */}
             <AnimatePresence>
                 {selectedJob && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#020617]/80 backdrop-blur-md">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+                            className="bg-[#0f172a] border border-white/10 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative"
                         >
-                            <div className="p-6 border-b border-slate-100 flex justify-between items-center sticky top-0 bg-white z-10">
+                            <div className="p-6 border-b border-white/10 flex justify-between items-center sticky top-0 bg-[#0f172a]/95 backdrop-blur z-10">
                                 <div>
-                                    <h2 className="text-xl font-bold text-slate-900">Postuler</h2>
-                                    <p className="text-slate-500 text-sm">Poste : {jobs.find(j => j.id === selectedJob)?.title}</p>
+                                    <h2 className="text-xl font-bold text-white">Postuler</h2>
+                                    <p className="text-slate-400 text-sm">Poste : <span className="text-blue-400">{jobs.find(j => j.id === selectedJob)?.title}</span></p>
                                 </div>
-                                <button onClick={() => setSelectedJob(null)} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-                                    <div className="w-6 h-6 flex items-center justify-center text-slate-500">✕</div>
+                                <button onClick={() => setSelectedJob(null)} className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white">
+                                    <div className="w-6 h-6 flex items-center justify-center">✕</div>
                                 </button>
                             </div>
 
                             {formStatus === 'success' ? (
-                                <div className="p-12 text-center">
-                                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                                        <CheckCircle2 size={32} />
+                                <div className="p-16 text-center">
+                                    <div className="w-20 h-20 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-500/30">
+                                        <CheckCircle2 size={40} />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Candidature envoyée !</h3>
-                                    <p className="text-slate-500">Merci pour votre intérêt. Notre équipe RH (Béatrice) reviendra vers vous sous 48h.</p>
+                                    <h3 className="text-2xl font-bold text-white mb-2">Candidature reçue !</h3>
+                                    <p className="text-slate-400 max-w-sm mx-auto">Merci pour votre intérêt. Notre équipe RH (Béatrice) étudiera votre profil avec attention.</p>
                                 </div>
                             ) : (
-                                <form onSubmit={handleApply} className="p-6 space-y-6">
+                                <form onSubmit={handleApply} className="p-8 space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-slate-700">Prénom</label>
-                                            <input type="text" required className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Jean" />
+                                            <label className="text-sm font-bold text-slate-300">Prénom</label>
+                                            <input type="text" required className="w-full px-4 py-3 bg-[#1e293b] border border-white/5 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-white focus:bg-[#1e293b]" placeholder="Ex: Jean" />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-slate-700">Nom</label>
-                                            <input type="text" required className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Dupont" />
+                                            <label className="text-sm font-bold text-slate-300">Nom</label>
+                                            <input type="text" required className="w-full px-4 py-3 bg-[#1e293b] border border-white/5 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-white focus:bg-[#1e293b]" placeholder="Ex: Dupont" />
                                         </div>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-slate-700">Email</label>
-                                        <input type="email" required className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="jean.dupont@exemple.com" />
+                                        <label className="text-sm font-bold text-slate-300">Email professionnel</label>
+                                        <input type="email" required className="w-full px-4 py-3 bg-[#1e293b] border border-white/5 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-white focus:bg-[#1e293b]" placeholder="jean@portfolio.com" />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-slate-700">CV / Resume (PDF)</label>
-                                        <div className="border-2 border-dashed border-slate-200 rounded-xl p-8 text-center hover:bg-slate-50 transition-colors cursor-pointer">
-                                            <UploadCloud className="mx-auto text-slate-400 mb-2" />
-                                            <p className="text-sm text-slate-600 font-medium">Cliquez pour upload votre CV</p>
-                                            <p className="text-xs text-slate-400">PDF, DOCX jusqu'à 10MB</p>
+                                        <label className="text-sm font-bold text-slate-300">CV / Resume (PDF)</label>
+                                        <div className="border-2 border-dashed border-white/10 rounded-xl p-8 text-center hover:bg-white/5 hover:border-blue-500/30 transition-all cursor-pointer group">
+                                            <UploadCloud className="mx-auto text-slate-500 group-hover:text-blue-400 mb-3 transition-colors" size={32} />
+                                            <p className="text-sm text-slate-300 font-medium group-hover:text-white">Glissez votre CV ici ou cliquez pour parcourir</p>
+                                            <p className="text-xs text-slate-500 mt-1">PDF uniquement (Max 10MB)</p>
                                         </div>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-slate-700">Motivation (Optionnel)</label>
-                                        <textarea className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none h-32" placeholder="Dites-nous pourquoi vous êtes la bonne personne..." />
+                                        <label className="text-sm font-bold text-slate-300">Motivation (Optionnel)</label>
+                                        <textarea className="w-full px-4 py-3 bg-[#1e293b] border border-white/5 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none h-32 text-white focus:bg-[#1e293b]" placeholder="Un petit mot pour nous convaincre..." />
                                     </div>
 
                                     <div className="pt-4">
                                         <button
                                             type="submit"
                                             disabled={formStatus === 'submitting'}
-                                            className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                            className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 disabled:opacity-50 disabled:grayscale"
                                         >
                                             {formStatus === 'submitting' ? (
-                                                <><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Envoi en cours...</>
+                                                <><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Envoi sécurisé...</>
                                             ) : (
                                                 <>Envoyer ma candidature <Send size={18} /></>
                                             )}
                                         </button>
-                                        <p className="text-center text-xs text-slate-400 mt-4">
-                                            En postulant, vous acceptez notre politique de confidentialité des données RH.
+                                        <p className="text-center text-[10px] text-slate-500 mt-4 uppercase tracking-wider">
+                                            Données sécurisées & traitées confidentiellement en France
                                         </p>
                                     </div>
                                 </form>
