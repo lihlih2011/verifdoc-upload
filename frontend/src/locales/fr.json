@@ -109,6 +109,28 @@
         "login": "Connexion",
         "book_demo": "Réserver une Démo"
     },
+    "solution": {
+        "badge": "LA SOLUTION",
+        "title": "Une couche de vigilance indépendante avant de décider",
+        "desc1": "VerifDoc analyse les documents critiques à l’aide de technologies d’intelligence artificielle afin de détecter les incohérences, altérations et montages frauduleux.",
+        "desc2": "Vous recevez un rapport clair, horodaté et traçable, pour éclairer votre décision, sans remplacer vos équipes ni vos processus."
+    },
+    "how_it_works": {
+        "badge": "COMMENT ÇA MARCHE",
+        "title": "Un processus simple en trois étapes",
+        "step1": {
+            "title": "Vous soumettez",
+            "desc": "un document critique"
+        },
+        "step2": {
+            "title": "VerifDoc analyse",
+            "desc": "et détecte les anomalies"
+        },
+        "step3": {
+            "title": "Vous décidez",
+            "desc": "en toute sécurité"
+        }
+    },
     "features": {
         "title_start": "Pourquoi Utiliser",
         "title_end": "VerifDoc ?",

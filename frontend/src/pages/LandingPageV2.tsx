@@ -946,6 +946,54 @@ export default function LandingPageV2() {
                 </div>
             </section>
 
+            {/* SOLUTION SECTION - NEW */}
+            <section className="py-24 bg-[#020617] relative border-y border-white/5">
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-500/5 blur-[100px] pointer-events-none" />
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span className="text-blue-500 font-bold tracking-widest text-sm uppercase mb-4 block">{t('solution.badge')}</span>
+                        <h2 className="text-4xl font-bold mb-6 text-white">{t('solution.title')}</h2>
+                        <p className="text-lg text-slate-400 mb-6 leading-relaxed">
+                            {t('solution.desc1')}
+                        </p>
+                        <p className="text-lg text-slate-400 leading-relaxed">
+                            {t('solution.desc2')}
+                        </p>
+                    </div>
+                    <div className="bg-slate-800 rounded-2xl p-2 border border-slate-700 shadow-2xl">
+                        <img src="/images/demo/demo_dashboard_v2.png" alt="VerifDoc Dashboard" className="rounded-xl w-full h-auto" />
+                    </div>
+                </div>
+            </section>
+
+            {/* HOW IT WORKS SECTION - NEW */}
+            <section className="py-24 bg-slate-900 border-y border-white/5">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    <span className="text-emerald-500 font-bold tracking-widest text-sm uppercase mb-4 block">{t('how_it_works.badge')}</span>
+                    <h2 className="text-4xl font-bold mb-16 text-white">{t('how_it_works.title')}</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                        <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-slate-700 -z-10"></div>
+
+                        <div className="relative">
+                            <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center text-2xl font-bold border-4 border-[#020617] mx-auto mb-6 text-blue-500 shadow-lg">1</div>
+                            <h3 className="text-xl font-bold mb-4 text-white">{t('how_it_works.step1.title')}</h3>
+                            <p className="text-slate-400 text-sm">{t('how_it_works.step1.desc')}</p>
+                        </div>
+                        <div className="relative">
+                            <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center text-2xl font-bold border-4 border-[#020617] mx-auto mb-6 text-emerald-500 shadow-lg">2</div>
+                            <h3 className="text-xl font-bold mb-4 text-white">{t('how_it_works.step2.title')}</h3>
+                            <p className="text-slate-400 text-sm">{t('how_it_works.step2.desc')}</p>
+                        </div>
+                        <div className="relative">
+                            <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center text-2xl font-bold border-4 border-[#020617] mx-auto mb-6 text-purple-500 shadow-lg">3</div>
+                            <h3 className="text-xl font-bold mb-4 text-white">{t('how_it_works.step3.title')}</h3>
+                            <p className="text-slate-400 text-sm">{t('how_it_works.step3.desc')}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* SECTORS SECTION (NEW 12 GRID) */}
             <section id="sectors" className="py-24 bg-white relative">
                 <div className="absolute top-0 left-0 w-full h-[500px] bg-slate-50 -skew-y-3 origin-top-left -z-10"></div>
