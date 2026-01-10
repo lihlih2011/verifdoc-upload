@@ -13,8 +13,78 @@
         "decline": "Decline"
     },
     "chatbot": {
-        "welcome": "Hello! How can I help you today?",
-        "placeholder": "Type your message...",
-        "support_agent": "Support Agent"
+        "welcome": "Hello! I am the VerifDoc assistant. How can I help you secure your documents?",
+        "placeholder": "Ask your question...",
+        "support_agent": "Expert Support"
+    },
+    "hero": {
+        "badge": "V5 AI ENGINE AVAILABLE",
+        "title_start": "Forensic Expertise",
+        "title_end": "At Service of Your Security",
+        "subtitle": "Instantly detect fake documents, Photoshop edits, and identity theft with our patented spectral analysis technology."
+    },
+    "clients": {
+        "trust_text": "Over 500 companies secure their document workflows with VerifDoc"
+    },
+    "use_cases": {
+        "fear": {
+            "badge": "THE REALITY OF THE THREAT",
+            "title_start": "Ignoring fraud",
+            "title_end": "Costs a Fortune",
+            "subtitle": "Forgers are increasingly sophisticated. The human eye is no longer enough.",
+            "financial": {
+                "title": "Direct Losses",
+                "desc": "Unpaid loans, squatted properties, salaries paid to ghosts.",
+                "loss_amount": "-50k€",
+                "badge": "AVG PER FRAUD"
+            },
+            "legal": {
+                "title": "Heavy Sanctions",
+                "desc": "Regulatory fines (GDPR/AML) for lack of vigilance.",
+                "fine_amount": "4%",
+                "badge": "OF TURNOVER"
+            },
+            "reputation": {
+                "title": "Broken Trust",
+                "desc": "A security scandal can destroy your reputation in 24 hours.",
+                "trust_break": "CRITICAL",
+                "badge": "IMAGE RISK"
+            }
+        },
+        "reassurance": {
+            "financial": {
+                "title": "Secure Your Margins",
+                "desc": "Eliminate 99.9% of fraudulent files before onboarding.",
+                "cta": "Calculate ROI"
+            },
+            "legal": {
+                "title": "Automated Compliance",
+                "desc": "Audit-proof evidence reports in one click.",
+                "cta": "See Legal Report"
+            },
+            "reputation": {
+                "title": "Trust Label",
+                "desc": "Reassure investors and partners with bank-grade security.",
+                "cta": "Our Certifications"
+            }
+        }
+    },
+    "sectors": {
+        "badge": "INDUSTRIES",
+        "title": "Tailored Protection",
+        "title_sub": "For Your Sector",
+        "description": "Banking, Real Estate, or HR: our AI models are trained specifically to recognize YOUR critical documents.",
+        "bank": {
+            "title": "Banking & Insurance",
+            "desc": "Instant KYC/KYB, financial flow analysis, and credit file fraud detection."
+        },
+        "real_estate": {
+            "title": "Real Estate Management",
+            "desc": "Tenant file screening (Fake payslips, modified tax notices) in real-time."
+        },
+        "recruitment": {
+            "title": "Human Resources",
+            "desc": "Verification of CVs, diplomas, and certificates to avoid bad hires."
+        }
     }
 }

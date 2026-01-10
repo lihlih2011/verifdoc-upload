@@ -13,8 +13,78 @@
         "decline": "Refuser"
     },
     "chatbot": {
-        "welcome": "Bonjour ! Comment puis-je vous aider ?",
-        "placeholder": "Écrivez votre message...",
-        "support_agent": "Support Client"
+        "welcome": "Bonjour ! Je suis l'assistant VerifDoc. Comment puis-je vous aider à sécuriser vos documents ?",
+        "placeholder": "Posez votre question...",
+        "support_agent": "Support Expert"
+    },
+    "hero": {
+        "badge": "MOTEUR IA V5 DISPONIBLE",
+        "title_start": "L'Expertise Forensique",
+        "title_end": "au service de votre sécurité",
+        "subtitle": "Détectez instantanément les faux documents, les retouches Photoshop et les usurpations d'identité grâce à notre technologie d'analyse spectrale brevetée."
+    },
+    "clients": {
+        "trust_text": "Plus de 500 entreprises sécurisent leurs flux documentaires avec VerifDoc"
+    },
+    "use_cases": {
+        "fear": {
+            "badge": "LA RÉALITÉ DE LA MENACE",
+            "title_start": "Ignorer la fraude",
+            "title_end": "coûte une fortune",
+            "subtitle": "Les faussaires sont de plus en plus sophistiqués. L'œil humain ne suffit plus.",
+            "financial": {
+                "title": "Pertes Sèches",
+                "desc": "Crédits impayés, logements squattés, salaires versés à des fantômes.",
+                "loss_amount": "-50k€",
+                "badge": "MOYENNE PAR FRAUDE"
+            },
+            "legal": {
+                "title": "Sanctions Lourde",
+                "desc": "Amendes ACPR/CNIL pour défaut de vigilance et blanchiment.",
+                "fine_amount": "4%",
+                "badge": "DU CHIFFRE D'AFFAIRES"
+            },
+            "reputation": {
+                "title": "Confiance Rompue",
+                "desc": "Un scandale de sécurité peut détruire votre réputation en 24h.",
+                "trust_break": "CRITIQUE",
+                "badge": "RISQUE IMAGE"
+            }
+        },
+        "reassurance": {
+            "financial": {
+                "title": "Blindez vos Revenus",
+                "desc": "Éliminez 99.9% des dossiers frauduleux avant l'entrée en relation.",
+                "cta": "Simuler mes économies"
+            },
+            "legal": {
+                "title": "Conformité Automatisée",
+                "desc": "Dossiers de preuve certifiés et auditables en un clic.",
+                "cta": "Voir le rapport légal"
+            },
+            "reputation": {
+                "title": "Label de Confiance",
+                "desc": "Rassurez vos investisseurs et partenaires avec une sécurité de niveau bancaire.",
+                "cta": "Nos certifications"
+            }
+        }
+    },
+    "sectors": {
+        "badge": "NOS VERTICALES",
+        "title": "Une protection sur-mesure",
+        "title_sub": "pour votre industrie",
+        "description": "Banque, Immobilier ou RH : nos modèles IA sont entraînés spécifiquement pour reconnaître VOS documents critiques.",
+        "bank": {
+            "title": "Banque & Assurance",
+            "desc": "KYC/KYB instantané, analyse de flux financiers et détection de montage de dossiers crédits."
+        },
+        "real_estate": {
+            "title": "Gestion Immobilière",
+            "desc": "Filtrage des dossier locataires (Faux bulletins, AVIS d'impôts modifiés) en temps réel."
+        },
+        "recruitment": {
+            "title": "Ressources Humaines",
+            "desc": "Vérification des CV, diplômes et certificats pour éviter les bad hires."
+        }
     }
 }
