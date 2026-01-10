@@ -11,7 +11,7 @@ import os
 
 router = APIRouter(prefix="/report", tags=["report"])
 
-REPORT_COST = 10  # Coût pour télécharger un rapport
+REPORT_COST = 0  # Coût pour télécharger un rapport (Désormais GRATUIT/INCLUS)
 
 def process_report_payment(user: User, db: Session):
     """

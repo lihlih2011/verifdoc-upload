@@ -67,9 +67,10 @@ async def analyze_document(
         user_subscription = current_user.organization.subscription_plan
 
     # 1. CRÉDITS (Simplifié : Solde Utilisateur)
-    COST = 1
-    if current_user.credits_balance < COST:
-         raise HTTPException(status_code=402, detail="⚠️ CRÉDITS ÉPUISÉS !")
+    # 1. CRÉDITS (Mode Démo Illimitée)
+    COST = 0 # Temporairement gratuit pour faciliter les tests multi-upload
+    # if current_user.credits_balance < COST:
+    #      raise HTTPException(status_code=402, detail="⚠️ CRÉDITS ÉPUISÉS !")
     
     # Débit direct
     current_user.credits_balance -= COST
