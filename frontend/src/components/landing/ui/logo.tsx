@@ -5,7 +5,7 @@ export default function Logo() {
     <Link to="/" className="block" aria-label="VerifDoc">
       {/* Utilisation du logo image officiel */}
       <img
-        src="/logo.png"
+        src="/images/verifdoc-logo-real.png"
         alt="VerifDoc"
         className="h-24 w-auto object-contain transition-transform hover:scale-105"
       />

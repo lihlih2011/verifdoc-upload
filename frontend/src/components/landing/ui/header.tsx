@@ -30,7 +30,7 @@ export default function Header() {
           {/* Site branding */}
           <div className="shrink-0 mr-4">
             <Link to="/" className="block group">
-              <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-10 w-auto" />
+              <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 w-auto" />
             </Link>
           </div>
 
