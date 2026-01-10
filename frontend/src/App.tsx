@@ -34,6 +34,7 @@ import { TERMS_OF_SERVICE_CONTENT } from "./data/legalContent";
 
 import CookieConsent from "./components/common/CookieConsent";
 import ChatWidget from "./components/common/ChatWidget";
+import ErrorBoundary from "./components/common/ErrorBoundary";
 
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
@@ -140,7 +141,11 @@ export default function App() {
 
           {/* Dashboard Layout - PROTECTED */}
           <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<AppLayout />}>
+            <Route path="/dashboard" element={
+              <ErrorBoundary>
+                <AppLayout />
+              </ErrorBoundary>
+            }>
               <Route index element={<Home />} />
               <Route path="admin" element={<AdminDashboard />} />
 
