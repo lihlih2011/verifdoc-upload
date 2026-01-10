@@ -48,6 +48,9 @@ import ContactPage from "./pages/Landing/ContactPage";
 import ProDashboard from "./pages/Dashboard/ProDashboard";
 import PartnersPage from "./pages/Landing/PartnersPage"; // NEW IMPORT
 import CareersPage from "./pages/Landing/CareersPage";
+import ResourcePost from "./pages/Landing/ResourcePost"; // NEW IMPORT
+import RealEstatePage from "./pages/Landing/RealEstatePage"; // NEW IMPORT
+import BankingPage from "./pages/Landing/BankingPage"; // NEW IMPORT
 import PrivacyPolicyPage from "./pages/Landing/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/Landing/TermsOfServicePage";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
@@ -79,10 +82,15 @@ export default function App() {
           {/* Landing Page Layout for other public pages */}
           <Route element={<LandingLayout />}>
             <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/solutions/real-estate" element={<RealEstatePage />} />
+            <Route path="/solutions/banking" element={<BankingPage />} />
+
             <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/resources/:slug" element={<ResourcePost />} />
+
             <Route path="/company" element={<CompanyPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/partners" element={<PartnersPage />} /> {/* NEW ROUTE */}
+            <Route path="/partners" element={<PartnersPage />} />
           </Route>
 
           {/* Pages Légales Standalone */}
