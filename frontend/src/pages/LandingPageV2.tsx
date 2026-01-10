@@ -1161,8 +1161,11 @@ export default function LandingPageV2() {
                                 <p className="text-slate-500 text-xs mt-1">Petites équipes.</p>
                             </div>
                             <div className="mb-4">
-                                <span className="text-2xl font-bold text-white">199€</span>
-                                <span className="text-slate-500 text-xs"> / pack</span>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-3xl font-bold text-white">1.99€</span>
+                                    <span className="text-slate-500 text-sm font-medium">/ scan</span>
+                                </div>
+                                <p className="text-slate-500 text-xs mt-1">Pack 199€ (100 crédits)</p>
                             </div>
                             <div className="space-y-2 mb-6 text-xs text-slate-400">
                                 <div className="flex gap-2 items-center"><Check size={14} className="text-blue-500" /> <span className="text-white font-bold">100 crédits</span></div>
@@ -1184,8 +1187,11 @@ export default function LandingPageV2() {
                                 <p className="text-blue-200/60 text-xs mt-1">Agences & PME.</p>
                             </div>
                             <div className="mb-4">
-                                <span className="text-3xl font-bold text-white">499€</span>
-                                <span className="text-slate-400 text-xs"> / pack</span>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-4xl font-bold text-white">0.49€</span>
+                                    <span className="text-slate-400 text-sm font-medium">/ scan</span>
+                                </div>
+                                <p className="text-blue-200/60 text-xs mt-1">Pack 499€ (1 000 crédits)</p>
                             </div>
                             <div className="space-y-3 mb-8 text-xs text-slate-300">
                                 <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> <span className="text-white font-bold">1 000 crédits</span></div>
@@ -1205,8 +1211,11 @@ export default function LandingPageV2() {
                                 <p className="text-slate-500 text-xs mt-1">Experts & Finance.</p>
                             </div>
                             <div className="mb-4">
-                                <span className="text-2xl font-bold text-white">999€</span>
-                                <span className="text-slate-500 text-xs"> / pack</span>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-3xl font-bold text-white">0.19€</span>
+                                    <span className="text-slate-500 text-sm font-medium">/ scan</span>
+                                </div>
+                                <p className="text-slate-500 text-xs mt-1">Pack 999€ (5 000 crédits)</p>
                             </div>
                             <div className="space-y-2 mb-6 text-xs text-slate-400">
                                 <div className="flex gap-2 items-center"><Check size={14} className="text-purple-500" /> <span className="text-white font-bold">5 000 crédits</span></div>
@@ -1236,7 +1245,6 @@ export default function LandingPageV2() {
                                 Devis
                             </Link>
                         </div>
-
                     </div>
 
                     {/* Security Badge - COMPACT */}
