@@ -8,7 +8,25 @@ from backend.engine.spectral_engine import spectral_engine
 from backend.engine.semantic_engine import semantic_engine
 from backend.engine.ocr_engine import ocr_engine
 
+from pydantic import BaseModel
+
+class ContactForm(BaseModel):
+    name: str
+    email: str
+    message: str
+
 router = APIRouter(prefix="/api/public", tags=["Public Demo"])
+
+@router.post("/contact")
+async def submit_contact_form(form: ContactForm):
+    """
+    Handle contact form submissions.
+    Currently logs to console. Needs SMTP integration for production.
+    """
+    print(f"📩 [CONTACT FORM] New Message from {form.name} <{form.email}>")
+    print(f"📝 Message: {form.message}")
+    # TODO: Integrate valid SendGrid/SMTP emailing here
+    return {"status": "received", "message": "Votre message a bien été reçu."}
 
 @router.post("/analyze")
 async def analyze_public_document(file: UploadFile = File(...)):
