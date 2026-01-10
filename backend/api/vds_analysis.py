@@ -37,6 +37,12 @@ async def analyze_document(
     org_id_int = current_user.organization_id or 1
     user_id_int = current_user.id
     
+    # 1. Config Utilisateur (Déplacé avant check doublon pour Pydantic)
+    user_sector = "finance" 
+    user_subscription = "business" 
+    if current_user.organization:
+        user_subscription = current_user.organization.subscription_plan
+
     # Check Doublon
     existing_scan = db.query(DocumentRecord).filter(
         DocumentRecord.file_hash == file_hash,
@@ -50,7 +56,7 @@ async def analyze_document(
             user_id=str(existing_scan.user_id),
             document_id=file_hash[:12],
             result_type=existing_scan.verdict,
-            subscription="cached",
+            subscription=user_subscription, # Fix: Use valid Enum value
             sector="other",
             created_at=existing_scan.created_at,
             file_path=existing_scan.report_path or "/dashboard",
@@ -59,12 +65,6 @@ async def analyze_document(
             confidence=existing_scan.confidence,
             message=f"{existing_scan.message} (Archive)"
         )
-
-    # 1. CRÉDITS
-    user_sector = "finance" 
-    user_subscription = "business" 
-    if current_user.organization:
-        user_subscription = current_user.organization.subscription_plan
 
     # 1. CRÉDITS (Simplifié : Solde Utilisateur)
     # 1. CRÉDITS (Mode Démo Illimitée)
