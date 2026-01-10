@@ -1052,24 +1052,24 @@ export default function LandingPageV2() {
 
                     {/* TECH GIANTS */}
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 place-items-center mb-16">
-                        <div className="bg-white rounded-xl w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                            <img src="/images/partners/microsoft.png" alt="Microsoft" className="w-full h-full object-contain" />
+                        <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
+                            <img src="/images/partners/microsoft.png" alt="Microsoft" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                         </div>
-                        <div className="bg-white rounded-xl w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                            <img src="/images/partners/google.png" alt="Google" className="w-full h-full object-contain" />
+                        <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
+                            <img src="/images/partners/google.png" alt="Google" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                         </div>
-                        <div className="bg-white rounded-xl w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                            <img src="/images/partners/github.jpg" alt="GitHub" className="w-full h-full object-contain" />
+                        <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
+                            <img src="/images/partners/github.jpg" alt="GitHub" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                         </div>
-                        <div className="bg-white rounded-xl w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                            <img src="/images/partners/adobe.png" alt="Adobe" className="w-full h-full object-contain" />
+                        <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
+                            <img src="/images/partners/adobe.png" alt="Adobe" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                         </div>
-                        <div className="bg-white rounded-xl w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                            <img src="/images/partners/ovh.png" alt="OVHcloud" className="w-full h-full object-contain" />
+                        <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
+                            <img src="/images/partners/ovh.png" alt="OVHcloud" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                         </div>
-                        <div className="bg-white rounded-xl w-40 h-20 flex flex-col items-center justify-center p-3 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20 relative">
-                            <img src="/images/partners/xolo.jpg" alt="Xolo" className="w-full h-4/5 object-contain" />
-                            <span className="text-[9px] text-blue-600 font-bold uppercase tracking-wider">{t('trust.estonia')}</span>
+                        <div className="w-40 h-20 flex flex-col items-center justify-center p-3 hover:scale-105 transition-transform duration-300 relative group">
+                            <img src="/images/partners/xolo.jpg" alt="Xolo" className="w-full h-4/5 object-contain brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                            <span className="text-[9px] text-blue-400 font-bold uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{t('trust.estonia')}</span>
                         </div>
                     </div>
                 </div>
@@ -1080,14 +1080,14 @@ export default function LandingPageV2() {
 
                 {/* INSTITUTIONAL BODIES */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto place-items-center">
-                    <div className="bg-white rounded-xl w-44 h-24 flex items-center justify-center p-5 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                        <img src="/images/partners/anssi.png" alt="ANSSI" className="w-full h-full object-contain" />
+                    <div className="w-44 h-24 flex items-center justify-center p-5 hover:scale-105 transition-transform duration-300">
+                        <img src="/images/partners/anssi.png" alt="ANSSI" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <div className="bg-white rounded-xl w-44 h-24 flex items-center justify-center p-6 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                        <img src="/images/partners/cnil.png" alt="CNIL" className="w-full h-full object-contain" />
+                    <div className="w-44 h-24 flex items-center justify-center p-6 hover:scale-105 transition-transform duration-300">
+                        <img src="/images/partners/cnil.png" alt="CNIL" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <div className="bg-white rounded-xl w-44 h-24 flex items-center justify-center p-5 hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-500/20">
-                        <img src="/images/partners/inec.jpg" alt="INEC" className="w-full h-full object-contain rounded-lg" />
+                    <div className="w-44 h-24 flex items-center justify-center p-5 hover:scale-105 transition-transform duration-300">
+                        <img src="/images/partners/inec.jpg" alt="INEC" className="w-full h-full object-contain rounded-lg brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
                     </div>
                 </div>
             </section>
