@@ -39,7 +39,7 @@ export const TERMS_OF_SERVICE_CONTENT = (
             <strong>Sécurité :</strong> Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles conformes aux standards de l'industrie pour protéger les données.
         </p>
         <p>
-            <strong>Conservation :</strong> Les documents sont traités pour l'analyse puis supprimés selon les paramètres de rétention définis, sauf obligation légale contraire.
+            <strong>Conservation :</strong> Les documents sources (fichiers uploadés) sont stockés temporairement pour les besoins de l'analyse, puis supprimés automatiquement de nos serveurs actifs <strong>30 jours</strong> après leur traitement (Politique de Purge Automatique), sauf option d'archivage légale souscrite. Seuls les rapports d'analyse (Preuve Technique) sont conservés pendant la durée contractuelle.
         </p>
 
         <h3>5. Responsabilités et Garanties</h3>
