@@ -1174,7 +1174,8 @@ export default function LandingPageV2() {
                             </div>
                             <div className="space-y-2 mb-6 text-xs text-slate-400">
                                 <div className="flex gap-2 items-center"><Check size={14} className="text-blue-500" /> <span className="text-white font-bold">100 crédits</span></div>
-                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Détection Standard</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Analyse de cohérence simple</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Vérif. Signature (Basique)</div>
                                 <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Support Email</div>
                             </div>
                             <Link to="/signup?plan=essentiel" className="block w-full py-2.5 bg-white/5 hover:bg-white/10 text-white text-xs font-bold text-center rounded-lg transition-colors border border-white/5">
@@ -1200,9 +1201,9 @@ export default function LandingPageV2() {
                             </div>
                             <div className="space-y-3 mb-8 text-xs text-slate-300">
                                 <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> <span className="text-white font-bold">1 000 crédits</span></div>
-                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> Détection Avancée (Meta)</div>
-                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> API Access</div>
-                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> Rapports Certifiés</div>
+                                <div className="flex gap-2 items-center"><ShieldCheck size={14} className="text-blue-400" /> <span className="font-semibold text-blue-100">Base Fraudes (200k+ modèles)</span></div>
+                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> Détection Docs Manipulés</div>
+                                <div className="flex gap-2 items-center"><CheckCircle2 size={14} className="text-blue-400" /> Rapports Certifiés + QR</div>
                             </div>
                             <Link to="/signup?plan=pro" className="block w-full py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold text-center rounded-xl transition-all shadow-lg hover:shadow-blue-500/25">
                                 Choisir ce pack
@@ -1224,8 +1225,9 @@ export default function LandingPageV2() {
                             </div>
                             <div className="space-y-2 mb-6 text-xs text-slate-400">
                                 <div className="flex gap-2 items-center"><Check size={14} className="text-purple-500" /> <span className="text-white font-bold">5 000 crédits</span></div>
-                                <div className="flex gap-2 items-center"><Check size={14} className="text-purple-500" /> Analyse Spectrale</div>
-                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Webhooks</div>
+                                <div className="flex gap-2 items-center"><ScanLine size={14} className="text-purple-500" /> Analyse Spectrale & Pixels</div>
+                                <div className="flex gap-2 items-center"><AlertTriangle size={14} className="text-purple-500" /> Détection Deepfakes Avancée</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-slate-500" /> Webhooks & API Full</div>
                             </div>
                             <Link to="/signup?plan=forensic" className="block w-full py-2.5 bg-white/5 hover:bg-white/10 text-white text-xs font-bold text-center rounded-lg transition-colors border border-white/5">
                                 Contacter Sales
@@ -1243,8 +1245,8 @@ export default function LandingPageV2() {
                             </div>
                             <div className="space-y-2 mb-6 text-xs text-slate-400">
                                 <div className="flex gap-2 items-center"><Check size={14} className="text-emerald-500" /> Volume Illimité</div>
+                                <div className="flex gap-2 items-center"><Check size={14} className="text-emerald-500" /> Détection Contenu IA Générative</div>
                                 <div className="flex gap-2 items-center"><Check size={14} className="text-emerald-500" /> SLA & On-Premise</div>
-                                <div className="flex gap-2 items-center"><Check size={14} className="text-emerald-500" /> Audit Sécurité</div>
                             </div>
                             <Link to="/contact" className="block w-full py-2.5 bg-emerald-900/20 hover:bg-emerald-900/30 text-emerald-400 text-xs font-bold text-center rounded-lg transition-colors border border-emerald-500/20">
                                 Devis
