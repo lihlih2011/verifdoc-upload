@@ -17,6 +17,12 @@
         "placeholder": "Posez votre question...",
         "support_agent": "Support Expert"
     },
+    "stats": {
+        "users": "Adhérents Actifs",
+        "scans": "Scans Réalisés",
+        "fraud": "Fraudes Détectées",
+        "compliant": "Documents Conformes"
+    },
     "hero": {
         "badge": "DIAGNOSTIC DE RISQUE",
         "title_start": "Sécurisez vos décisions",

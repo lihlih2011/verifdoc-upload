@@ -155,6 +155,28 @@ class ReportGenerator:
         # Use absolute path for robustness
         self.logo_path = "/app/backend/static/img/logo.png"
 
+    import qrcode
+
+# ... existing imports ...
+
+def create_qr_code(data, filename_prefix):
+    """ Generates a QR Code image """
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=1,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    tmp_path = os.path.join(tempfile.gettempdir(), f"qr_{filename_prefix}_{int(time.time())}.png")
+    img.save(tmp_path)
+    return tmp_path
+
+# ... existing code ...
+
     def generate_report(self, data: dict, heatmaps: dict = None):
         doc_id = data.get("document_id", "UNKNOWN")
         filename = data.get("filename", f"Doc_{doc_id}")
@@ -164,6 +186,20 @@ class ReportGenerator:
         pdf = ModernPDF(filename, doc_id, sector=data.get("sector","GENERIC"), logo_path=self.logo_path)
         pdf.alias_nb_pages()
         pdf.add_page()
+        
+        # --- QR CODE GENERATION ---
+        # Link to a fake public verification URL
+        verify_url = f"https://verifdoc.io/verify/{doc_id}"
+        qr_path = create_qr_code(verify_url, doc_id)
+        
+        # Draw QR Code (Top Right)
+        # Header is 45mm high. 
+        # Let's put it at x=170, y=5, w=35
+        pdf.image(qr_path, x=175, y=5, w=30)
+        
+        # Cleanup QR
+        try: os.remove(qr_path)
+        except: pass
         
         # --- DATA PROCESSING ---
         fraud_risk_score = data.get("confidence", 0.0) # 0.0 to 1.0 (1.0 = Clean)

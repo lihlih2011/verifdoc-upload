@@ -1,4 +1,4 @@
-import { ShieldCheck, Server, Lock, Activity, Globe, Award, TrendingUp, Users, CheckCircle2, Building2, Brain, Coffee, Code2 } from 'lucide-react';
+import { ShieldCheck, Building2, Brain, Coffee, Code2 } from 'lucide-react';
 
 export default function CompanyPage() {
     return (
