@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import DocumentScroller from '../components/landing/demo/DocumentScroller';
+import LiveStats from '../components/landing/LiveStats';
+
+
 import FreeTrialUpload from '../components/landing/demo/FreeTrialUpload';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -806,6 +809,8 @@ export default function LandingPageV2() {
                 </div>
             </section>
 
+            {/* LIVE STATISTICS */}
+            <LiveStats />
 
             {/* CLIENTS */}
             <section className="py-12 border-y border-white/5 bg-slate-950/50">
