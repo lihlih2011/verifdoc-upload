@@ -965,8 +965,21 @@ export default function LandingPageV2() {
                             {t('solution.desc2')}
                         </p>
                     </div>
-                    <div className="bg-slate-800 rounded-2xl p-2 border border-slate-700 shadow-2xl">
-                        <img src="/images/demo/demo_dashboard_v2.png" alt="VerifDoc Dashboard" className="rounded-xl w-full h-auto" />
+                    <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-500/30 shadow-2xl relative overflow-hidden group hover:border-blue-500/50 transition-all">
+                        {/* Decorative background glow */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -z-10 group-hover:bg-blue-600/20 transition-all"></div>
+
+                        <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                            <span className="p-2 bg-blue-600 rounded-lg"><Users size={20} className="text-white" /></span>
+                            PME & ETI : Vous n'êtes plus seuls.
+                        </h3>
+                        <p className="text-lg text-slate-300 font-medium leading-relaxed mb-6">
+                            La fraude documentaire ne cible pas que les géants. <br />
+                            <span className="text-blue-400">80% des attaques</span> visent désormais les entreprises de taille intermédiaire, souvent moins protégées.
+                        </p>
+                        <p className="text-slate-400 text-sm leading-relaxed border-l-2 border-blue-500 pl-4 italic">
+                            "Nous avons démocratisé la technologie des grandes banques pour vous offrir une forteresse numérique, accessible et immédiate. Concentrez-vous sur votre croissance, nous gardons la porte."
+                        </p>
                     </div>
                 </div>
             </section>
