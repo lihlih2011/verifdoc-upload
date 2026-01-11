@@ -11,7 +11,7 @@ import '../i18n';
 import LanguageSelector from '../components/LanguageSelector';
 import SmartChatbot from '../components/chat/SmartChatbot';
 import {
-    CheckCircle2, ShieldCheck, ScanLine, Lock, X, Menu, ArrowRight, Zap, ShieldAlert, Globe2, Building2, MoveHorizontal, Linkedin, Twitter, User, FileText, Receipt, GraduationCap, Home, Users, Scale, FileSpreadsheet, Car, Landmark, ShoppingBag, Briefcase, ScrollText, MousePointer2, UploadCloud, Check, Loader2, TrendingDown, AlertTriangle, UserX, FileCheck
+    CheckCircle2, ShieldCheck, ScanLine, Lock, X, Menu, ArrowRight, Zap, ShieldAlert, Globe2, Building2, MoveHorizontal, Linkedin, Twitter, User, FileText, Receipt, GraduationCap, Home, Users, Scale, FileSpreadsheet, Car, Landmark, ShoppingBag, Briefcase, ScrollText, MousePointer2, UploadCloud, Check, Loader2, TrendingDown, AlertTriangle, UserX, FileCheck, ChevronRight
 } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
