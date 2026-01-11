@@ -1131,6 +1131,77 @@ export default function LandingPageV2() {
                 </div>
             </section>
 
+            {/* TESTIMONIALS SECTION (SPECIFIC PROFILES) */}
+            <section className="py-24 bg-slate-50 border-y border-slate-200">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+                            Approuvé par des entreprises <br />
+                            <span className="text-blue-600">du monde entier</span>
+                        </h2>
+                        <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+                            Écoutez nos clients qui comptent sur VerifDoc pour vérifier leurs documents importants.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* 1. BENMOULOUD M.R. - NUMIDIT */}
+                        <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-slate-100 flex flex-col">
+                            <div className="mb-6 text-slate-600 italic leading-relaxed flex-grow">
+                                "Dans le cadre de nos missions de conseil et d'ingénierie numérique, la fiabilité documentaire est un enjeu majeur.
+                                <br /><br />
+                                <strong className="text-slate-900">VerifDoc</strong> nous a permis d'automatiser des Contrôles complexes et d'identifier des anomalies critiques sur des documents contractuels et techniques. La plateforme s'intègre parfaitement dans un environnement professionnel exigeant."
+                            </div>
+                            <div className="flex items-center gap-4 mt-auto pt-6 border-t border-slate-50">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150" alt="Benmouloud M.R." className="w-16 h-16 rounded-full object-cover border-2 border-blue-100" />
+                                <div>
+                                    <div className="font-bold text-slate-900">Benmouloud M.R.</div>
+                                    <div className="text-xs text-blue-600 font-bold uppercase tracking-wide mb-1">Directeur des opérations</div>
+                                    <div className="text-sm font-bold text-slate-700">COE NUMIDIT</div>
+                                    <div className="text-xs text-slate-500">Ingénierie & services numériques</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 2. ME BENBRAHAM - AVOCATE */}
+                        <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-slate-100 flex flex-col">
+                            <div className="mb-6 text-slate-600 italic leading-relaxed flex-grow">
+                                "Dans le cadre de dossiers complexes, la capacité de VerifDoc à analyser les documents est essentielle.
+                                <br /><br />
+                                Lorsqu'on doit prouver l'intégrité d'un contrat ou d'un acte, la plateforme permet de détecter des altérations qui pourraient avoir des conséquences juridiques importantes. C'est un outil indispensable dans notre gestion des litiges."
+                            </div>
+                            <div className="flex items-center gap-4 mt-auto pt-6 border-t border-slate-50">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150" alt="Me Benbraham" className="w-16 h-16 rounded-full object-cover border-2 border-purple-100" />
+                                <div>
+                                    <div className="font-bold text-slate-900">Me Benbraham</div>
+                                    <div className="text-xs text-purple-600 font-bold uppercase tracking-wide mb-1">Avocate</div>
+                                    <div className="text-sm font-bold text-slate-700">Cabinet de Me Benbraham</div>
+                                    <div className="text-xs text-slate-500">Affaires & contentieux</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 3. KACI M. - IMMOBILIER */}
+                        <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-slate-100 flex flex-col">
+                            <div className="mb-6 text-slate-600 italic leading-relaxed flex-grow">
+                                "Dans le secteur de la gestion immobilière, la vérification des documents est essentielle pour sécuriser les transactions.
+                                <br /><br />
+                                VerifDoc nous aide à contrôler rapidement des actes, contrats et pièces administratives tout en réduisant les risques liés aux documents falsifiés. C'est une solution fiable, adaptée aux exigences du marché."
+                            </div>
+                            <div className="flex items-center gap-4 mt-auto pt-6 border-t border-slate-50">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150" alt="KACI M." className="w-16 h-16 rounded-full object-cover border-2 border-emerald-100" />
+                                <div>
+                                    <div className="font-bold text-slate-900">KACI M.</div>
+                                    <div className="text-xs text-emerald-600 font-bold uppercase tracking-wide mb-1">Groupe KACI Immobilier</div>
+                                    <div className="text-sm font-bold text-slate-700">Gestion de biens</div>
+                                    <div className="text-xs text-slate-500">Immobilier professionnel</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* FEATURES - SPLIT SECTION */}
             <section id="features" className="py-32 relative bg-slate-950/50">
                 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
