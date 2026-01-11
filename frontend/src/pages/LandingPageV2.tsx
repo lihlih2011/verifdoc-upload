@@ -984,30 +984,67 @@ export default function LandingPageV2() {
                 </div>
             </section>
 
-            {/* HOW IT WORKS SECTION - NEW */}
-            <section className="py-24 bg-slate-900 border-y border-white/5">
-                <div className="max-w-7xl mx-auto px-6 text-center">
+            {/* HOW IT WORKS SECTION - VISUAL PROCESS */}
+            <section className="py-24 bg-slate-900 border-y border-white/5 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+                <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
                     <span className="text-emerald-500 font-bold tracking-widest text-sm uppercase mb-4 block">{t('how_it_works.badge')}</span>
                     <h2 className="text-4xl font-bold mb-16 text-white">{t('how_it_works.title')}</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                        <div className="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-slate-700 -z-10"></div>
+                    {/* PROCESS VISUALIZATION (CSS ONLY) */}
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 relative max-w-5xl mx-auto">
 
-                        <div className="relative">
-                            <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center text-2xl font-bold border-4 border-[#020617] mx-auto mb-6 text-blue-500 shadow-lg">1</div>
-                            <h3 className="text-xl font-bold mb-4 text-white">{t('how_it_works.step1.title')}</h3>
-                            <p className="text-slate-400 text-sm">{t('how_it_works.step1.desc')}</p>
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-900 via-emerald-900 to-purple-900 -z-10 -translate-y-1/2 transform scale-x-75 rounded-full blur-[1px]"></div>
+
+                        {/* STEP 1: UPLOAD */}
+                        <div className="relative group w-64">
+                            <div className="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.2)] group-hover:scale-110 transition-transform duration-500 bg-gradient-to-br from-slate-800 to-blue-900/20">
+                                <FileCheck size={40} className="text-blue-500" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">{t('how_it_works.step1.title')}</h3>
+                            <p className="text-slate-400 text-xs">{t('how_it_works.step1.desc')}</p>
+
+                            {/* Arrow Mobile */}
+                            <div className="md:hidden mt-4 text-slate-700 flex justify-center"><ChevronRight size={24} className="rotate-90" /></div>
                         </div>
-                        <div className="relative">
-                            <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center text-2xl font-bold border-4 border-[#020617] mx-auto mb-6 text-emerald-500 shadow-lg">2</div>
-                            <h3 className="text-xl font-bold mb-4 text-white">{t('how_it_works.step2.title')}</h3>
-                            <p className="text-slate-400 text-sm">{t('how_it_works.step2.desc')}</p>
+
+                        {/* ARROW DESKTOP 1 */}
+                        <div className="hidden md:flex flex-1 justify-center items-center opacity-50">
+                            <div className="w-full border-t-2 border-dashed border-slate-700 relative">
+                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-slate-700 rounded-full"></div>
+                            </div>
                         </div>
-                        <div className="relative">
-                            <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center text-2xl font-bold border-4 border-[#020617] mx-auto mb-6 text-purple-500 shadow-lg">3</div>
-                            <h3 className="text-xl font-bold mb-4 text-white">{t('how_it_works.step3.title')}</h3>
-                            <p className="text-slate-400 text-sm">{t('how_it_works.step3.desc')}</p>
+
+                        {/* STEP 2: AI SCAN */}
+                        <div className="relative group w-64">
+                            <div className="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full animate-pulse group-hover:bg-emerald-500/30 transition-all"></div>
+                            <div className="w-28 h-28 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-emerald-500 shadow-[0_0_50px_rgba(16,185,129,0.3)] relative z-10 group-hover:rotate-12 transition-transform duration-500">
+                                <ScanLine size={48} className="text-emerald-400" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">{t('how_it_works.step2.title')}</h3>
+                            <p className="text-emerald-400/80 text-xs font-mono">{t('how_it_works.step2.desc')}</p>
+
+                            {/* Arrow Mobile */}
+                            <div className="md:hidden mt-4 text-slate-700 flex justify-center"><ChevronRight size={24} className="rotate-90" /></div>
                         </div>
+
+                        {/* ARROW DESKTOP 2 */}
+                        <div className="hidden md:flex flex-1 justify-center items-center opacity-50">
+                            <div className="w-full border-t-2 border-dashed border-slate-700 relative">
+                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-slate-700 rounded-full"></div>
+                            </div>
+                        </div>
+
+                        {/* STEP 3: VERDICT */}
+                        <div className="relative group w-64">
+                            <div className="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.2)] group-hover:scale-110 transition-transform duration-500 bg-gradient-to-bl from-slate-800 to-purple-900/20">
+                                <ShieldCheck size={40} className="text-purple-500" />
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-2">{t('how_it_works.step3.title')}</h3>
+                            <p className="text-slate-400 text-xs">{t('how_it_works.step3.desc')}</p>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -1119,22 +1156,22 @@ export default function LandingPageV2() {
                     {/* TECH GIANTS */}
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 place-items-center mb-16">
                         <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
-                            <img src="/images/partners/microsoft.png" alt="Microsoft" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                            <img src="/images/partners/microsoft.png" alt="Microsoft" className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                         </div>
                         <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
-                            <img src="/images/partners/google.png" alt="Google" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                            <img src="/images/partners/google.png" alt="Google" className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                         </div>
                         <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
-                            <img src="/images/partners/github.jpg" alt="GitHub" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                            <img src="/images/partners/github.jpg" alt="GitHub" className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                         </div>
                         <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
-                            <img src="/images/partners/adobe.png" alt="Adobe" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                            <img src="/images/partners/adobe.png" alt="Adobe" className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                         </div>
                         <div className="w-40 h-20 flex items-center justify-center p-4 hover:scale-105 transition-transform duration-300">
-                            <img src="/images/partners/ovh.png" alt="OVHcloud" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                            <img src="/images/partners/ovh.png" alt="OVHcloud" className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                         </div>
                         <div className="w-40 h-20 flex flex-col items-center justify-center p-3 hover:scale-105 transition-transform duration-300 relative group">
-                            <img src="/images/partners/xolo.jpg" alt="Xolo" className="w-full h-4/5 object-contain brightness-0 invert opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                            <img src="/images/partners/xolo.jpg" alt="Xolo" className="w-full h-4/5 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                             <span className="text-[9px] text-blue-400 font-bold uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{t('trust.estonia')}</span>
                         </div>
                     </div>
@@ -1147,13 +1184,13 @@ export default function LandingPageV2() {
                 {/* INSTITUTIONAL BODIES */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto place-items-center">
                     <div className="w-44 h-24 flex items-center justify-center p-5 hover:scale-105 transition-transform duration-300">
-                        <img src="/images/partners/anssi.png" alt="ANSSI" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                        <img src="/images/partners/anssi.png" alt="ANSSI" className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                     </div>
                     <div className="w-44 h-24 flex items-center justify-center p-6 hover:scale-105 transition-transform duration-300">
-                        <img src="/images/partners/cnil.png" alt="CNIL" className="w-full h-full object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                        <img src="/images/partners/cnil.png" alt="CNIL" className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                     </div>
                     <div className="w-44 h-24 flex items-center justify-center p-5 hover:scale-105 transition-transform duration-300">
-                        <img src="/images/partners/inec.jpg" alt="INEC" className="w-full h-full object-contain rounded-lg brightness-0 invert opacity-60 hover:opacity-100 transition-opacity duration-300" />
+                        <img src="/images/partners/inec.jpg" alt="INEC" className="w-full h-full object-contain rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0" />
                     </div>
                 </div>
             </section>
