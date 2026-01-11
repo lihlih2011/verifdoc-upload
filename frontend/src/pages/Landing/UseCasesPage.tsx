@@ -34,7 +34,7 @@ export default function UseCasesPage() {
     ];
 
     return (
-        <div className="pt-24 min-h-screen bg-[#0B0F17] text-white font-sans">
+        <div className="pt-24 min-h-screen text-white font-sans">
             <section className="px-6 py-20 text-center max-w-4xl mx-auto">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono mb-6 tracking-wider uppercase">
                     <FileCheck size={12} />

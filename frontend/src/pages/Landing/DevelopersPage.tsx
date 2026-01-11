@@ -14,7 +14,7 @@ export default function DevelopersPage() {
     };
 
     return (
-        <div className="pt-24 min-h-screen bg-[#0B0F17] text-white font-sans">
+        <div className="pt-24 min-h-screen text-white font-sans">
 
             {/* HERO */}
             <section className="relative px-6 py-20 text-center max-w-5xl mx-auto">
