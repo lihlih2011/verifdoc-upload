@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Stratégique Global - VerifDoc 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-bg: #0A192F;
+            --secondary-bg: #112240;
+            --accent: #64FFDA;
+            --text-main: #CCD6F6;
+            --text-muted: #8892B0;
+            --white: #E6F1FF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--secondary-bg);
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+        }
+
+        section {
+            background: var(--secondary-bg);
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            border: 1px solid rgba(100, 255, 218, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 255, 218, 0.2);
+        }
+
+        h2 {
+            color: var(--white);
+            font-size: 1.8rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p,
+        li {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: '▹';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--primary-bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid var(--secondary-bg);
+        }
+
+        th {
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .tag.blue {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+        }
+
+        .tag.orange {
+            background: rgba(255, 166, 0, 0.1);
+            color: orange;
+        }
+
+        .tag.green {
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff88;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 60px;
+            border-top: 1px solid var(--secondary-bg);
+            padding-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div class="subtitle">BLUEPRINT STRATÉGIQUE GLOBAL</div>
+            <h1>VERIFDOC 2026</h1>
+            <p>Le plan directeur pour devenir le leader européen de la sécurité documentaire.</p>
+        </header>
+
+        <!-- SECTION 1 -->
+        <section>
+            <h2>01. Cahier des Charges (Scope)</h2>
+            <p>L'objectif est clair : construire la solution SaaS de référence pour l'analyse forensique de documents,
+                alliant puissance IA et simplicité d'usage.</p>
+
+            <table>
+                <tr>
+                    <th>Module</th>
+                    <th>Fonctionnalités Clés</th>
+                    <th>État</th>
+                </tr>
+                <tr>
+                    <td>Core Engine</td>
+                    <td>IA Hybride (Visuelle + Sémantique), Analyse spectrale (ELA).</td>
+                    <td><span class="tag green">Opérationnel</span></td>
+                </tr>
+                <tr>
+                    <td>Frontend</td>
+                    <td>UX Premium, Drag&Drop rapide, Démo temps réel.</td>
+                    <td><span class="tag green">En Ligne</span></td>
+                </tr>
+                <tr>
+                    <td>Dashboard</td>
+                    <td>Gestion multi-dossiers, Export PDF, Historique.</td>
+                    <td><span class="tag orange">En Cours</span></td>
+                </tr>
+                <tr>
+                    <td>Paiement</td>
+                    <td>Stripe (Abo + Usage), Facturation automatique.</td>
+                    <td><span class="tag blue">À Faire</span></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section>
+            <h2>02. Business Model & Finances</h2>
+
+            <h3>Modèle Économique (Revenue Streams)</h3>
+            <ul>
+                <li><strong>Freemium :</strong> 5 scans gratuits/mois (Acquisition).</li>
+                <li><strong>Pro (49€/mois) :</strong> 200 scans, Accès API, Support prioritaire.</li>
+                <li><strong>Enterprise :</strong> Sur devis (Illimité, SLA, Instance dédiée).</li>
+                <li><strong>API Only :</strong> 0.10€ / appel (Pour les Intégrateurs).</li>
+            </ul>
+
+            <h3>Objectifs Profitabilité</h3>
+            <p>Point mort estimé à 15 clients Pro. Objectif Q1 2026 : <strong>50 clients récurrents</strong> pour un MRR
+                de 2500€.</p>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section>
+            <h2>03. Stratégie CRM & Vente</h2>
+            <p>Automatisation maximale pour se concentrer sur le produit.</p>
+
+            <h3>Outils & Workflow</h3>
+            <ul>
+                <li><strong>HubSpot / Brevo :</strong> Centralisation des prospects.</li>
+                <li><strong>Pipeline :</strong> Visiteur ➔ Utilisateur Free (Lead) ➔ Abonné Pro (Client).</li>
+                <li><strong>Trigger :</strong> Email automatique si > 5 documents analysés ("Besoin de plus de volume
+                    ?").</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section>
+            <h2>04. Sécurité & Infrastructure</h2>
+
+            <h3>Cyber-Défense</h3>
+            <ul>
+                <li><strong>Serveurs :</strong> OVH Public Cloud, Debian 12 durcie.</li>
+                <li><strong>Accès :</strong> Clés SSH ED25519 uniquement, Port 22 restreint.</li>
+                <li><strong>Données :</strong> Chiffrement AES-256 au repos. Rétention courte (RGPD).</li>
+            </ul>
+
+            <h3>Maintenance</h3>
+            <ul>
+                <li><strong>Docker :</strong> Déploiement conteneurisé prédictible.</li>
+                <li><strong>Backups :</strong> Sauvegarde S3 chiffrée quotidienne.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section>
+            <h2>05. Marketing & SEO</h2>
+
+            <h3>Mots-clés Dominants</h3>
+            <div style="margin-top: 15px;">
+                <span class="tag blue">fraude documentaire</span>
+                <span class="tag blue">vérification dossier locataire</span>
+                <span class="tag blue">faux avis imposition</span>
+                <span class="tag blue">IA forensique</span>
+            </div>
+
+            <h3>Canaux d'Attaque</h3>
+            <ul>
+                <li><strong>SEO Technique :</strong> Pages outils gratuites ("Testez votre CNI").</li>
+                <li><strong>Outreach :</strong> Ciblage LinkedIn des Directeurs Immobiliers & Risques.</li>
+                <li><strong>Partenariats :</strong> Logiciels de gestion immobilière (ERP).</li>
+            </ul>
+        </section>
+
+        <div class="footer-note">
+            &copy; 2026 VerifDoc SAS. Document Confidentiel - Usage Interne Uniquement.<br>
+            <em>"Trust, but Verify."</em>
+        </div>
+    </div>
+
+</body>
+
+</html>

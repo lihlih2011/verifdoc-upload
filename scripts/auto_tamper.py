@@ -98,9 +98,9 @@ class ForgeryFactory:
 
 if __name__ == "__main__":
     # Default paths (can be changed via args if needed)
-    base_dir = r"C:\Users\chaou\Desktop\VerifDoc Beta\DATASET_TAX_NOTICE_FR"
+    base_dir = r"C:\Users\chaou\Desktop\VerifDoc Beta\DATASET"
     
-    input_d = os.path.join(base_dir, "AUTHENTIC")
+    input_d = base_dir
     output_d = base_dir # Logic handles /FAKE subfolder
     
     factory = ForgeryFactory(input_d, output_d)
