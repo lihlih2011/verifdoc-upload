@@ -60,7 +60,35 @@ services:
       - frontend
       - backend
 
+  # 5. ODOO CRM
+  odoo:
+    image: odoo:16.0
+    container_name: verifdoc_odoo
+    restart: always
+    environment:
+      - HOST=db_odoo
+      - USER=odoo
+      - PASSWORD=odoo
+    depends_on:
+      - db_odoo
+    volumes:
+      - odoo_data:/var/lib/odoo
+
+  # 6. DATABASE ODOO
+  db_odoo:
+    image: postgres:15-alpine
+    container_name: verifdoc_db_odoo
+    restart: always
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_DB=postgres
+    volumes:
+      - odoo_db_data:/var/lib/postgresql/data
+
 volumes:
   postgres_data:
   caddy_data:
   caddy_config:
+  odoo_data:
+  odoo_db_data:

@@ -23,3 +23,7 @@ www.verifdoc.io, verifdoc.io {
         reverse_proxy frontend:80
     }
 }
+
+crm.verifdoc.io {
+    reverse_proxy odoo:8069
+}
