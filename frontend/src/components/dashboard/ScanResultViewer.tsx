@@ -51,7 +51,7 @@ export const ScanResultViewer: React.FC<ScanResultProps> = ({ result, onReset })
                 <div className="flex items-center gap-2">
                     <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-gray-100 rounded-lg transition-all" title="Partager"><Share2 size={18} /></button>
                     <button
-                        onClick={() => window.open(result.file_path, '_blank')}
+                        onClick={() => window.open(result.file_path.replace('.json', '.pdf'), '_blank')}
                         className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
                         title="Télécharger le Rapport PDF"
                     >
