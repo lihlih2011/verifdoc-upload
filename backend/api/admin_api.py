@@ -79,9 +79,37 @@ def test_email_system(req: EmailTestRequest, user: User = Depends(check_admin)):
 def get_recent_activity(db: Session = Depends(get_db), user: User = Depends(check_admin)):
     """Récupère les 10 dernières analyses et les 5 derniers inscrits"""
     last_scans = db.query(ScanResult).order_by(ScanResult.created_at.desc()).limit(10).all()
+    # Limiter les champs retournés pour les users si nécessaire
     last_users = db.query(User).order_by(User.created_at.desc()).limit(5).all()
     
     return {
         "scans": last_scans,
         "users": last_users
     }
+
+@router.get("/users")
+def get_all_users(skip: int = 0, limit: int = 50, search: str = "", db: Session = Depends(get_db), user: User = Depends(check_admin)):
+    """Liste tous les utilisateurs (God Mode)"""
+    query = db.query(User)
+    if search:
+        query = query.filter(User.email.ilike(f"%{search}%"))
+    
+    total = query.count()
+    users = query.order_by(User.created_at.desc()).offset(skip).limit(limit).all()
+    
+    return {
+        "total": total,
+        "users": users
+    }
+
+@router.post("/users/{user_id}/role")
+def change_user_role(user_id: int, role: str, db: Session = Depends(get_db), admin: User = Depends(check_admin)):
+    """Changer le rôle d'un user (ex: 'admin', 'user')"""
+    target = db.query(User).filter(User.id == user_id).first()
+    if not target:
+        raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
+    
+    target.role = role
+    db.commit()
+    return {"message": f"Rôle de {target.email} changé en {role}"}
+
