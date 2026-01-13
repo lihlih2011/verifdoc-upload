@@ -82,7 +82,7 @@ export default function CompanyPage() {
                         {/* Member 1 */}
                         <div className="bg-[#0B0F17] p-6 rounded-2xl border border-white/5 hover:border-blue-500/50 transition-all group">
                             <div className="w-20 h-20 mx-auto rounded-full bg-slate-800 mb-4 overflow-hidden border-2 border-slate-700 group-hover:border-blue-500 transition-colors relative">
-                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=CEO&backgroundColor=b6e3f4`} alt="Avatar" />
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256&h=256" alt="Alexandre D." className="w-full h-full object-cover" />
                             </div>
                             <h3 className="text-white font-bold">Alexandre D.</h3>
                             <div className="text-blue-400 text-xs uppercase tracking-wider font-bold mb-2">CEO & Co-Founder</div>
@@ -92,7 +92,7 @@ export default function CompanyPage() {
                         {/* Member 2 */}
                         <div className="bg-[#0B0F17] p-6 rounded-2xl border border-white/5 hover:border-purple-500/50 transition-all group">
                             <div className="w-20 h-20 mx-auto rounded-full bg-slate-800 mb-4 overflow-hidden border-2 border-slate-700 group-hover:border-purple-500 transition-colors relative">
-                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=CTO&backgroundColor=c0aede`} alt="Avatar" />
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=256&h=256" alt="Sarah L." className="w-full h-full object-cover" />
                             </div>
                             <h3 className="text-white font-bold">Sarah L.</h3>
                             <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-2">CTO & AI Lead</div>
@@ -102,7 +102,7 @@ export default function CompanyPage() {
                         {/* Member 3 */}
                         <div className="bg-[#0B0F17] p-6 rounded-2xl border border-white/5 hover:border-emerald-500/50 transition-all group">
                             <div className="w-20 h-20 mx-auto rounded-full bg-slate-800 mb-4 overflow-hidden border-2 border-slate-700 group-hover:border-emerald-500 transition-colors relative">
-                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Product&backgroundColor=d1d4f9`} alt="Avatar" />
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=256&h=256" alt="Marc-Antoine" className="w-full h-full object-cover" />
                             </div>
                             <h3 className="text-white font-bold">Marc-Antoine</h3>
                             <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">Head of Product</div>
@@ -112,7 +112,7 @@ export default function CompanyPage() {
                         {/* Member 4 */}
                         <div className="bg-[#0B0F17] p-6 rounded-2xl border border-white/5 hover:border-yellow-500/50 transition-all group">
                             <div className="w-20 h-20 mx-auto rounded-full bg-slate-800 mb-4 overflow-hidden border-2 border-slate-700 group-hover:border-yellow-500 transition-colors relative">
-                                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Sales&backgroundColor=ffdfbf`} alt="Avatar" />
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=256&h=256" alt="Julie B." className="w-full h-full object-cover" />
                             </div>
                             <h3 className="text-white font-bold">Julie B.</h3>
                             <div className="text-yellow-400 text-xs uppercase tracking-wider font-bold mb-2">VP Sales</div>
