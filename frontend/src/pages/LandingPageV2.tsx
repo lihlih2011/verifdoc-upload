@@ -755,6 +755,9 @@ export default function LandingPageV2() {
                         <a href="#developers" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
                             <span className="relative z-10">{t('nav.developers')}</span>
                         </a>
+                        <Link to="/resources" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
+                            <span className="relative z-10">Blog</span>
+                        </Link>
                         <Link to="/company" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
                             <span className="relative z-10">{t('nav.company')}</span>
                         </Link>

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function ResourcesPage() {
     return (
         <div className="pt-24">
@@ -7,10 +9,10 @@ export default function ResourcesPage() {
                         {/* Section header */}
                         <div className="mx-auto max-w-3xl pb-12 text-center md:pb-20">
                             <h1 className="h1 mb-4 font-nacelle text-4xl font-semibold text-white animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text text-transparent">
-                                Centre de <span className="text-purple-500">Documentation Réglementaire</span>
+                                Blog & <span className="text-purple-500">Documentation</span>
                             </h1>
                             <p className="text-xl text-gray-400">
-                                Accédez à nos analyses d'impact, veilles juridiques et guides de mise en conformité pour sécuriser vos procédures.
+                                Dernières actualités VerifDoc, veilles juridiques et guides de mise en conformité.
                             </p>
                         </div>
 
