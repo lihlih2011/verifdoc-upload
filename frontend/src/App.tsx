@@ -58,6 +58,7 @@ import DevelopersPage from "./pages/Landing/DevelopersPage"; // NEW IMPORT
 import UseCasesPage from "./pages/Landing/UseCasesPage"; // NEW IMPORT
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { ForgotPassword } from "./pages/ForgotPassword";
+import { AdminToolbox } from "./pages/Admin/AdminToolbox";
 
 export default function App() {
   useEffect(() => {
@@ -213,6 +214,13 @@ export default function App() {
           <Route path="/signup" element={<AuthPage />} />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+
+          {/* Admin Tools */}
+          <Route path="/admin/toolbox" element={
+            <ProtectedRoute>
+              <AdminToolbox />
+            </ProtectedRoute>
+          } />
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
