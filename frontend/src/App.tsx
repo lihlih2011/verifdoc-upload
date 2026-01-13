@@ -59,6 +59,8 @@ import UseCasesPage from "./pages/Landing/UseCasesPage"; // NEW IMPORT
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { AdminToolbox } from "./pages/Admin/AdminToolbox";
+import ChatSupport from "./components/common/ChatSupport";
+
 
 export default function App() {
   useEffect(() => {
@@ -225,6 +227,7 @@ export default function App() {
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ChatSupport />
       </Router>
     </>
   );

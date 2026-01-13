@@ -1,0 +1,181 @@
+[
+    {
+        "keywords": [
+            "bonjour",
+            "salut",
+            "hello",
+            "hi"
+        ],
+        "answer": "Bonjour ! 👋 Je suis l'assistant virtuel de VerifDoc. Comment puis-je vous aider aujourd'hui à sécuriser vos documents ?"
+    },
+    {
+        "keywords": [
+            "prix",
+            "tarif",
+            "coute",
+            "abonnement",
+            "payant",
+            "gratuit"
+        ],
+        "answer": "Nos tarifs sont adaptés à vos besoins : \n- **Gratuit** : 10 crédits offerts à l'inscription.\n- **Pack Starter (9.99€)** : 50 crédits sans engagement.\n- **Abonnement Pro (29.99€/mois)** : 500 crédits + API + Support prioritaire.\n\nVous pouvez consulter le détail sur la page [Tarifs](/pricing)."
+    },
+    {
+        "keywords": [
+            "api",
+            "intégrer",
+            "développeur",
+            "documentation"
+        ],
+        "answer": "Absolument ! VerifDoc dispose d'une API REST complète pour intégrer la détection de fraude directement dans vos applications.\nConsultez notre [Documentation API](/docs) pour obtenir vos clés et voir des exemples en Python/Node.js."
+    },
+    {
+        "keywords": [
+            "faux",
+            "fraude",
+            "detecte",
+            "fiabilité",
+            "score"
+        ],
+        "answer": "Notre IA analyse plus de 50 points de contrôle (métadonnées, compression, retouches pixels, cohérence ELA) pour détecter les documents falsifiés. Nous obtenons un taux de précision supérieur à **98%** sur les documents administratifs français."
+    },
+    {
+        "keywords": [
+            "remboursement",
+            "rembourser",
+            "satisfait"
+        ],
+        "answer": "Votre satisfaction est notre priorité. Si vous n'êtes pas satisfait de vos premiers scans, nous pouvons vous rembourser intégralement sous 14 jours. Contactez simplement notre support humain via [support@verifdoc.io](mailto:support@verifdoc.io)."
+    },
+    {
+        "keywords": [
+            "format",
+            "pdf",
+            "jpg",
+            "png",
+            "taille"
+        ],
+        "answer": "Nous acceptons les fichiers **PDF, JPG et PNG**. \nLa taille maximale par fichier est de **10 Mo**. Pour les fichiers plus lourds, nous recommandons de les compresser avant l'envoi."
+    },
+    {
+        "keywords": [
+            "long",
+            "attente",
+            "temps",
+            "lent"
+        ],
+        "answer": "Une analyse complète prend généralement entre **5 et 15 secondes** selon la complexité du document. Si cela prend plus de temps, nos serveurs sont peut-être très sollicités. Veuillez patienter quelques instants."
+    },
+    {
+        "keywords": [
+            "données",
+            "rgpd",
+            "gdpr",
+            "privé",
+            "confidentialité"
+        ],
+        "answer": "La sécurité de vos données est critique. \n- Tous les fichiers sont chiffrés (AES-256).\n- Ils sont **supprimés automatiquement après 24h** de nos serveurs.\n- Nous sommes 100% conformes RGPD et hébergés en France (OVH)."
+    },
+    {
+        "keywords": [
+            "contact",
+            "humain",
+            "téléphone",
+            "email"
+        ],
+        "answer": "Bien sûr. Vous pouvez contacter notre équipe support du Lundi au Vendredi (9h-18h) :\n- Email : **support@verifdoc.io**\n- Chat Live : Demandez un agent si je ne peux pas vous aider."
+    },
+    {
+        "keywords": [
+            "mot de passe",
+            "perdu",
+            "oublié",
+            "connexion"
+        ],
+        "answer": "Pas de souci ! Vous pouvez réinitialiser votre mot de passe en cliquant sur **[Mot de passe oublié ?](/forgot-password)** sur la page de connexion. Vous recevrez un lien par email instantanément."
+    },
+    {
+        "keywords": [
+            "avis",
+            "impot",
+            "fiscal",
+            "taxe"
+        ],
+        "answer": "Notre IA est particulièrement performante sur les **Avis d'Imposition (SINET)**. Nous vérifions la cohérence des chiffres, le QR Code (2D-Doc) et les traces de modification sur le Revenu Fiscal de Référence."
+    },
+    {
+        "keywords": [
+            "id",
+            "passeport",
+            "cni",
+            "identité"
+        ],
+        "answer": "VerifDoc analyse les **Cartes Nationales d'Identité (CNI)** et les **Passeports**. Nous vérifions la zone MRZ (bande de lecture optique), la police de caractère et la cohérence des dates."
+    },
+    {
+        "keywords": [
+            "rib",
+            "banque",
+            "iban"
+        ],
+        "answer": "Pour les **RIB**, nous vérifions l'algorithme de la clé IBAN, l'existence du code banque (BIC) et nous détectons les copier-coller de chiffres suspects."
+    },
+    {
+        "keywords": [
+            "bulletin",
+            "paie",
+            "salaire"
+        ],
+        "answer": "Sur les **Bulletins de Paie**, nous recalculons les cotisations sociales pour vérifier si le Net à Payer est cohérent avec le Brut. Une incohérence mathématique est le signe n°1 de fraude."
+    },
+    {
+        "keywords": [
+            "justificatif",
+            "domicile",
+            "facture",
+            "edf"
+        ],
+        "answer": "Nous analysons les factures **EDF, Eau, Téléphone**. L'IA cherche des incohérences dans les dates, les montants et les logos (souvent mal détourés sur les faux)."
+    },
+    {
+        "keywords": [
+            "partenaire",
+            "affilié",
+            "revendeur"
+        ],
+        "answer": "Nous avons un programme partenaire ! Si vous êtes un apporteur d'affaires ou un intégrateur, contactez **partenaires@verifdoc.io** pour discuter de nos commissions."
+    },
+    {
+        "keywords": [
+            "bug",
+            "erreur",
+            "marche pas",
+            "probleme"
+        ],
+        "answer": "Désolé pour ce désagrément. \n1. Essayez de rafraîchir la page (F5).\n2. Vérifiez que votre fichier n'est pas corrompu.\n3. Si le problème persiste, envoyez-nous une capture d'écran à support@verifdoc.io."
+    },
+    {
+        "keywords": [
+            "supprimer",
+            "compte",
+            "désinscrire"
+        ],
+        "answer": "Vous pouvez supprimer votre compte et toutes vos données depuis votre **Espace Profil > Paramètres > Zone Danger**. Cette action est irréversible."
+    },
+    {
+        "keywords": [
+            "crédit",
+            "solde",
+            "recharger"
+        ],
+        "answer": "Votre solde de crédits est visible en haut à droite du Dashboard. 1 Crédit = 1 Analyse de Document. Vous pouvez en racheter à tout moment via l'onglet **Abonnement**."
+    },
+    {
+        "keywords": [
+            "mobile",
+            "iphone",
+            "android",
+            "app"
+        ],
+        "answer": "VerifDoc est une **Web App Responsive**, elle fonctionne parfaitement sur le navigateur de votre mobile (Chrome, Safari). Une application native iOS/Android est prévue pour fin 2026."
+    }
+]
