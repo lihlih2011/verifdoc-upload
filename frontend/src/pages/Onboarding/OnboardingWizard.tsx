@@ -105,7 +105,7 @@ export default function OnboardingWizard() {
                 <div className="max-w-xl mx-auto">
                     {/* Header */}
                     <div className="mb-10 text-center lg:text-left">
-                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-10 mb-8 mx-auto lg:mx-0" />
+                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 mb-8 mx-auto lg:mx-0 object-contain" />
                         <StepIndicator />
                     </div>
 
@@ -141,8 +141,8 @@ export default function OnboardingWizard() {
                                                     key={opt}
                                                     onClick={() => updateField('employees', opt)}
                                                     className={`py-3 px-4 rounded-xl border font-medium transition-all ${formData.employees === opt
-                                                            ? 'border-blue-600 bg-blue-50 text-blue-700 shadow-sm'
-                                                            : 'border-slate-200 hover:border-blue-300 text-slate-600'
+                                                        ? 'border-blue-600 bg-blue-50 text-blue-700 shadow-sm'
+                                                        : 'border-slate-200 hover:border-blue-300 text-slate-600'
                                                         }`}
                                                 >
                                                     {opt}
@@ -231,8 +231,8 @@ export default function OnboardingWizard() {
                                             key={opt.val}
                                             onClick={() => updateField('monthlyVolume', opt.val)}
                                             className={`p-4 rounded-xl border cursor-pointer flex items-center justify-between group transition-all ${formData.monthlyVolume === opt.val
-                                                    ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600'
-                                                    : 'border-slate-200 hover:border-blue-300 hover:bg-slate-50'
+                                                ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600'
+                                                : 'border-slate-200 hover:border-blue-300 hover:bg-slate-50'
                                                 }`}
                                         >
                                             <div>
