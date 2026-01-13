@@ -59,6 +59,7 @@ import UseCasesPage from "./pages/Landing/UseCasesPage"; // NEW IMPORT
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { AdminToolbox } from "./pages/Admin/AdminToolbox";
+import OnboardingWizard from "./pages/Onboarding/OnboardingWizard";
 import ChatSupport from "./components/common/ChatSupport";
 
 
@@ -216,6 +217,12 @@ export default function App() {
           <Route path="/signup" element={<AuthPage />} />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/onboarding" element={
+            <ProtectedRoute>
+              {/* Note: In a real app, wrap this to allow NEW users only */}
+              <OnboardingWizard />
+            </ProtectedRoute>
+          } />
 
           {/* Admin Tools */}
           <Route path="/admin/toolbox" element={
