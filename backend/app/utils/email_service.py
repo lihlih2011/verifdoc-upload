@@ -1,71 +1,104 @@
-# backend/app/utils/email_service.py
+import os
+import smtplib
 import logging
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 logger = logging.getLogger(__name__)
 
+SMTP_HOST = os.getenv("SMTP_HOST", "ssl0.ovh.net")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
+SMTP_USER = os.getenv("SMTP_USER", "")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+SMTP_FROM_EMAIL = os.getenv("SMTP_FROM_EMAIL", SMTP_USER)
+
 class EmailService:
-    @staticmethod
-    def send_verification_email(to_email: str, verify_token: str):
+    
+    def _send_email(self, to_email: str, subject: str, body_text: str, body_html: str = None):
         """
-        Envoie un email de vérification de compte.
+        Envoie un email via SMTP si configuré, sinon affiche dans la console.
         """
+        if not SMTP_USER or not SMTP_PASSWORD:
+            logger.warning("⚠️ SMTP non configuré. Mode SIMULATION activé.")
+            print(f"\n📨 [SIMULATION EMAIL] To: {to_email} | Subject: {subject}\n{body_text}\n")
+            return True
+
+        try:
+            msg = MIMEMultipart("alternative")
+            msg["Subject"] = subject
+            msg["From"] = SMTP_FROM_EMAIL
+            msg["To"] = to_email
+
+            part1 = MIMEText(body_text, "plain")
+            msg.attach(part1)
+            
+            if body_html:
+                part2 = MIMEText(body_html, "html")
+                msg.attach(part2)
+
+            # Connexion SMTP SSL (OVH standard)
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
+                server.login(SMTP_USER, SMTP_PASSWORD)
+                server.sendmail(SMTP_FROM_EMAIL, to_email, msg.as_string())
+            
+            logger.info(f"✅ Email envoyé avec succès à {to_email}")
+            return True
+
+        except Exception as e:
+            logger.error(f"❌ Erreur envoi email SMTP: {e}")
+            print(f"FAILED EMAIL TO {to_email}: {e}")
+            return False
+
+    def send_verification_email(self, to_email: str, verify_token: str):
         subject = "VerifDoc - Confirmation de votre compte professionnel"
         link = f"https://verifdoc.io/verify-email?token={verify_token}"
         
-        body = f"""
-        OBJET: {subject}
-        ------------------------------------------------------------
-        Bonjour,
-
-        Bienvenue chez VerifDoc, la référence en analyse documentaire forensique par IA.
-
-        Nous sommes ravis de vous compter parmi nos utilisateurs. Pour garantir la sécurité de votre espace et activer l'ensemble de vos fonctionnalités, veuillez confirmer votre adresse email professionnelle en cliquant sur le lien ci-dessous :
-
-        👉 {link}
-
-        Ce lien est valable pour une durée de 24 heures.
-
-        Si vous n'avez pas créé de compte VerifDoc, vous pouvez ignorer cet email en toute sécurité.
-
-        Cordialement,
-        L'équipe Sécurité VerifDoc
-        ------------------------------------------------------------
+        body_text = f"""
+        Bienvenue chez VerifDoc.
+        
+        Veuillez confirmer votre email en cliquant ici : {link}
+        
+        L'équipe VerifDoc.
         """
         
-        # SIMULATION ENVOI
-        print(f"\n📨 [MOCK EMAIL] To: {to_email}\n{body}\n")
-        logger.info(f"Verification email sent to {to_email}")
-        return True
+        body_html = f"""
+        <html>
+            <body>
+                <h2 style="color:#2563EB;">Bienvenue chez VerifDoc</h2>
+                <p>Merci de rejoindre la référence en analyse documentaire.</p>
+                <p>Pour activer votre compte, cliquez sur le bouton ci-dessous :</p>
+                <a href="{link}" style="background-color:#2563EB; color:white; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">Confirmer mon email</a>
+                <p style="margin-top:20px; font-size:12px; color:#666;">Si vous n'êtes pas à l'origine de cette inscription, ignorez cet email.</p>
+            </body>
+        </html>
+        """
+        return self._send_email(to_email, subject, body_text, body_html)
 
-    @staticmethod
-    def send_password_reset_email(to_email: str, reset_token: str):
-        """
-        Envoie un email de réinitialisation de mot de passe (Traduit de l'anglais).
-        """
-        subject = "Action requise : Réinitialisation de votre mot de passe VerifDoc"
+    def send_password_reset_email(self, to_email: str, reset_token: str):
+        subject = "Réinitialisation de votre mot de passe VerifDoc"
         link = f"https://verifdoc.io/reset-password?token={reset_token}"
         
-        body = f"""
-        OBJET: {subject}
-        ------------------------------------------------------------
-        Bonjour CEO ! 👋
-
-        Nous avons reçu une demande pour réinitialiser le mot de passe de votre compte.
-        Si c'est bien vous, vous pouvez changer votre mot de passe facilement en cliquant sur le lien ci-dessous :
-
-        👉 {link}
-
-        ⚠️ Avis de sécurité
-        Si vous n'êtes pas à l'origine de cette demande, pas d'inquiétude ! Ignorez simplement cet email, et votre mot de passe restera inchangé. Rappelez-vous, votre mot de passe ne sera modifié que si vous suivez le lien ci-dessus et en créez un nouveau.
-
-        À bientôt,
-        L'équipe VerifDoc
-        ------------------------------------------------------------
+        body_text = f"""
+        Bonjour,
+        
+        Une demande de réinitialisation de mot de passe a été effectuée pour votre compte.
+        Cliquez ici pour changer votre mot de passe : {link}
+        
+        Si ce n'est pas vous, ignorez cet email.
         """
         
-        # SIMULATION ENVOI
-        print(f"\n📨 [MOCK EMAIL] To: {to_email}\n{body}\n")
-        logger.info(f"Password reset email sent to {to_email}")
-        return True
+        body_html = f"""
+        <html>
+            <body>
+                <h3>Bonjour 👋</h3>
+                <p>Nous avons reçu une demande de réinitialisation de mot de passe.</p>
+                <p>Cliquez ci-dessous pour le changer :</p>
+                <a href="{link}" style="background-color:#EF4444; color:white; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;">Réinitialiser mon mot de passe</a>
+                <br><br>
+                <p><strong>⚠️ Avis de sécurité :</strong> Si vous n'avez rien demandé, ignorez simplement cet email. Votre compte reste sécurisé.</p>
+            </body>
+        </html>
+        """
+        return self._send_email(to_email, subject, body_text, body_html)
 
 email_service = EmailService()
