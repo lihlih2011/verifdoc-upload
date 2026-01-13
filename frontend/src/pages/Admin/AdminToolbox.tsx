@@ -6,7 +6,8 @@ import {
     Activity, Server, Database, Mail,
     ShieldAlert, Terminal, RefreshCw, Cpu, HardDrive,
     Users, Search, Edit, UserCheck, AlertTriangle,
-    Megaphone, TrendingUp, Target, Share2, BarChart3, Zap
+    Megaphone, TrendingUp, Target, Share2, BarChart3, Zap,
+    LifeBuoy, CreditCard, Building2, Smile
 } from 'lucide-react';
 
 // --- TYPES ---
@@ -31,7 +32,7 @@ interface UserData {
 export const AdminToolbox = () => {
     const { token } = useAuth();
     const [stats, setStats] = useState<SystemStats | null>(null);
-    const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'security' | 'marketing' | 'tools'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'security' | 'marketing' | 'crm' | 'tools'>('overview');
     const [loading, setLoading] = useState(false);
 
     // --- OVERVIEW DATA ---
@@ -75,6 +76,7 @@ export const AdminToolbox = () => {
                 <div className="flex bg-slate-800 p-1 rounded-lg overflow-x-auto">
                     <TabButton active={activeTab === 'overview'} onClick={() => setActiveTab('overview')} icon={<Activity size={16} />} label="Vitals" />
                     <TabButton active={activeTab === 'users'} onClick={() => setActiveTab('users')} icon={<Users size={16} />} label="Users" />
+                    <TabButton active={activeTab === 'crm'} onClick={() => setActiveTab('crm')} icon={<LifeBuoy size={16} />} label="CRM & Support" />
                     <TabButton active={activeTab === 'security'} onClick={() => setActiveTab('security')} icon={<ShieldAlert size={16} />} label="Sécurité" />
                     <TabButton active={activeTab === 'marketing'} onClick={() => setActiveTab('marketing')} icon={<Megaphone size={16} />} label="Marketing" />
                     <TabButton active={activeTab === 'tools'} onClick={() => setActiveTab('tools')} icon={<HardDrive size={16} />} label="Tools" />
@@ -85,6 +87,7 @@ export const AdminToolbox = () => {
             <div className="flex-1 p-8 overflow-y-auto">
                 {activeTab === 'overview' && <OverviewTab stats={stats} loading={loading} />}
                 {activeTab === 'users' && <UsersTab token={token} />}
+                {activeTab === 'crm' && <CrmTab token={token} />}
                 {activeTab === 'security' && <SecurityTab token={token} />}
                 {activeTab === 'marketing' && <MarketingTab token={token} />}
                 {activeTab === 'tools' && <ToolsTab token={token} />}
@@ -304,7 +307,7 @@ const SecurityTab = ({ token }: { token: string | null }) => {
     );
 };
 
-// 4. MARKETING TAB (NEW)
+// 4. MARKETING TAB
 const MarketingTab = ({ token }: { token: string | null }) => {
     const [subTab, setSubTab] = useState<'campaigns' | 'analytics' | 'automation' | 'seo'>('analytics');
 
@@ -317,7 +320,6 @@ const MarketingTab = ({ token }: { token: string | null }) => {
                     <SubTabButton active={subTab === 'analytics'} onClick={() => setSubTab('analytics')} label="Analytics" />
                     <SubTabButton active={subTab === 'campaigns'} onClick={() => setSubTab('campaigns')} label="Campagnes" />
                     <SubTabButton active={subTab === 'automation'} onClick={() => setSubTab('automation')} label="Automation" />
-                    <SubTabButton active={subTab === 'seo'} onClick={() => setSubTab('seo')} label="SEO & Content" />
                 </div>
 
                 {/* MAIN PANEL */}
@@ -339,7 +341,6 @@ const MarketingTab = ({ token }: { token: string | null }) => {
                             </div>
                         </div>
                     )}
-
                     {subTab === 'campaigns' && (
                         <div className="space-y-6">
                             <div className="flex justify-between items-center">
@@ -352,24 +353,131 @@ const MarketingTab = ({ token }: { token: string | null }) => {
                             <div className="grid gap-4">
                                 <CampaignrRow name="Welcome Sequence" status="active" sent={1200} openRate="45%" clickRate="12%" />
                                 <CampaignrRow name="Pro Plan Upsell" status="paused" sent={450} openRate="32%" clickRate="5%" />
-                                <CampaignrRow name="Newsletter Janvier" status="draft" sent={0} openRate="-" clickRate="-" />
-                            </div>
-                        </div>
-                    )}
-
-                    {subTab === 'automation' && (
-                        <div className="space-y-6">
-                            <h2 className="text-xl font-bold text-yellow-400 flex items-center gap-2"><Zap /> WORKFLOW AUTOMATION</h2>
-                            <p className="text-slate-400 text-sm">Automate user journeys based on triggers.</p>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                <WorkflowCard title="Onboarding Flow" triggers="Sign Up" actions="Email x3" active />
-                                <WorkflowCard title="Abandoned Cart" triggers="Billing Visit" actions="Email x1" active />
-                                <WorkflowCard title="Low Credits Alert" triggers="Credits < 5" actions="Notif + Email" active={false} />
                             </div>
                         </div>
                     )}
                 </div>
+            </div>
+        </div>
+    );
+};
+
+// 5. CRM & SUPPORT TAB (NEW)
+const CrmTab = ({ token }: { token: string | null }) => {
+    const [subTab, setSubTab] = useState<'tickets' | 'billing' | 'companies' | 'satisfaction'>('tickets');
+
+    return (
+        <div className="animate-in fade-in slide-in-from-bottom-4">
+            <div className="grid grid-cols-12 gap-6">
+                {/* SIDEBAR */}
+                <div className="col-span-12 md:col-span-3 lg:col-span-2 space-y-2">
+                    <div className="text-xs font-bold text-slate-500 uppercase mb-2 tracking-widest px-1">Customer Care</div>
+                    <SubTabButton active={subTab === 'tickets'} onClick={() => setSubTab('tickets')} label="Helpdesk (Tickets)" />
+                    <SubTabButton active={subTab === 'billing'} onClick={() => setSubTab('billing')} label="Abonnements" />
+                    <SubTabButton active={subTab === 'companies'} onClick={() => setSubTab('companies')} label="Entreprises B2B" />
+                    <SubTabButton active={subTab === 'satisfaction'} onClick={() => setSubTab('satisfaction')} label="Satisfaction" />
+                </div>
+
+                {/* MAIN PANEL */}
+                <div className="col-span-12 md:col-span-9 lg:col-span-10 bg-slate-900 border border-slate-800 rounded-xl p-6 min-h-[500px]">
+                    {subTab === 'tickets' && (
+                        <div className="space-y-6">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-xl font-bold text-blue-400 flex items-center gap-2"><LifeBuoy /> HELPDESK</h2>
+                                <div className="text-sm font-bold text-slate-400">Open Tickets: <span className="text-white">3</span></div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <div className="bg-slate-950 p-4 rounded border border-slate-800 flex justify-between items-center hover:border-blue-500 cursor-pointer transition-colors border-l-4 border-l-red-500">
+                                    <div>
+                                        <div className="font-bold text-white">Impossible d'uploader mon PDF</div>
+                                        <div className="text-xs text-slate-500">jean.dupont@gmail.com • Il y a 5 min</div>
+                                    </div>
+                                    <span className="px-2 py-1 bg-red-900/50 text-red-400 rounded text-xs font-bold">URGENT</span>
+                                </div>
+                                <div className="bg-slate-950 p-4 rounded border border-slate-800 flex justify-between items-center hover:border-blue-500 cursor-pointer transition-colors border-l-4 border-l-yellow-500">
+                                    <div>
+                                        <div className="font-bold text-white">Question sur la facturation</div>
+                                        <div className="text-xs text-slate-500">marie.curie@labo.fr • Il y a 2h</div>
+                                    </div>
+                                    <span className="px-2 py-1 bg-yellow-900/50 text-yellow-400 rounded text-xs font-bold">MEDIUM</span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {subTab === 'billing' && (
+                        <div className="space-y-6">
+                            <h2 className="text-xl font-bold text-emerald-400 flex items-center gap-2"><CreditCard /> ABONNEMENTS & FACTURATION</h2>
+
+                            <div className="grid grid-cols-3 gap-4">
+                                <SecurityMetric label="MRR (Revenu Mensuel)" value="€12,450" status="good" />
+                                <SecurityMetric label="LTV Moyenne" value="€89.00" status="good" />
+                                <SecurityMetric label="Paiements échoués" value="2" status="warning" />
+                            </div>
+
+                            <div className="bg-slate-800 p-4 rounded">
+                                <h3 className="font-bold mb-4 text-sm text-slate-400">Dernières transactions (Stripe)</h3>
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex justify-between items-center p-2 bg-slate-900 rounded">
+                                        <span className="text-white">Abonnement Pro (Mensuel)</span>
+                                        <span className="text-emerald-400 font-mono">+ €29.99</span>
+                                    </div>
+                                    <div className="flex justify-between items-center p-2 bg-slate-900 rounded">
+                                        <span className="text-white">Pack 500 Crédits</span>
+                                        <span className="text-emerald-400 font-mono">+ €49.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 6. TOOLS TAB
+const ToolsTab = ({ token }: { token: string | null }) => {
+    const [testEmail, setTestEmail] = useState('');
+    const [status, setStatus] = useState('');
+
+    const sendEmail = async () => {
+        if (!testEmail) return;
+        setStatus('sending');
+        try {
+            await axios.post(`${API_URL}/api/admin/test-email`, { target_email: testEmail }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setStatus('success');
+        } catch (err) {
+            setStatus('error');
+        }
+    };
+
+    return (
+        <div className="max-w-2xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4">
+            <div className="bg-slate-900 border border-slate-700 rounded-xl p-6">
+                <h3 className="text-lg font-bold text-yellow-500 mb-4 flex items-center gap-2"><Mail /> SMTP Tester</h3>
+                <p className="text-sm text-slate-400 mb-4">Envoyer un email de test pour valider la configuration OVH/SMTP.</p>
+                <div className="flex gap-2">
+                    <input
+                        type="email"
+                        placeholder="test@example.com"
+                        className="flex-1 bg-slate-950 border border-slate-700 rounded p-2 focus:border-yellow-500 outline-none"
+                        value={testEmail}
+                        onChange={e => setTestEmail(e.target.value)}
+                    />
+                    <button
+                        onClick={sendEmail}
+                        disabled={status === 'sending'}
+                        className="bg-yellow-600 hover:bg-yellow-500 text-black font-bold px-4 rounded"
+                    >
+                        {status === 'sending' ? 'Send' : 'Send'}
+                    </button>
+                </div>
+                {status === 'success' && <p className="mt-2 text-emerald-500 text-sm">✅ Email envoyé avec succès !</p>}
+                {status === 'error' && <p className="mt-2 text-red-500 text-sm">❌ Erreur lors de l'envoi.</p>}
             </div>
         </div>
     );
@@ -445,49 +553,3 @@ const WorkflowCard = ({ title, triggers, actions, active }: any) => (
         </div>
     </div>
 );
-
-// 5. TOOLS TAB
-const ToolsTab = ({ token }: { token: string | null }) => {
-    const [testEmail, setTestEmail] = useState('');
-    const [status, setStatus] = useState('');
-
-    const sendEmail = async () => {
-        if (!testEmail) return;
-        setStatus('sending');
-        try {
-            await axios.post(`${API_URL}/api/admin/test-email`, { target_email: testEmail }, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            setStatus('success');
-        } catch (err) {
-            setStatus('error');
-        }
-    };
-
-    return (
-        <div className="max-w-2xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4">
-            <div className="bg-slate-900 border border-slate-700 rounded-xl p-6">
-                <h3 className="text-lg font-bold text-yellow-500 mb-4 flex items-center gap-2"><Mail /> SMTP Tester</h3>
-                <p className="text-sm text-slate-400 mb-4">Envoyer un email de test pour valider la configuration OVH/SMTP.</p>
-                <div className="flex gap-2">
-                    <input
-                        type="email"
-                        placeholder="test@example.com"
-                        className="flex-1 bg-slate-950 border border-slate-700 rounded p-2 focus:border-yellow-500 outline-none"
-                        value={testEmail}
-                        onChange={e => setTestEmail(e.target.value)}
-                    />
-                    <button
-                        onClick={sendEmail}
-                        disabled={status === 'sending'}
-                        className="bg-yellow-600 hover:bg-yellow-500 text-black font-bold px-4 rounded"
-                    >
-                        {status === 'sending' ? 'Send' : 'Send'}
-                    </button>
-                </div>
-                {status === 'success' && <p className="mt-2 text-emerald-500 text-sm">✅ Email envoyé avec succès !</p>}
-                {status === 'error' && <p className="mt-2 text-red-500 text-sm">❌ Erreur lors de l'envoi.</p>}
-            </div>
-        </div>
-    );
-};
