@@ -217,9 +217,9 @@ class ReportGenerator:
         pdf.set_fill_color(165, 180, 252)
         pdf.set_font('Arial', 'B', 10)
         pdf.set_text_color(30, 41, 59)
-        pdf.cell(90, 8, " Point de Contrôle", 0, 0, 'L', 1)
-        pdf.cell(50, 8, " Statut", 0, 0, 'L', 1)
-        pdf.cell(50, 8, " Détail", 0, 1, 'L', 1)
+        pdf.cell(50, 8, " Point de Contrôle", 0, 0, 'L', 1)
+        pdf.cell(40, 8, " Statut", 0, 0, 'L', 1)
+        pdf.cell(100, 8, " Détail", 0, 1, 'L', 1)
         
         checks = [
             ("Analyse Métadonnées", data.get("meta_audit", {}).get("risk_score", 0) < 20, "Logiciels suspects (Photoshop...)"),
@@ -235,11 +235,11 @@ class ReportGenerator:
             status_text = "CONFORME" if passed else "NON CONFORME"
             pdf.set_text_color(16, 185, 129) if passed else pdf.set_text_color(239, 68, 68)
             
-            pdf.cell(90, 8, f" {name}", 0, 0, 'L', fill)
-            pdf.cell(50, 8, status_text, 0, 0, 'L', fill)
+            pdf.cell(50, 8, f" {name}", 0, 0, 'L', fill)
+            pdf.cell(40, 8, status_text, 0, 0, 'L', fill)
             
             pdf.set_text_color(100, 116, 139)
-            pdf.cell(50, 8, str(comment)[:30], 0, 1, 'L', fill)
+            pdf.cell(100, 8, str(comment), 0, 1, 'L', fill)
             fill = not fill
 
         y_boxes = 200

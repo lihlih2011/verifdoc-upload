@@ -280,6 +280,13 @@ export const AuthPage: React.FC = () => {
                                             required
                                         />
                                     </div>
+                                    {isLogin && (
+                                        <div className="flex justify-end mt-1">
+                                            <a href="/forgot-password" className="text-xs font-semibold text-blue-600 hover:text-blue-700">
+                                                Mot de passe oublié ?
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <button

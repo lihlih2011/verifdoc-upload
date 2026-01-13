@@ -38,7 +38,18 @@ async def analyze_document(
     user_id_int = current_user.id
     
     # 1. Config Utilisateur (Déplacé avant check doublon pour Pydantic)
-    user_sector = "finance" 
+    # 1. Config Utilisateur (Auto-Detection Secteur)
+    filename_lower = filename.lower()
+    user_sector = "autredoc" # Default generic
+    
+    if any(k in filename_lower for k in ["facture", "invoice", "bilan", "compte", "banque", "rib"]):
+        user_sector = "finance"
+    elif any(k in filename_lower for k in ["carte", "cni", "passeport", "passport", "permis", "identite", "identity"]):
+        user_sector = "identity"
+    elif any(k in filename_lower for k in ["ordonnance", "soin", "medical", "cpam", "sante", "docteur", "hopital"]):
+        user_sector = "sante"
+    elif any(k in filename_lower for k in ["contrat", "bail", "statuts", "kbis", "legal", "avocat"]):
+        user_sector = "juridique" 
     user_subscription = "business" 
     if current_user.organization:
         user_subscription = current_user.organization.subscription_plan
@@ -116,6 +127,20 @@ async def analyze_document(
         semantic_res = {"verdict": "neutre", "score": 0, "details": "Analyse sémantique ignorée (erreur interne)"}
     
     os.remove(temp_filename)
+
+    # --- 4.1. INTELLIGENT SECTOR REFINEMENT (OCR BASED) ---
+    # Si le nom de fichier n'a pas suffi (autredoc), on regarde le contenu texte
+    if user_sector in ["autredoc", "generic"]:
+        text_lower = extracted_text.lower()
+        if any(k in text_lower for k in ["total", "ttc", "tva", "iban", "bic", "facture", "invoice", "solde", "montant"]):
+             user_sector = "finance"
+        elif any(k in text_lower for k in ["république française", "carte nationale", "passeport", "driving licence", "permis de conduire", "prénom", "naissance"]):
+             user_sector = "identity"
+        elif any(k in text_lower for k in ["ordonnance", "mg", "docteur", "médicament", "posologie", "patient", "sécurité sociale", "cpam", "feuille de soin"]):
+             user_sector = "sante"
+        elif any(k in text_lower for k in ["article", "contrat", "bail", "loyer", "soussigné", "tribunal", "huissier"]):
+             user_sector = "juridique"
+        print(f"🧠 IA Sector Update: Detected '{user_sector}' from content.")
 
     # 5. FUSION DES SCORES
     # Base Confidence logic

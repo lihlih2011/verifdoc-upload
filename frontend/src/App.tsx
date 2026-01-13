@@ -57,6 +57,7 @@ import TermsOfServicePage from "./pages/Landing/TermsOfServicePage";
 import DevelopersPage from "./pages/Landing/DevelopersPage"; // NEW IMPORT
 import UseCasesPage from "./pages/Landing/UseCasesPage"; // NEW IMPORT
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import { ForgotPassword } from "./pages/ForgotPassword";
 
 export default function App() {
   useEffect(() => {
@@ -211,6 +212,7 @@ export default function App() {
           <Route path="/signin" element={<AuthPage />} />
           <Route path="/signup" element={<AuthPage />} />
           <Route path="/login" element={<AuthPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
