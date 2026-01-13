@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { X, Cookie } from 'lucide-react';
+import { Cookie } from 'lucide-react';
 
 export default function CookieConsent() {
     const [isVisible, setIsVisible] = useState(false);
-    const { t } = useTranslation();
 
     useEffect(() => {
         const consent = localStorage.getItem('cookie_consent');
@@ -34,10 +32,14 @@ export default function CookieConsent() {
                         <Cookie className="w-6 h-6 text-primary-400" />
                     </div>
                     <div>
-                        <h4 className="text-white font-semibold mb-1">Cookies & Confidentialité</h4>
+                        <h4 className="text-white font-semibold mb-1">bonjour, c'est l'heure des cookies ! 🍪</h4>
                         <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
-                            {t('cookie.text')}
+                            Nous utilisons des cookies pour rendre votre navigation sur notre site plus fluide et agréable. Les cookies nous permettent d'améliorer les fonctionnalités et de personnaliser le contenu selon vos préférences. Envie de choisir votre saveur ? Vous pouvez activer ou désactiver les cookies optionnels à votre guise. Pour connaître la composition complète de nos cookies, consultez notre <a href="/privacy" className="underline text-primary-400 hover:text-primary-300">Politique de confidentialité</a>.
                         </p>
+                        <div className="flex gap-4 mt-2 text-xs text-gray-500 underline">
+                            <a href="/privacy" className="hover:text-gray-300">Politique de confidentialité</a>
+                            <a href="/terms" className="hover:text-gray-300">Termes et conditions</a>
+                        </div>
                     </div>
                 </div>
 
@@ -46,13 +48,13 @@ export default function CookieConsent() {
                         onClick={handleDecline}
                         className="flex-1 md:flex-none px-4 py-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
                     >
-                        {t('cookie.decline')}
+                        Gérer les cookies
                     </button>
                     <button
                         onClick={handleAccept}
                         className="flex-1 md:flex-none px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-sm font-bold rounded-lg shadow-lg shadow-purple-500/20 transition-all hover:scale-105"
                     >
-                        {t('cookie.accept')}
+                        Accepter tous les cookies
                     </button>
                 </div>
 
