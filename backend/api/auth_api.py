@@ -13,12 +13,18 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
+from typing import Optional
+from backend.app.utils.email_service import email_service
+import uuid
 from pydantic import BaseModel
 
 class UserCreate(BaseModel):
     email: str
     password: str
     full_name: Optional[str] = None
+
+class ForgotPasswordModel(BaseModel):
+    email: str
 
 @router.post("/register")
 def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
@@ -52,6 +58,10 @@ def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = 
     db.commit()
     db.refresh(new_user)
 
+    # Send Verification Email (Mock)
+    fake_token = str(uuid.uuid4())
+    background_tasks.add_task(email_service.send_verification_email, user.email, fake_token)
+
     # Sync to External CRM (HubSpot/Brevo/Log)
     if background_tasks:
         background_tasks.add_task(
@@ -62,6 +72,50 @@ def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = 
         )
 
     return {"message": "User created successfully", "user_id": new_user.id}
+
+from datetime import datetime, timedelta
+
+# Simple In-Memory Rate Limiter (Email -> List of timestamps)
+RESET_LIMITS = {}
+
+def check_rate_limit(email: str):
+    """
+    Bloque si > 3 tentatives en 30 minutes.
+    """
+    now = datetime.now()
+    if email not in RESET_LIMITS:
+        RESET_LIMITS[email] = []
+    
+    # 1. Nettoyer l'historique (> 30 mins)
+    RESET_LIMITS[email] = [t for t in RESET_LIMITS[email] if t > now - timedelta(minutes=30)]
+    
+    # 2. Vérifier la limite (3 essais)
+    if len(RESET_LIMITS[email]) >= 3:
+        wait_time = "30 minutes"
+        raise HTTPException(
+            status_code=429, 
+            detail=f"Sécurité : Trop de demandes. Veuillez attendre {wait_time} avant de réessayer."
+        )
+    
+    # 3. Ajouter la tentative
+    RESET_LIMITS[email].append(now)
+
+@router.post("/forgot-password")
+def forgot_password(data: ForgotPasswordModel, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+    """
+    Simule l'envoi d'un lien de réinitialisation si l'email existe.
+    Protect: Rate Limit 3/30min.
+    """
+    # Check Rate Limit FIRST to prevent spam
+    check_rate_limit(data.email)
+
+    user = db.query(User).filter(User.email == data.email).first()
+    if user:
+        # Generate token (in real app, save to DB)
+        reset_token = str(uuid.uuid4())
+        background_tasks.add_task(email_service.send_password_reset_email, user.email, reset_token)
+    
+    return {"message": "Si cet email existe, un lien a été envoyé."}
 
 @router.post("/token")
 def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):

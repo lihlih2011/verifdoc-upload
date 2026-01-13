@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import API_URL from '../config/api';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowLeft, Mail, CheckCircle, AlertCircle } from 'lucide-react';
@@ -7,18 +9,45 @@ export const ForgotPassword = () => {
     const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [timer, setTimer] = useState(0);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    // Timer Logic
+    React.useEffect(() => {
+        let interval: any;
+        if (timer > 0) {
+            interval = setInterval(() => setTimer((t) => t - 1), 1000);
+        }
+        return () => clearInterval(interval);
+    }, [timer]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        await sendRequest();
+    };
+
+    const sendRequest = async () => {
         setStatus('loading');
-
-        // SIMULATION API CALL (Backend not ready for SMTP yet)
-        setTimeout(() => {
+        setErrorMessage('');
+        try {
+            await axios.post(`${API_URL}/api/auth/forgot-password`, { email });
             setStatus('success');
-        }, 1500);
+            setTimer(60);
+        } catch (err: any) {
+            console.error(err);
+            if (err.response && err.response.status === 429) {
+                setStatus('error');
+                setErrorMessage(err.response.data.detail || "Trop de tentatives. Réessayez plus tard.");
+            } else {
+                setStatus('success');
+            }
+        }
+    };
 
-        // TODO: Connect to Real Backend Endpoint
-        // await axios.post('/api/auth/forgot-password', { email });
+    const handleResend = () => {
+        if (timer === 0) {
+            sendRequest();
+        }
     };
 
     return (
@@ -43,6 +72,14 @@ export const ForgotPassword = () => {
                     </p>
                 </div>
 
+                {/* Global Error Banner */}
+                {status === 'error' && (
+                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 animate-in shake">
+                        <AlertCircle className="text-red-500 min-w-[20px]" size={20} />
+                        <span className="text-red-400 text-sm font-medium">{errorMessage}</span>
+                    </div>
+                )}
+
                 {/* Success State */}
                 {status === 'success' ? (
                     <div className="text-center space-y-6 animate-in fade-in slide-in-from-bottom-4">
@@ -54,6 +91,18 @@ export const ForgotPassword = () => {
                                     Si un compte existe pour <strong>{email}</strong>, vous recevrez les instructions sous quelques minutes.
                                 </p>
                             </div>
+                        </div>
+
+                        {/* RESEND SECTION */}
+                        <div className="bg-slate-900/50 rounded-xl p-4">
+                            <p className="text-slate-400 text-sm mb-3">Vous n'avez rien reçu ?</p>
+                            <button
+                                onClick={handleResend}
+                                disabled={timer > 0}
+                                className="text-sm font-bold text-blue-400 hover:text-blue-300 disabled:text-slate-600 disabled:cursor-not-allowed transition-colors"
+                            >
+                                {timer > 0 ? `Renvoyer l'email (${timer}s)` : "Renvoyer l'email maintenant"}
+                            </button>
                         </div>
                         <div className="pt-4 border-t border-slate-800">
                             <Link to="/login" className="text-slate-400 hover:text-white text-sm flex items-center justify-center gap-2 transition-colors">
