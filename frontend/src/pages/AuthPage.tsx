@@ -141,10 +141,10 @@ export const AuthPage: React.FC = () => {
         <div className="min-h-screen flex bg-white font-sans">
 
             {/* LEFT COLUMN - VISUAL */}
-            <div className="hidden lg:flex w-1/2 bg-[#020617] relative overflow-hidden flex-col justify-between p-12 text-white">
+            <div className="hidden lg:flex w-1/2 bg-[#4F46E5] relative overflow-hidden flex-col justify-between p-12 text-white">
                 <div className="z-10 relative">
                     <div className="flex items-center">
-                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 w-auto object-contain brightness-110 drop-shadow-2xl" />
+                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 w-auto object-contain brightness-0 invert drop-shadow-xl" />
                     </div>
                 </div>
 
@@ -157,30 +157,32 @@ export const AuthPage: React.FC = () => {
                     </h2>
 
                     {step === '2fa' ? (
-                        <div className="bg-blue-900/20 border border-blue-500/30 p-6 rounded-2xl backdrop-blur-sm">
+                        <div className="bg-white/10 border border-white/20 p-6 rounded-2xl backdrop-blur-sm">
                             <div className="flex items-center gap-4 mb-4">
-                                <div className="bg-blue-600 p-3 rounded-lg"><ShieldCheck size={24} /></div>
+                                <div className="bg-white/20 p-3 rounded-lg"><ShieldCheck size={24} className="text-white" /></div>
                                 <div>
                                     <h3 className="font-bold text-lg">Authentification Forte</h3>
-                                    <p className="text-blue-200 text-sm">Protection bancaire active</p>
+                                    <p className="text-indigo-100 text-sm">Protection bancaire active</p>
                                 </div>
                             </div>
-                            <p className="text-slate-400 text-sm leading-relaxed">
+                            <p className="text-indigo-100 text-sm leading-relaxed">
                                 Nous utilisons une authentification à double facteur pour garantir que vous seul pouvez accéder à vos rapports sensibles.
                             </p>
                         </div>
                     ) : (
-                        <div className="space-y-4 text-slate-400">
-                            <div className="flex items-center gap-3"><CheckCircle2 className="text-blue-500" size={20} /><span>Détection de fraude ISO 27001</span></div>
-                            <div className="flex items-center gap-3"><CheckCircle2 className="text-blue-500" size={20} /><span>Analyse en temps réel</span></div>
-                            <div className="flex items-center gap-3"><CheckCircle2 className="text-blue-500" size={20} /><span>Rapports certifiés juridiquement</span></div>
+                        <div className="space-y-4 text-indigo-100">
+                            <div className="flex items-center gap-3"><CheckCircle2 className="text-white" size={20} /><span>Détection de fraude ISO 27001</span></div>
+                            <div className="flex items-center gap-3"><CheckCircle2 className="text-white" size={20} /><span>Analyse en temps réel</span></div>
+                            <div className="flex items-center gap-3"><CheckCircle2 className="text-white" size={20} /><span>Rapports certifiés juridiquement</span></div>
                         </div>
                     )}
                 </div>
 
-                <div className="z-10 relative text-xs text-slate-600">© 2026 VerifDoc Inc. All rights reserved.</div>
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+                <div className="z-10 relative text-xs text-indigo-200">© 2026 VerifDoc Inc. All rights reserved.</div>
+
+                {/* Background Patterns (Matching Onboarding) */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/30 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
             </div>
 
             {/* RIGHT COLUMN - FORM */}
