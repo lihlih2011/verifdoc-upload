@@ -12,7 +12,7 @@ export default function Integrations() {
     const [webhookActive, setWebhookActive] = useState(false);
 
     // Odoo State
-    const [odooUrl, setOdooUrl] = useState("https://veifdocio.odoo.com");
+    const [odooUrl, setOdooUrl] = useState("https://verifdocio.odoo.com");
     const [odooDb, setOdooDb] = useState("veifdocio-main"); // Suppression de la devinette risquée, valeur "safe" par défaut
     const [odooUser, setOdooUser] = useState("");
     const [odooKey, setOdooKey] = useState("");

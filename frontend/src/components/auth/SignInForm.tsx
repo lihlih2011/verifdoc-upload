@@ -74,7 +74,7 @@ export default function SignInForm() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-xs font-medium text-zinc-500 uppercase tracking-wider block">Mot de passe</label>
-                <a href="#" className="text-xs text-blue-400 hover:text-blue-300">Oublié ?</a>
+                <Link to="/forgot-password" className="text-xs text-blue-400 hover:text-blue-300">Oublié ?</Link>
               </div>
               <div className="relative">
                 <Input

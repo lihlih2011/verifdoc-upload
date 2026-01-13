@@ -10,7 +10,7 @@ import {
     ShieldCheck,
     AlertCircle
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import API_URL from '../config/api';
 import axios from 'axios';
 
@@ -282,9 +282,9 @@ export const AuthPage: React.FC = () => {
                                     </div>
                                     {isLogin && (
                                         <div className="flex justify-end mt-1">
-                                            <a href="/forgot-password" className="text-xs font-semibold text-blue-600 hover:text-blue-700">
+                                            <Link to="/forgot-password" className="text-xs font-semibold text-blue-600 hover:text-blue-700">
                                                 Mot de passe oublié ?
-                                            </a>
+                                            </Link>
                                         </div>
                                     )}
                                 </div>
@@ -313,6 +313,13 @@ export const AuthPage: React.FC = () => {
                                 >
                                     {isLogin ? "S'inscrire" : "Se connecter"}
                                 </button>
+                            </div>
+
+                            {/* LEGAL FOOTER MINI - UNIFIED */}
+                            <div className="mt-8 pt-6 border-t border-slate-100 flex justify-center gap-4 text-xs text-slate-400">
+                                <Link to="/terms" className="hover:text-blue-600 transition-colors">CGU / CGV</Link>
+                                <span>&bull;</span>
+                                <Link to="/privacy" className="hover:text-blue-600 transition-colors">Politique de Confidentialité</Link>
                             </div>
                         </div>
                     )}
