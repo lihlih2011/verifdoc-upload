@@ -226,14 +226,14 @@
         "bodies": "INSTANCES CONSULTATIVES"
     },
     "history": {
-        "badge": "NOTRE HISTOIRE",
-        "title": "Nés de la lutte contre la fraude",
+        "badge": "NOTRE GENÈSE",
+        "title": "Nés de l'excellence scientifique",
         "image_caption": "L'équipe fondatrice, Paris 2024",
-        "p1": "Tout a commencé quand nous avons réalisé que 30% des dossiers locataires contenaient au moins un faux document.",
-        "p2": "Face à l'industrialisation de la fraude (kits de faux sur Telegram), les méthodes manuelles ne suffisaient plus.",
-        "p3": "Nous avons uni des experts en vision par ordinateur et des anciens officiers de police pour créer le premier rempart numérique automatisé.",
-        "partner_label": "PARTENAIRE SÉCURITÉ",
-        "partner_name": "Ministère de l'Intérieur (Incubateur)"
+        "p1": "Tout commence par un défi lancé par l'institut INEC : créer un environnement capable de détecter automatiquement les images numériques falsifiées qui menacent la communauté scientifique.",
+        "p2": "Face à des épreuves techniques redoutables nécessitant l'analyse de signaux invisibles et de métadonnées complexes, notre approche a fait la différence.",
+        "p3": "C'est en décrochant le Premier Prix de ce concours d'élite que VerifDoc est né, transformant un projet de recherche en rempart numérique universel.",
+        "partner_label": "PARTENAIRE HISTORIQUE",
+        "partner_name": "Institut INEC (Lauréat Appel à Projet)"
     },
     "footer": {
         "product": "Produit",

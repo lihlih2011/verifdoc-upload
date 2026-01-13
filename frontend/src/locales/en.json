@@ -196,14 +196,14 @@
         "bodies": "ADVISORY BODIES"
     },
     "history": {
-        "badge": "OUR STORY",
-        "title": "Born from the fight against fraud",
+        "badge": "OUR ORIGINS",
+        "title": "Born from scientific excellence",
         "image_caption": "Founding Team, Paris 2024",
-        "p1": "It all started when we realized that 30% of tenant files contained at least one fake document.",
-        "p2": "Faced with the industrialization of fraud (fake kits on Telegram), manual methods were no longer sufficient.",
-        "p3": "We united computer vision experts and former police officers to create the first automated digital bulwark.",
-        "partner_label": "SECURITY PARTNER",
-        "partner_name": "Ministry of Interior (Incubator)"
+        "p1": "It all started with a challenge launched by the INEC institute: to create an environment capable of automatically detecting falsified digital images threatening the scientific community.",
+        "p2": "Faced with formidable technical trials requiring the analysis of invisible signals and complex metadata, our approach made the difference.",
+        "p3": "It was by winning the First Prize in this elite competition that VerifDoc was born, transforming a research project into a universal digital bulwark.",
+        "partner_label": "HISTORICAL PARTNER",
+        "partner_name": "INEC Institute (Project Call Winner)"
     },
     "footer": {
         "product": "Product",
