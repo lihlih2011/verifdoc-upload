@@ -105,7 +105,7 @@ export default function OnboardingWizard() {
                 <div className="max-w-xl mx-auto">
                     {/* Header */}
                     <div className="mb-10 text-center lg:text-left">
-                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 mb-8 mx-auto lg:mx-0 object-contain" />
+                        <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-16 mb-8 mx-auto lg:mx-0 object-contain" />
                         <StepIndicator />
                     </div>
 

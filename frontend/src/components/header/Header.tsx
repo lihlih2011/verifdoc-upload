@@ -81,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({ onClick, onToggle }) => {
           <Link to="/" className="lg:hidden">
             {/* Official Logo */}
             <img
-              src="/images/verifdoc-logo-real.png"
+              src="/images/verifdoc-logo-v3.png"
               alt="VerifDoc"
               className="h-10 w-auto"
             />

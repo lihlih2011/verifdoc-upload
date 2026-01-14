@@ -7,7 +7,7 @@ export default function Footer() {
         {/* Colonne 1 : Logo & Certifs */}
         <div className="col-span-1 md:col-span-2 space-y-6">
           <div className="flex items-center gap-3">
-            <img src="/images/verifdoc-logo-real.png" alt="VerifDoc AI" className="h-20 w-auto" />
+            <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc AI" className="h-20 w-auto" />
           </div>
 
           <p className="text-sm leading-relaxed max-w-sm">

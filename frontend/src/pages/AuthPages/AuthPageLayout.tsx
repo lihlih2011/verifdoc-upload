@@ -19,7 +19,7 @@ export default function AuthLayout({
             <div className="flex flex-col items-center max-w-xs">
               <Link to="/" className="block mb-4">
                 <img
-                  src="/images/verifdoc-logo-real.png"
+                  src="/images/verifdoc-logo-v3.png"
                   alt="VerifDoc Logo"
                   className="h-20 w-auto"
                 />

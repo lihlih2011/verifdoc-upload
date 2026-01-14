@@ -53,7 +53,7 @@ export default function SignUpForm() {
         <div className="bg-zinc-900/50 border border-white/10 rounded-3xl p-8 backdrop-blur-xl shadow-2xl">
 
           <div className="mb-8 text-center flex flex-col items-center">
-            <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-16 w-auto mb-4" />
+            <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-16 w-auto mb-4" />
             <p className="text-zinc-400 text-sm font-medium">Rejoignez la référence mondiale de l'analyse IA.</p>
             <div className="flex justify-center gap-4 mt-4 text-[10px] text-zinc-500 uppercase tracking-widest">
               <span>ISO 27001</span> • <span>IA Temps Réel</span> • <span>B2B Expert</span>

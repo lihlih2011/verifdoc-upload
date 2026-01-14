@@ -51,7 +51,7 @@ export default function SignInForm() {
 
           <div className="mb-8 text-center">
             <img
-              src="/images/verifdoc-logo-real.png"
+              src="/images/verifdoc-logo-v3.png"
               alt="VerifDoc Logo"
               className="h-24 mx-auto mb-6 drop-shadow-2xl"
             />

@@ -42,7 +42,7 @@ const CertificateView: FC<CertificateViewProps> = ({ analysisResult, onDownload 
                         <QrCode className="w-12 h-12 text-zinc-600" />
                     </div>
 
-                    <img src="/images/verifdoc-logo-real.png" className="h-16 mx-auto mb-4 drop-shadow-lg" alt="VerifDoc Seal" />
+                    <img src="/images/verifdoc-logo-v3.png" className="h-16 mx-auto mb-4 drop-shadow-lg" alt="VerifDoc Seal" />
 
                     <h2 className="text-xl font-bold text-white tracking-[0.2em] font-serif uppercase">Certificat d'Analyse</h2>
                     <div className="text-[10px] text-zinc-500 font-mono mt-1">

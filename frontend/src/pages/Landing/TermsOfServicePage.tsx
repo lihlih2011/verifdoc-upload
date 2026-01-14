@@ -450,7 +450,7 @@ const TermsOfServicePage = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
                 <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-3 group">
-                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-8 w-auto grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100" />
+                        <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-8 w-auto grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100" />
                         <span className="font-bold text-slate-900 tracking-tight">VERIFDOC</span>
                     </Link>
                     <Link to="/" className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-blue-600 transition-colors">

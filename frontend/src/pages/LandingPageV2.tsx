@@ -744,7 +744,7 @@ export default function LandingPageV2() {
                     <div className="flex items-center group cursor-pointer">
                         <div className="relative">
                             <div className="absolute inset-0 bg-blue-500 blur-2xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
-                            <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-14 md:h-16 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105" />
+                            <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-14 md:h-16 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105" />
                         </div>
                     </div>
                     {/* DESKTOP NAV */}

@@ -60,7 +60,7 @@ const CareersPage = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-3">
-                        <img src="/images/verifdoc-logo-real.png" alt="VerifDoc" className="h-10 w-auto" />
+                        <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-10 w-auto" />
                         <span className="text-xl font-bold text-white tracking-tight hidden sm:block">VERIFDOC</span>
                     </Link>
                     <div className="flex gap-4">
