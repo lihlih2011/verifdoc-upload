@@ -80,12 +80,20 @@ class ModernPDF(FPDF):
         self.rect(0, 0, 210, 45, 'F')
         
         # 2. LOGO / BRANDING
-        # Try to load logo image if available
+        # Use a white background container for the logo to ensure visibility
         logo_drawn = False
+        # Revert to standard logo (V3)
+        self.logo_path = "/app/backend/static/img/logo.png"
+
         if self.logo_path and os.path.exists(self.logo_path):
             try:
-                # White logo logic handled by image file or just placing it
-                self.image(self.logo_path, x=10, y=8, h=12)
+                # Draw White Rounded Rectangle Background for Logo
+                self.set_fill_color(255, 255, 255)
+                # X=10, Y=8, W=50, H=15 (Adjusted for logo ratio)
+                self.rounded_rect(10, 10, 45, 12, 2, 'F') # Rounded corners
+                
+                # Draw Logo centered inside transparency/white box
+                self.image(self.logo_path, x=12, y=11, h=10)
                 logo_drawn = True
             except:
                 pass
@@ -109,6 +117,39 @@ class ModernPDF(FPDF):
         self.cell(0, 5, f"Ref: {self.record_id} | Date: {datetime.now().strftime('%d %B %Y').upper()}", 0, 1)
 
         self.ln(15)
+
+    def rounded_rect(self, x, y, w, h, r, style = ''):
+        k = self.k
+        hp = self.h
+        if(style=='F'):
+            op='f'
+        elif(style=='FD' or style=='DF'):
+            op='B'
+        else:
+            op='S'
+        MyArc = 4/3 * (math.sqrt(2) - 1)
+        self._out('%.2F %.2F m'%( (x+r)*k,(hp-y)*k ))
+        xc = x+w-r 
+        yc = y+r
+        self._out('%.2F %.2F l' % ( (xc)*k,(hp-y)*k ))
+
+        self._out('%.2F %.2F %.2F %.2F %.2F %.2F c' % ( (xc+r*MyArc)*k,(hp-y)*k, (xc+r)*k,(hp-(y+r*MyArc))*k, (xc+r)*k,(hp-(y+r))*k ))
+        
+        xc = x+w-r 
+        yc = y+h-r
+        self._out('%.2F %.2F l' % ( (x+w)*k,(hp-yc)*k))
+        self._out('%.2F %.2F %.2F %.2F %.2F %.2F c' % ( (x+w)*k,(hp-(yc+r*MyArc))*k, (xc+r*MyArc)*k,(hp-(y+h))*k, (xc)*k,(hp-(y+h))*k))
+        
+        xc = x+r 
+        yc = y+h-r
+        self._out('%.2F %.2F l' % ( (xc)*k,(hp-(y+h))*k ))
+        self._out('%.2F %.2F %.2F %.2F %.2F %.2F c' % ( (xc-r*MyArc)*k,(hp-(y+h))*k, (x)*k,(hp-(yc+r*MyArc))*k, (x)*k,(hp-yc)*k ))
+        
+        xc = x+r 
+        yc = y+r
+        self._out('%.2F %.2F l' % ( (x)*k,(hp-yc)*k ))
+        self._out('%.2F %.2F %.2F %.2F %.2F %.2F c' % ( (x)*k,(hp-(yc-r*MyArc))*k, (xc-r*MyArc)*k,(hp-y)*k, (xc)*k,(hp-y)*k ))
+        self._out(op)
 
     def footer(self):
         self.set_y(-25)
