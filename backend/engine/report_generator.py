@@ -75,40 +75,57 @@ class ModernPDF(FPDF):
         self.set_auto_page_break(auto=True, margin=15)
 
     def header(self):
-        # 1. DEEP BLUE BANNER (Top 40mm)
+        # 1. DEEP BLUE BANNER
         self.set_fill_color(*COLOR_DEEP_BLUE)
         self.rect(0, 0, 210, 45, 'F')
         
         # 2. LOGO / BRANDING
-        self.set_font('Arial', 'B', 14)
-        self.set_text_color(*COLOR_TEXT_WHITE)
-        self.set_xy(10, 10)
-        self.cell(50, 10, "VERIFDOC.IO", 0, 1)
+        # Try to load logo image if available
+        logo_drawn = False
+        if self.logo_path and os.path.exists(self.logo_path):
+            try:
+                # White logo logic handled by image file or just placing it
+                self.image(self.logo_path, x=10, y=8, h=12)
+                logo_drawn = True
+            except:
+                pass
         
+        if not logo_drawn:
+            self.set_font('Arial', 'B', 18)
+            self.set_text_color(*COLOR_TEXT_WHITE)
+            self.set_xy(10, 10)
+            self.cell(50, 10, "VERIFDOC.IO", 0, 1)
+
         # 3. TITLE (Orange Accent)
         self.set_font('Arial', 'B', 24)
         self.set_text_color(*COLOR_ACCENT_ORANGE)
-        self.set_xy(10, 20)
+        self.set_xy(10, 22)
         self.cell(0, 10, "Rapport d'Analyse Documentaire", 0, 1)
         
         # 4. SUBTITLE Info
         self.set_font('Arial', '', 9)
         self.set_text_color(200, 200, 200)
-        self.set_xy(10, 32)
+        self.set_xy(10, 34)
         self.cell(0, 5, f"Ref: {self.record_id} | Date: {datetime.now().strftime('%d %B %Y').upper()}", 0, 1)
 
         self.ln(15)
 
     def footer(self):
-        self.set_y(-20)
+        self.set_y(-25)
         self.set_fill_color(*COLOR_DEEP_BLUE)
-        self.rect(0, 277, 210, 20, 'F')
+        self.rect(0, 272, 210, 25, 'F')
         
-        self.set_font('Arial', '', 8)
+        self.set_font('Arial', 'B', 8)
+        self.set_text_color(255, 255, 255)
+        self.set_xy(10, -20)
+        self.cell(0, 5, "CERTIFIÉ PAR VERIFDOC™ - PROTECTION ANTI-FRAUDE", 0, 1, 'C')
+        
+        self.set_font('Arial', '', 7)
         self.set_text_color(200, 200, 200)
-        self.set_xy(10, -15)
-        self.cell(0, 10, f"VerifDoc.io © {datetime.now().year} - Analyse IA Forensique. Ce document ne constitue pas une expertise judiciaire.", 0, 0, 'C')
-        
+        self.set_xy(10, -14)
+        self.cell(0, 4, f"ID Unique: {self.record_id} | Conformité RGPD & ISO 27001", 0, 1, 'C')
+        self.cell(0, 4, "Ce document est généré automatiquement par IA. Il ne constitue pas une expertise judiciaire opposable sans validation humaine.", 0, 0, 'C')
+
     def draw_kpi_card(self, x, y, w, h, title, value_str, bg_color, icon_path=None):
         self.set_fill_color(*bg_color)
         self.set_draw_color(*bg_color) # No border
@@ -122,11 +139,20 @@ class ModernPDF(FPDF):
         self.set_text_color(255, 255, 255)
         self.cell(w, 5, title, 0, 0, 'C')
         
-        if not icon_path:
-            self.set_xy(x, y + (h/2) - 5)
-            self.set_font('Arial', 'B', 20)
-            self.set_text_color(255, 255, 255)
-            self.cell(w, 10, value_str, 0, 0, 'C')
+        # Always draw value (score), centered
+        # If gauge exists, we overlay the text. 
+        # If it's the "RISK" card (no gauge usually), we draw it big.
+        
+        self.set_xy(x, y + (h/2) - 5)
+        self.set_font('Arial', 'B', 16)
+        self.set_text_color(255, 255, 255)
+        
+        # If it's a percentage gauge, add % sign if missing
+        display_val = value_str
+        if icon_path and "%" not in display_val and display_val.isdigit():
+             display_val += "%"
+
+        self.cell(w, 10, display_val, 0, 0, 'C')
 
     def draw_info_bar(self, y, data_dict):
         self.set_fill_color(226, 232, 240)
