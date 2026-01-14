@@ -99,7 +99,7 @@ export default function FreeTrialUpload() {
                                 onDrop={onDrop}
                             >
                                 <div className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">
-                                    {remaining !== null ? `${remaining} ESSAIS RESTANTS` : 'CHARGEMENT...'}
+                                    {remaining !== null ? `${remaining} ESSAI RESTANT` : 'CHARGEMENT...'}
                                 </div>
 
                                 <div className="w-16 h-16 mx-auto bg-blue-500/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform cursor-pointer"
@@ -152,7 +152,7 @@ export default function FreeTrialUpload() {
 
                                 <h3 className="text-white font-bold text-xl mb-2">Limite atteinte</h3>
                                 <p className="text-slate-400 text-sm mb-6 px-4">
-                                    Vous avez utilisé vos 3 essais gratuits depuis cet appareil. Pour continuer à sécuriser vos dossiers, passez au niveau supérieur.
+                                    Vous avez utilisé votre essai gratuit depuis cet appareil. Pour continuer à sécuriser vos dossiers, passez au niveau supérieur.
                                 </p>
 
                                 <button

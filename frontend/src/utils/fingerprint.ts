@@ -53,7 +53,7 @@ async function sha256(message: string): Promise<string> {
 
 // Storage Manager
 const STORAGE_KEY = 'vd_trial_usage';
-const MAX_TRIALS = 3;
+const MAX_TRIALS = 1;
 
 export const TrialManager = {
     async checkEligibility(): Promise<{ allowed: boolean; remaining: number }> {
