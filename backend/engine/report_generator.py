@@ -177,7 +177,7 @@ class ReportGenerator:
     def __init__(self, output_dir="data/reports"):
         self.output_dir = output_dir
         os.makedirs(self.output_dir, exist_ok=True)
-        self.logo_path = "/app/backend/static/img/logo.png"
+        self.logo_path = "/app/backend/static/img/logo_white.png"
 
     def generate_report(self, data: dict, heatmaps: dict = None):
         doc_id = data.get("document_id", "UNKNOWN")
