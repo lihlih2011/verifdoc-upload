@@ -1,10 +1,9 @@
 # Configuration Caddy (Serveur Web & HTTPS automatique)
 
 # --------------------------------------------------------
-# Mode HTTP simple pour éviter les erreurs SSL sur IP brute
-:80 {
-    # Pas de TLS/HTTPS pour l'instant
-    # tls internal  <-- Commenté pour fixer l'erreur ERR_SSL_PROTOCOL_ERROR
+www.verifdoc.io, verifdoc.io {
+    # HTTPS Automatique (Let's Encrypt)
+    # Plus besoin de 'tls internal' ni de port 80 explicite
     
     encode gzip
     # Compression Gzip pour la vitesse
