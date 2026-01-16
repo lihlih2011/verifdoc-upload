@@ -13,9 +13,14 @@ export const PublicFooter = () => {
                     <div className="col-span-1">
                         <div className="flex items-center mb-6">
                             <img
-                                src="/images/verifdoc-logo-2026-transparent.png"
+                                src="/logo-verifdoc-dark.svg"
                                 alt="VerifDoc"
-                                className="h-24 w-auto transition-all hover:brightness-110 dark:brightness-0 dark:invert"
+                                className="h-20 w-auto dark:hidden"
+                            />
+                            <img
+                                src="/logo-verifdoc-light.svg"
+                                alt="VerifDoc"
+                                className="h-20 w-auto hidden dark:block"
                             />
                         </div>
                         <p className="mb-6 leading-relaxed text-slate-500 dark:text-slate-400">

@@ -62,10 +62,11 @@ export default function MainHeader() {
           <Link to="/" className="relative flex items-center gap-2">
             {/* USER REQUESTED HTML STRUCTURE - CLEANED */}
             <div className="flex items-center">
+              {/* Dynamic Logo based on Theme/Scroll */}
               <img
-                src="/images/verifdoc-logo-2026-transparent.png"
+                src={theme === 'dark' || (top && theme === 'light') ? "/logo-verifdoc-light.svg" : "/logo-verifdoc-dark.svg"}
                 alt="VerifDoc"
-                className="h-16 w-auto transition-all duration-300 dark:brightness-0 dark:invert"
+                className="h-14 w-auto transition-all duration-300"
               />
             </div>
           </Link>
