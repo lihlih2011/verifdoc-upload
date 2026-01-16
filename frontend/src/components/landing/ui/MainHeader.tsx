@@ -60,12 +60,12 @@ export default function MainHeader() {
         {/* Site branding */}
         <div className="flex items-center group cursor-pointer">
           <Link to="/" className="relative flex items-center gap-2">
-            {/* USER REQUESTED HTML STRUCTURE */}
-            <div className="header-logo-container">
+            {/* USER REQUESTED HTML STRUCTURE - CLEANED */}
+            <div className="flex items-center">
               <img
-                src={theme === 'dark' ? "/logo-verifdoc-light.svg" : "/logo-verifdoc-dark.svg"}
+                src="/images/verifdoc-logo-2026.png"
                 alt="VerifDoc"
-                className="h-8 w-auto transition-all duration-300"
+                className="h-10 w-auto transition-all duration-300 dark:brightness-0 dark:invert"
               />
             </div>
           </Link>

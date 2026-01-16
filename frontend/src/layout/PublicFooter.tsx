@@ -12,8 +12,11 @@ export const PublicFooter = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div className="col-span-1">
                         <div className="flex items-center mb-6">
-                            <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-16 w-auto transition-all hover:brightness-110 dark:hidden" />
-                            <img src="/logo-verifdoc-light.svg" alt="VerifDoc" className="h-10 w-auto transition-all hidden dark:block" />
+                            <img
+                                src="/images/verifdoc-logo-2026.png"
+                                alt="VerifDoc"
+                                className="h-16 w-auto transition-all hover:brightness-110 dark:brightness-0 dark:invert"
+                            />
                         </div>
                         <p className="mb-6 leading-relaxed text-slate-500 dark:text-slate-400">
                             Vérifiez vos documents avec l'IA. Détectez instantanément les faux documents grâce à notre technologie d'IA avancée.
