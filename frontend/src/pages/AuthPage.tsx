@@ -291,6 +291,20 @@ export const AuthPage: React.FC = () => {
                                     )}
                                 </div>
 
+                                {!isLogin && (
+                                    <div className="flex items-start gap-3 p-3 bg-slate-50 border border-slate-100 rounded-xl">
+                                        <input
+                                            type="checkbox"
+                                            id="legal-check"
+                                            required
+                                            className="mt-1 w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                                        />
+                                        <label htmlFor="legal-check" className="text-xs text-slate-500 leading-relaxed cursor-pointer select-none">
+                                            J'accepte sans réserve les <Link to="/terms" target="_blank" className="text-blue-600 underline font-medium">Conditions Générales d'Utilisation (CGU)</Link>, les <Link to="/sales-terms" target="_blank" className="text-blue-600 underline font-medium">Conditions Générales de Vente (CGV)</Link>, la <Link to="/privacy" target="_blank" className="text-blue-600 underline font-medium">Politique de Confidentialité</Link> et le <Link to="/legal" target="_blank" className="text-blue-600 underline font-medium">Traitement RGPD</Link>.
+                                        </label>
+                                    </div>
+                                )}
+
                                 <button
                                     type="submit"
                                     disabled={loading}
@@ -321,7 +335,11 @@ export const AuthPage: React.FC = () => {
                             <div className="mt-8 pt-6 border-t border-slate-100 flex justify-center gap-4 text-xs text-slate-400">
                                 <Link to="/terms" className="hover:text-blue-600 transition-colors">CGU / CGV</Link>
                                 <span>&bull;</span>
+                                <Link to="/sales-terms" className="hover:text-blue-600 transition-colors">CGV</Link>
+                                <span>&bull;</span>
                                 <Link to="/privacy" className="hover:text-blue-600 transition-colors">Politique de Confidentialité</Link>
+                                <span>&bull;</span>
+                                <Link to="/legal" className="hover:text-blue-600 transition-colors">Mentions Légales</Link>
                             </div>
                         </div>
                     )}

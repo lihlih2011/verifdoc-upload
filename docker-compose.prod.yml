@@ -1,104 +1,50 @@
 version: '3.8'
 
 services:
-  # 1. LE CERVEAU (Backend Python)
-  backend:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
-    container_name: verifdoc_backend
-    restart: always
-    env_file: .env.prod
-    environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/verifdoc
-    # Ports handled by Caddy
-    expose:
-      - "8000"
-    volumes:
-      - ./uploads:/app/uploads
-      - ./results:/app/results
-    depends_on:
-      - db
-
-  # 2. LE VISAGE (Frontend React + Nginx)
-  frontend:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    container_name: verifdoc_frontend
-    restart: always
-    # Ports handled by Caddy
-    expose:
-      - "80"
-
-  # 3. LA MÉMOIRE (Base de données)
-  db:
-    image: postgres:15-alpine
-    container_name: verifdoc_db
-    restart: always
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=verifdoc
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  # 4. LE PORTIER (Reverse Proxy / HTTPS)
+  # 1. Reverse Proxy HTTPS (Caddy)
   caddy:
-    image: caddy:2-alpine
-    container_name: verifdoc_caddy
+    image: caddy:latest
+    container_name: verifdoc-caddy
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80" # HTTP (redirige vers HTTPS)
+      - "443:443" # HTTPS sécurisé
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile # Fichier de config simple
       - caddy_data:/data
       - caddy_config:/config
-      - ./results:/srv/results # Pour servir les PDFs
     depends_on:
       - frontend
       - backend
 
-  # 5. ODOO CRM
-  odoo:
-    image: odoo:16.0
-    container_name: verifdoc_odoo
+  # 2. Backend API (FastAPI)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: verifdoc-backend
     restart: always
-    environment:
-      - HOST=db_odoo
-      - USER=odoo
-      - PASSWORD=odoo
-    depends_on:
-      - db_odoo
+    # Pas de ports exposés directement, Caddy gère l'accès
+    expose:
+      - "8000"
     volumes:
-      - odoo_data:/var/lib/odoo
+      - ./backend:/app/backend
+      - ./verifdoc.db:/app/verifdoc.db
+      - ./.env:/app/.env
+    command: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --workers 4
 
-  # 6. DATABASE ODOO
-  db_odoo:
-    image: postgres:15-alpine
-    container_name: verifdoc_db_odoo
+  # 3. Frontend (Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: verifdoc-frontend
     restart: always
-    environment:
-      - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo
-      - POSTGRES_DB=postgres
-    volumes:
-      - odoo_db_data:/var/lib/postgresql/data
-
-  # 7. ADMINER (DB GUI)
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - "8080:8080"
+    expose:
+      - "80"
     depends_on:
-      - db
-      - db_odoo
+      - backend
 
 volumes:
-  postgres_data:
   caddy_data:
   caddy_config:
-  odoo_data:
-  odoo_db_data:

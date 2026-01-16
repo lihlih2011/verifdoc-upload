@@ -1,3 +1,27 @@
+# ------------------------------------------------------------
+# VerifDoc – Super Admin Backend (FastAPI)
+# ------------------------------------------------------------
+# This file wires together all API routers for the VerifDoc platform.
+#
+# Current state (as of 2026-01-15):
+#   • Basic admin routes are implemented (export CSV, stats history,
+#     maintenance mode, PDF report).
+#   • Multi‑tenancy, subscription billing, quota management, and
+#     advanced RBAC are **not yet implemented** – they are essential
+#     for a production SaaS offering.
+#   • See the developer notes in the repository root for a checklist of
+#     missing SaaS features (multi‑tenant models, Stripe integration,
+#     usage tracking, GDPR data‑deletion, monitoring, CI/CD, etc.).
+#   • The following routers are included below; add new routers for the
+#     missing features and remember to protect them with appropriate
+#     dependencies (e.g., `check_permission`).
+#
+# When extending this file, keep the import order grouped by:
+#   1. Core FastAPI imports
+#   2. Internal API routers (admin, dashboard, public, batch)
+#   3. New SaaS‑specific routers (tenancy, billing, usage, etc.)
+# ------------------------------------------------------------
+
 from fastapi import FastAPI, Request, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -21,6 +45,7 @@ from backend.api.billing_api import router as billing_router
 from backend.api.admin_api import router as admin_router
 from backend.api.support_api import router as support_router
 from backend.api.developer_api import router as developer_router
+from backend.api.onboarding_api import router as onboarding_router # Added
 from backend.app.config import settings
 from backend.app.database import Base, engine
 import os
@@ -92,6 +117,7 @@ app.include_router(billing_router, prefix="/api") # /api/billing
 app.include_router(admin_router, prefix="/api") # /api/admin
 app.include_router(support_router, prefix="/api") # /api/support
 app.include_router(developer_router, prefix="/api") # /api/developer
+app.include_router(onboarding_router, prefix="/api") # /api/onboarding
 # CRM router
 from backend.api.crm_api import router as crm_router
 app.include_router(crm_router)
@@ -117,6 +143,21 @@ from backend.api import webhook_api
 app.include_router(webhook_api.router)
 from backend.api.payment_api import router as payment_router
 app.include_router(payment_router, prefix="/api/payment", tags=["Paiement"])
+
+# NEW ADMIN MODULES
+from backend.api.admin_export import router as admin_export_router
+from backend.api.admin_stats_history import router as admin_stats_history_router
+from backend.api.admin_maintenance import router as admin_maintenance_router
+from backend.api.superadmin import all_superadmin_routers
+
+# Include all Super Admin feature routers (50 functionalities)
+for router in all_superadmin_routers:
+    app.include_router(router)
+
+app.include_router(admin_export_router, prefix="/api")
+app.include_router(admin_stats_history_router, prefix="/api")
+app.include_router(admin_maintenance_router, prefix="/api")
+app.include_router(admin_report_router, prefix="/api")
 
 # Public Demo API
 from backend.api import public_api

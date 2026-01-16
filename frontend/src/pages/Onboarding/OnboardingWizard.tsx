@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import API_URL from '../../config/api';
 import {
-    Building2, Users, Globe, Briefcase, CheckCircle2,
+    Building2, Globe, Briefcase, CheckCircle2,
     ArrowRight, ArrowLeft, ShieldCheck, Video, Calendar
 } from 'lucide-react';
 
@@ -50,16 +52,26 @@ export default function OnboardingWizard() {
 
     const totalSteps = 5;
 
-    const handleNext = () => {
+    const handleNext = async () => {
         if (step < totalSteps) {
             setStep(step + 1);
         } else {
             // Final Submit
             setLoading(true);
-            setTimeout(() => {
-                // Simulation d'envoi API
+            try {
+                const token = localStorage.getItem('token');
+                await axios.post(`${API_URL}/api/onboarding/submit`, formData, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                // Success
                 navigate('/dashboard');
-            }, 1500);
+            } catch (err) {
+                console.error(err);
+                alert("Une erreur est survenue lors de l'enregistrement de vos données.");
+            } finally {
+                setLoading(false);
+            }
         }
     };
 

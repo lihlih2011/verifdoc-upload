@@ -39,6 +39,7 @@ export const PublicFooter = () => {
                         <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-xs">{t('footer.company')}</h4>
                         <ul className="space-y-3">
                             <li><Link to="/company" className="hover:text-blue-600 transition-colors">{t('footer.about')}</Link></li>
+                            <li><Link to="/join-us" className="hover:text-blue-600 transition-colors">Carrières <span className="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold ml-1">HOT</span></Link></li>
                             <li><Link to="/contact" className="hover:text-blue-600 transition-colors">{t('footer.contact')}</Link></li>
                         </ul>
                     </div>

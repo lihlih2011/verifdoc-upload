@@ -4,14 +4,17 @@ import os
 # Ajout brutal du path pour être sûr
 sys.path.append("/app")
 
-from app.db import SessionLocal
-from app.models import User
+from backend.app.database import SessionLocal
+from backend.app.models import User
 from passlib.context import CryptContext
 
 def reset():
     print("Starting Force Reset...")
     try:
-        pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        from backend.app.database import engine, Base
+        Base.metadata.create_all(bind=engine)
+        
+        pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
         db = SessionLocal()
         
         target_email = "contact@verifdoc.io"
@@ -31,8 +34,8 @@ def reset():
                 email=target_email,
                 hashed_password=hashed,
                 role="superadmin",
-                credits=1000,
-                is_verified=True
+                credits_balance=1000,
+                is_active=True
             )
             db.add(user)
             

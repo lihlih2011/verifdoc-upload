@@ -8,7 +8,7 @@ from typing import List
 from pydantic import BaseModel
 
 from backend.app.database import get_db
-from backend.app.models import User, ScanResult
+from backend.app.models import User, DocumentRecord, Organization
 from backend.api.auth_api import get_current_user
 from backend.app.utils.email_service import email_service
 
@@ -78,13 +78,29 @@ def test_email_system(req: EmailTestRequest, user: User = Depends(check_admin)):
 @router.get("/recent-activity")
 def get_recent_activity(db: Session = Depends(get_db), user: User = Depends(check_admin)):
     """Récupère les 10 dernières analyses et les 5 derniers inscrits"""
-    last_scans = db.query(ScanResult).order_by(ScanResult.created_at.desc()).limit(10).all()
+    last_scans = db.query(DocumentRecord).order_by(DocumentRecord.created_at.desc()).limit(10).all()
     # Limiter les champs retournés pour les users si nécessaire
     last_users = db.query(User).order_by(User.created_at.desc()).limit(5).all()
     
     return {
         "scans": last_scans,
         "users": last_users
+    }
+
+@router.get("/stats")
+def get_dashboard_stats(db: Session = Depends(get_db), user: User = Depends(check_admin)):
+    """Retourne les stats globales pour le dashboard"""
+    total_users = db.query(User).count()
+    total_orgs = db.query(Organization).count()
+    total_analyses = db.query(DocumentRecord).count()
+    # TODO: Use proper credit transaction summation. Using analysis count as proxy for now.
+    total_credits = total_analyses 
+    
+    return {
+        "total_users": total_users,
+        "total_organizations": total_orgs,
+        "total_analyses": total_analyses,
+        "total_credits_used": total_credits
     }
 
 @router.get("/users")
@@ -112,4 +128,26 @@ def change_user_role(user_id: int, role: str, db: Session = Depends(get_db), adm
     target.role = role
     db.commit()
     return {"message": f"Rôle de {target.email} changé en {role}"}
+
+@router.post("/users/{user_id}/credits")
+def add_user_credits(user_id: int, amount: int, db: Session = Depends(get_db), admin: User = Depends(check_admin)):
+    """Ajouter ou retirer des crédits"""
+    target = db.query(User).filter(User.id == user_id).first()
+    if not target:
+        raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
+    
+    target.credits_balance += amount
+    db.commit()
+    return {"message": "Solde mis à jour", "new_balance": target.credits_balance}
+
+@router.put("/users/{user_id}/status")
+def update_user_status(user_id: int, is_active: bool, db: Session = Depends(get_db), admin: User = Depends(check_admin)):
+    """Activer ou désactiver un compte"""
+    target = db.query(User).filter(User.id == user_id).first()
+    if not target:
+        raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
+    
+    target.is_active = is_active
+    db.commit()
+    return {"message": f"Statut de {target.email} mis à jour"}
 

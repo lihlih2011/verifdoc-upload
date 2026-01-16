@@ -1,4 +1,4 @@
-from PIL import Image, ImageOps
+https://adminkit.io/from PIL import Image, ImageOps
 
 def create_compatible_logo(input_path, output_path):
     print(f"Processing {input_path}...")

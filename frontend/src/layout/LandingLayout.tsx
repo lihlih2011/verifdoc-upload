@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/landing/ui/header";
+import Header from "../components/landing/ui/MainHeader";
 import Footer from "../components/landing/ui/footer";
 import PageIllustration from "../components/landing/page-illustration";
 

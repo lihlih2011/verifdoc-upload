@@ -5,6 +5,18 @@ class Settings:
     VERSION: str = "1.0.0"
     DESCRIPTION: str = "Forensic AI Document Analysis Platform"
     DATABASE_URL: str = "sqlite:///./verifdoc.db" # Added database URL
+    
+    # Check Celery/Redis Config
+    CELERY_BROKER_URL: str = "redis://localhost:6379/0"
+    CELERY_RESULT_BACKEND: str = "redis://localhost:6379/0"
+
+    # Storage Config
+    import os
+    STORAGE_TYPE: str = os.getenv("STORAGE_TYPE", "local") # "local" or "s3"
+    S3_BUCKET_NAME: str = os.getenv("S3_BUCKET_NAME", "verifdoc-uploads")
+    AWS_ACCESS_KEY_ID: str = os.getenv("AWS_ACCESS_KEY_ID", "")
+    AWS_SECRET_ACCESS_KEY: str = os.getenv("AWS_SECRET_ACCESS_KEY", "")
+    AWS_REGION: str = os.getenv("AWS_REGION", "eu-west-3") # Paris default
 
 class AIConfig:
     DEVICE: str = "cpu" # "cuda" if torch.cuda.is_available() else "cpu"

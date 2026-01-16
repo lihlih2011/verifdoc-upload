@@ -4,6 +4,7 @@ from datetime import datetime
 from backend.app.database import Base
 import enum
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -11,6 +12,8 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     full_name = Column(String, nullable=True)
+    job_title = Column(String, nullable=True) # Added for Onboarding
+    phone = Column(String, nullable=True) # Added for Onboarding
     role = Column(String, default="user") # "user", "admin", "agent", "superadmin"
     organization_id = Column(Integer, ForeignKey("organizations.id"), nullable=True)
     
@@ -24,6 +27,7 @@ class User(Base):
     org_link = relationship("OrganizationUser", back_populates="user", uselist=False)
     organization = relationship("Organization", back_populates="users")
     documents = relationship("DocumentRecord", back_populates="user")
+    tickets = relationship("SupportTicket", back_populates="user")
 
 class Transaction(Base):
     __tablename__ = "transactions"
@@ -52,10 +56,16 @@ class SupportTicket(Base):
     __tablename__ = "support_tickets"
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
+    organization_id = Column(Integer, ForeignKey("organizations.id"), nullable=True)
     subject = Column(String)
     message = Column(String)
-    status = Column(String, default="OPEN")  # OPEN, CLOSED
+    category = Column(String, default="technical") # technical, billing, other
+    priority = Column(String, default="medium") # low, medium, high, urgent
+    status = Column(String, default="OPEN")  # OPEN, IN_PROGRESS, CLOSED
     created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", back_populates="tickets")
+    organization = relationship("Organization", back_populates="tickets")
 
 class ApiKey(Base):
     __tablename__ = "api_keys"
@@ -74,6 +84,14 @@ class Organization(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, nullable=False)
+    
+    # Extended Profile (Onboarding)
+    sector = Column(String, nullable=True)
+    size_range = Column(String, nullable=True) # 1-10, 11-50...
+    website = Column(String, nullable=True)
+    country = Column(String, default="France")
+    phone = Column(String, nullable=True)
+    
     credits_balance = Column(Integer, default=10) # 10 crédits offerts
     subscription_plan = Column(String, default="freemium") # freemium, pro, enterprise
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -88,7 +106,7 @@ class Organization(Base):
     deals = relationship("Deal", back_populates="organization")
     token_usages = relationship("TokenUsage", back_populates="organization")
     invoices = relationship("Invoice", back_populates="organization")
-    tickets = relationship("Ticket", back_populates="organization")
+    tickets = relationship("SupportTicket", back_populates="organization")
 
 class OrganizationUser(Base):
     __tablename__ = "organization_users"
@@ -223,11 +241,8 @@ class Invoice(Base):
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     organization = relationship("Organization", back_populates="invoices")
 
-class Ticket(Base):
-    __tablename__ = "tickets"
-    id = Column(Integer, primary_key=True)
-    organization_id = Column(Integer, ForeignKey("organizations.id"))
-    organization = relationship("Organization", back_populates="tickets")
+# REMOVED DUPLICATE Ticket Class, merged into SupportTicket
+
 
 class DocumentRecord(Base):
     __tablename__ = "document_records"
@@ -255,3 +270,58 @@ class DocumentRecord(Base):
     user = relationship("User", back_populates="documents")
     organization = relationship("Organization", back_populates="documents")
 
+
+# ---------- MISSING SAAS MODELS FOR SUPER ADMIN ----------
+
+class Subscription(Base):
+    __tablename__ = "subscriptions"
+    id = Column(Integer, primary_key=True, index=True)
+    organization_id = Column(Integer, ForeignKey("organizations.id"))
+    plan_id = Column(Integer, ForeignKey("pricing_plans.id"))
+    stripe_subscription_id = Column(String, nullable=True)
+    status = Column(String, default="active")  # active, past_due, canceled
+    current_period_end = Column(DateTime, nullable=True)
+    
+    organization = relationship("Organization")
+    plan = relationship("PricingPlan")
+
+class FeatureFlag(Base):
+    __tablename__ = "feature_flags"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, index=True)
+    is_enabled = Column(Boolean, default=False)
+    description = Column(String, nullable=True)
+
+class BlocklistEntry(Base):
+    __tablename__ = "blocklist"
+    id = Column(Integer, primary_key=True, index=True)
+    ip_or_country = Column(String, index=True)
+    reason = Column(String, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+class Notification(Base):
+    __tablename__ = "notifications"
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    title = Column(String)
+    message = Column(String)
+    is_read = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    
+    user = relationship("User")
+
+class ScheduledJob(Base):
+    __tablename__ = "scheduled_jobs"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True)
+    last_run = Column(DateTime, nullable=True)
+    status = Column(String, default="idle") # idle, running, failed
+    next_run = Column(DateTime, nullable=True)
+
+class EmailTemplate(Base):
+    __tablename__ = "email_templates"
+    id = Column(Integer, primary_key=True, index=True) # e.g. 1 for "welcome"
+    slug = Column(String, unique=True) # welcome_email, reset_password
+    subject = Column(String)
+    html_content = Column(String) # Text
+    updated_at = Column(DateTime, default=datetime.utcnow)

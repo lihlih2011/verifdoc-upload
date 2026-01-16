@@ -65,23 +65,36 @@ const SmartChatbot = ({ mode }: SmartChatbotProps) => {
         addMessage(userText, 'user');
         setIsTyping(true);
 
-        // Simulate AI thinking time
+        // HYBRID LOGIC: 1. Try Local Knowledge Base (Instant & Cheap)
+        const localAnswer = findAnswer(userText, mode);
+
+        if (localAnswer) {
+            setTimeout(() => {
+                setIsTyping(false);
+                addMessage(localAnswer.answer, 'bot', localAnswer.actionLink);
+            }, 600); // Fast response for local answers
+            return;
+        }
+
+        // 2. Fallback to AI (Simulated for now - To be connected to Backend)
+        // TODO: Replace this timeout with: const response = await fetch('/api/chat', { ... })
         setTimeout(() => {
-            const answer = findAnswer(userText, mode);
             setIsTyping(false);
 
-            if (answer) {
-                addMessage(answer.answer, 'bot', answer.actionLink);
-            } else {
-                addMessage(
-                    mode === 'sales'
-                        ? "Je n'ai pas la réponse exacte, mais notre équipe commerciale serait ravie de vous en dire plus. Voulez-vous prendre rendez-vous ?"
-                        : "Je ne trouve pas de réponse dans ma base. Voulez-vous ouvrir un ticket support ?",
-                    'bot',
-                    mode === 'sales' ? { text: "Réserver une démo", url: "/demo" } : { text: "Ouvrir un ticket", url: "/dashboard/tickets" }
-                );
-            }
-        }, 1000 + Math.random() * 1000);
+            // Fallback response if no AI connected yet
+            const fallbackResponse = mode === 'sales'
+                ? "Je n'ai pas la réponse exacte dans ma base immédiate. Je transmets votre demande à un expert humain qui vous répondra par email."
+                : "Je ne trouve pas de réponse dans ma documentation. Voulez-vous ouvrir un ticket support prioritaire ?";
+
+            // Example of what successful AI response handling would look like
+            // if (response.ok) addMessage(response.data.answer, 'bot')
+
+            addMessage(
+                fallbackResponse,
+                'bot',
+                mode === 'sales' ? { text: "Contact Humain", url: "/contact" } : { text: "Ouvrir un ticket", url: "/dashboard/tickets" }
+            );
+        }, 1500); // Slower response to simulate AI thinking
     };
 
     const handleKeyPress = (e: React.KeyboardEvent) => {

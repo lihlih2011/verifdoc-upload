@@ -6,8 +6,8 @@ import {
     Activity, Server, Database, Mail,
     ShieldAlert, Terminal, RefreshCw, Cpu, HardDrive,
     Users, Search, Edit, UserCheck, AlertTriangle,
-    Megaphone, TrendingUp, Target, Share2, BarChart3, Zap,
-    LifeBuoy, CreditCard, Building2, Smile
+    Megaphone, TrendingUp, BarChart3,
+    LifeBuoy, CreditCard
 } from 'lucide-react';
 
 // --- TYPES ---
@@ -89,7 +89,7 @@ export const AdminToolbox = () => {
                 {activeTab === 'users' && <UsersTab token={token} />}
                 {activeTab === 'crm' && <CrmTab token={token} />}
                 {activeTab === 'security' && <SecurityTab token={token} />}
-                {activeTab === 'marketing' && <MarketingTab token={token} />}
+                {activeTab === 'marketing' && <MarketingTab />}
                 {activeTab === 'tools' && <ToolsTab token={token} />}
             </div>
         </div>
@@ -251,7 +251,7 @@ const UsersTab = ({ token }: { token: string | null }) => {
 };
 
 // 3. SECURITY TAB
-const SecurityTab = ({ token }: { token: string | null }) => {
+const SecurityTab = ({ }: { token: string | null }) => {
     const [subTab, setSubTab] = useState<'network' | 'iam' | 'intel' | 'audit'>('network');
 
     return (
@@ -308,7 +308,7 @@ const SecurityTab = ({ token }: { token: string | null }) => {
 };
 
 // 4. MARKETING TAB
-const MarketingTab = ({ token }: { token: string | null }) => {
+const MarketingTab = () => {
     const [subTab, setSubTab] = useState<'campaigns' | 'analytics' | 'automation' | 'seo'>('analytics');
 
     return (
@@ -362,9 +362,43 @@ const MarketingTab = ({ token }: { token: string | null }) => {
     );
 };
 
-// 5. CRM & SUPPORT TAB (NEW)
+// 5. CRM & SUPPORT TAB (REAL)
 const CrmTab = ({ token }: { token: string | null }) => {
     const [subTab, setSubTab] = useState<'tickets' | 'billing' | 'companies' | 'satisfaction'>('tickets');
+    const [tickets, setTickets] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (subTab === 'tickets') {
+            fetchTickets();
+        }
+    }, [subTab]);
+
+    const fetchTickets = async () => {
+        setLoading(true);
+        try {
+            const res = await axios.get(`${API_URL}/api/support/tickets?limit=20`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setTickets(res.data);
+        } catch (err) {
+            console.error("Error fetching tickets", err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleCloseTicket = async (id: number) => {
+        if (!confirm("Fermer ce ticket ?")) return;
+        try {
+            await axios.patch(`${API_URL}/api/support/tickets/${id}/status?status=CLOSED`, {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            fetchTickets();
+        } catch (e) {
+            alert("Erreur serveur");
+        }
+    };
 
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4">
@@ -384,25 +418,44 @@ const CrmTab = ({ token }: { token: string | null }) => {
                         <div className="space-y-6">
                             <div className="flex justify-between items-center">
                                 <h2 className="text-xl font-bold text-blue-400 flex items-center gap-2"><LifeBuoy /> HELPDESK</h2>
-                                <div className="text-sm font-bold text-slate-400">Open Tickets: <span className="text-white">3</span></div>
+                                <div className="text-sm font-bold text-slate-400">
+                                    Open Tickets: <span className="text-white">{tickets.filter(t => t.status === 'OPEN').length}</span>
+                                </div>
+                                <button onClick={fetchTickets} className="p-2 bg-slate-800 rounded text-slate-400 hover:text-white"><RefreshCw size={14} /></button>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="bg-slate-950 p-4 rounded border border-slate-800 flex justify-between items-center hover:border-blue-500 cursor-pointer transition-colors border-l-4 border-l-red-500">
-                                    <div>
-                                        <div className="font-bold text-white">Impossible d'uploader mon PDF</div>
-                                        <div className="text-xs text-slate-500">jean.dupont@gmail.com • Il y a 5 min</div>
-                                    </div>
-                                    <span className="px-2 py-1 bg-red-900/50 text-red-400 rounded text-xs font-bold">URGENT</span>
+                            {loading ? (
+                                <div className="text-center text-slate-500 py-10">Chargement des tickets...</div>
+                            ) : tickets.length === 0 ? (
+                                <div className="text-center text-slate-500 py-10">Aucun ticket pour le moment. Tout va bien ! 🌴</div>
+                            ) : (
+                                <div className="space-y-2">
+                                    {tickets.map(t => (
+                                        <div key={t.id} className={`bg-slate-950 p-4 rounded border border-slate-800 flex justify-between items-center hover:border-blue-500 cursor-pointer transition-colors border-l-4 
+                                            ${t.priority === 'urgent' ? 'border-l-red-500' : t.priority === 'medium' ? 'border-l-yellow-500' : 'border-l-blue-500'} 
+                                            ${t.status === 'CLOSED' ? 'opacity-50 grayscale' : ''}`}>
+                                            <div>
+                                                <div className="font-bold text-white flex items-center gap-2">
+                                                    {t.subject}
+                                                    {t.status === 'CLOSED' && <span className="text-[10px] bg-slate-800 px-1 rounded">CLOSED</span>}
+                                                </div>
+                                                <div className="text-xs text-slate-500">
+                                                    {t.user_email} • {new Date(t.created_at).toLocaleDateString()} • {t.category}
+                                                </div>
+                                                <div className="mt-2 text-sm text-slate-300 line-clamp-1">{t.message}</div>
+                                            </div>
+
+                                            {t.status === 'OPEN' && (
+                                                <button
+                                                    onClick={() => handleCloseTicket(t.id)}
+                                                    className="px-2 py-1 bg-slate-800 text-slate-400 hover:bg-green-900 hover:text-green-400 rounded text-xs font-bold transition-colors">
+                                                    ✔ CLOSE
+                                                </button>
+                                            )}
+                                        </div>
+                                    ))}
                                 </div>
-                                <div className="bg-slate-950 p-4 rounded border border-slate-800 flex justify-between items-center hover:border-blue-500 cursor-pointer transition-colors border-l-4 border-l-yellow-500">
-                                    <div>
-                                        <div className="font-bold text-white">Question sur la facturation</div>
-                                        <div className="text-xs text-slate-500">marie.curie@labo.fr • Il y a 2h</div>
-                                    </div>
-                                    <span className="px-2 py-1 bg-yellow-900/50 text-yellow-400 rounded text-xs font-bold">MEDIUM</span>
-                                </div>
-                            </div>
+                            )}
                         </div>
                     )}
 
@@ -530,25 +583,6 @@ const CampaignrRow = ({ name, status, sent, openRate, clickRate }: any) => (
             <div>
                 <div className="text-xs text-slate-500">CLICK RATE</div>
                 <div className="font-mono text-blue-400">{clickRate}</div>
-            </div>
-        </div>
-    </div>
-);
-
-const WorkflowCard = ({ title, triggers, actions, active }: any) => (
-    <div className={`p-4 rounded-lg border ${active ? 'bg-slate-900 border-slate-700' : 'bg-slate-950 border-slate-800 opacity-50'} relative overflow-hidden`}>
-        <div className="flex justify-between items-start mb-4">
-            <h3 className="font-bold text-white">{title}</h3>
-            <div className={`w-3 h-3 rounded-full ${active ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-slate-600'}`} />
-        </div>
-        <div className="space-y-2 text-xs">
-            <div className="flex justify-between text-slate-400">
-                <span>TRIGGER</span>
-                <span className="text-white">{triggers}</span>
-            </div>
-            <div className="flex justify-between text-slate-400">
-                <span>ACTION</span>
-                <span className="text-white">{actions}</span>
             </div>
         </div>
     </div>

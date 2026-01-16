@@ -19,7 +19,8 @@ export default function AdminDashboard() {
                     axios.get(`${API_URL}/api/admin/users`, { headers: { Authorization: `Bearer ${token}` } }),
                     axios.get(`${API_URL}/api/admin/stats`, { headers: { Authorization: `Bearer ${token}` } })
                 ]);
-                setUsers(usersRes.data);
+                // API returns { total: number, users: User[] }
+                setUsers(usersRes.data.users || []);
                 setStats(statsRes.data);
             } catch (e) {
                 setError("Accès refusé ou erreur serveur.");

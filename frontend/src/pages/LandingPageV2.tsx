@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { PublicFooter } from '../layout/PublicFooter';
 import DocumentScroller from '../components/landing/demo/DocumentScroller';
 import LiveStats from '../components/landing/LiveStats';
+import Header from '../components/landing/ui/MainHeader'; // Correct Import Location
 
 
 import FreeTrialUpload from '../components/landing/demo/FreeTrialUpload';
@@ -723,63 +724,15 @@ const UploadSimulator = () => {
     );
 };
 
+// Header is imported at the top
+
 export default function LandingPageV2() {
-    const { t, i18n } = useTranslation();
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const changeLanguage = (lng: string) => i18n.changeLanguage(lng);
+    const { t } = useTranslation();
 
     return (
-        <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-blue-500/30">
-            {/* NAVBAR */}
-            <nav className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", scrolled ? "bg-[#020617]/90 backdrop-blur-md border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)]" : "bg-transparent")}>
-                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <div className="flex items-center group cursor-pointer">
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-blue-500 blur-2xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
-                            <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-20 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105 mix-blend-screen invert grayscale brightness-200 contrast-200" />
-                        </div>
-                    </div>
-                    {/* DESKTOP NAV */}
-                    <div className="hidden md:flex items-center gap-1 p-1 bg-white/5 rounded-full border border-white/5 backdrop-blur-sm">
-                        <a href="#features" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
-                            <span className="relative z-10">{t('nav.solutions')}</span>
-                        </a>
-                        <a href="#developers" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
-                            <span className="relative z-10">{t('nav.developers')}</span>
-                        </a>
-                        <Link to="/resources" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
-                            <span className="relative z-10">Blog</span>
-                        </Link>
-                        <Link to="/company" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
-                            <span className="relative z-10">{t('nav.company')}</span>
-                        </Link>
-                        <Link to="/join-us" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all relative overflow-hidden group flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
-                            <span className="relative z-10">{t('nav.careers')}</span>
-                        </Link>
-                    </div>
-
-                    <div className="hidden md:flex items-center gap-4">
-                        <LanguageSelector />
-                        <Link to="/login" className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
-                            {t('nav.login')}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
-                        </Link>
-                        <Link to="/contact" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg transition-all shadow-[0_0_20px_-5px_rgba(37,99,235,0.5)] border border-blue-400/20 hover:scale-105 active:scale-95">
-                            {t('nav.book_demo')}
-                        </Link>
-                    </div>
-                    <button className="md:hidden p-2 text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>{mobileMenuOpen ? <X /> : <Menu />}</button>
-                </div>
-            </nav>
+        <div className="min-h-screen font-sans selection:bg-blue-500/30 transition-colors duration-300">
+            {/* STANDARDIZED HEADER */}
+            <Header />
 
             {/* HERO */}
             <section className="relative pt-32 pb-20 px-6 overflow-hidden">
@@ -787,16 +740,16 @@ export default function LandingPageV2() {
                 <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     {/* LEFT COLUMN: TEXT */}
                     <div className="text-left">
-                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-6">
+                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-mono mb-6">
                             {t('hero.badge')}
                         </motion.div>
-                        <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6 leading-[1.1]">
+                        <h1 className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white tracking-tight mb-6 leading-[1.1]">
                             {t('hero.title_start')} <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500 dark:from-blue-400 dark:to-emerald-400">
                                 {t('hero.title_end')}
                             </span>
                         </h1>
-                        <p className="text-lg md:text-xl text-slate-400 mb-8 leading-relaxed max-w-lg">
+                        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-lg">
                             {t('hero.subtitle')}
                         </p>
                         <FreeTrialUpload />

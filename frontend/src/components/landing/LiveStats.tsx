@@ -1,3 +1,4 @@
+// --- COMPONENTS ---
 import { useEffect, useState, useRef } from 'react';
 import { Users, FileScan, ShieldAlert, CheckCircle } from 'lucide-react';
 import CountUp from 'react-countup';
@@ -7,16 +8,15 @@ export default function LiveStats() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-    // Simulation de données "Live" qui augmentent doucement
+    // Simulation de données "Live"
     const [scans, setScans] = useState(45892);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            // Ajoute un scan aléatoire toutes les quelques secondes
-            if (Math.random() > 0.7) {
-                setScans(prev => prev + 1);
+            if (Math.random() > 0.5) { // More frequent updates
+                setScans(prev => prev + Math.floor(Math.random() * 3) + 1);
             }
-        }, 3000);
+        }, 2000);
         return () => clearInterval(interval);
     }, []);
 
@@ -24,16 +24,17 @@ export default function LiveStats() {
         {
             id: 1,
             label: "Adhérents Actifs",
+            prefix: "Plus de ",
             value: 1240,
             icon: <Users className="w-6 h-6 text-blue-400" />,
-            suffix: "+"
+            color: "blue"
         },
         {
             id: 2,
             label: "Scans Réalisés",
             value: scans,
             icon: <FileScan className="w-6 h-6 text-purple-400" />,
-            suffix: "",
+            color: "purple",
             live: true
         },
         {
@@ -41,44 +42,54 @@ export default function LiveStats() {
             label: "Fraudes Détectées",
             value: 3402,
             icon: <ShieldAlert className="w-6 h-6 text-red-400" />,
-            suffix: ""
+            color: "red"
         },
         {
             id: 4,
             label: "Documents Conformes",
             value: 42490,
             icon: <CheckCircle className="w-6 h-6 text-emerald-400" />,
-            suffix: ""
+            color: "emerald"
         }
     ];
 
     return (
-        <section ref={ref} className="py-12 bg-gray-950 border-y border-gray-800">
+        <section ref={ref} className="py-12 bg-[#020617] border-y border-white/5">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {stats.map((stat) => (
-                        <div key={stat.id} className="flex flex-col items-center justify-center p-6 bg-gray-900/30 rounded-2xl border border-gray-800 hover:border-gray-700 transition-colors group">
-                            <div className="mb-4 p-3 bg-gray-800 rounded-full group-hover:scale-110 transition-transform">
+                        <div key={stat.id} className="relative flex flex-col items-center justify-center p-8 bg-[#0b1121] rounded-2xl border border-slate-800 backdrop-blur-sm group hover:border-slate-700 transition-all shadow-lg shadow-black/20">
+                            {/* Icon Container with Glow */}
+                            <div className={`mb-6 p-4 rounded-full bg-${stat.color}-500/10 border border-${stat.color}-500/20 shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:scale-110 transition-transform duration-500`}>
                                 {stat.icon}
                             </div>
-                            <div className="text-3xl md:text-4xl font-bold text-white mb-2 font-mono">
+
+                            {/* Number */}
+                            <div className="text-3xl lg:text-4xl font-black text-white mb-3 text-center tracking-tight">
+                                {stat.prefix && <span className="block text-xl font-medium text-slate-400 mb-1">{stat.prefix}</span>}
                                 {isInView ? (
                                     <CountUp
                                         start={0}
                                         end={stat.value}
                                         duration={2.5}
-                                        separator=","
-                                        suffix={stat.suffix}
+                                        separator=" "
                                     />
                                 ) : '0'}
                             </div>
-                            <div className="text-sm md:text-base text-gray-400 font-medium uppercase tracking-wide">
+
+                            {/* Label */}
+                            <div className="text-xs font-bold text-slate-500 uppercase tracking-widest text-center">
                                 {stat.label}
                             </div>
+
+                            {/* Live Badge */}
                             {stat.live && (
-                                <div className="mt-2 flex items-center gap-1.5 px-2 py-0.5 bg-green-900/30 border border-green-500/30 rounded text-[10px] text-green-400 font-bold animate-pulse">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                                    LIVE
+                                <div className="mt-4 inline-flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded text-[10px] text-emerald-400 font-bold animate-pulse">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                    </span>
+                                    EN DIRECT
                                 </div>
                             )}
                         </div>
