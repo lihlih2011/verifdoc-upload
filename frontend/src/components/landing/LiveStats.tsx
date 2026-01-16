@@ -65,14 +65,15 @@ export default function LiveStats() {
                             </div>
 
                             {/* Number */}
-                            <div className="text-3xl lg:text-4xl font-black text-white mb-3 text-center tracking-tight">
+                            <div className="text-3xl lg:text-4xl font-black text-white mb-3 text-center tracking-tight notranslate">
                                 {stat.prefix && <span className="block text-xl font-medium text-slate-400 mb-1">{stat.prefix}</span>}
                                 {isInView ? (
                                     <CountUp
-                                        start={0}
+                                        start={stat.live ? stat.value - 100 : 0}
                                         end={stat.value}
                                         duration={2.5}
                                         separator=" "
+                                        preserveValue={true}
                                     />
                                 ) : '0'}
                             </div>
