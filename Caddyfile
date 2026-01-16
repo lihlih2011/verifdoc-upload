@@ -1,29 +1,35 @@
-{
-    debug
+# Configuration Caddy (Serveur Web & HTTPS automatique)
+
+# --------------------------------------------------------
+# IP Publique du serveur
+51.210.159.95 {
+    tls internal
+    encode gzip
 }
 
-www.verifdoc.io, verifdoc.io {
-    log {
-        output stdout
-    }
+# Fallback pour localhost/tests
+:80 {
+    tls internal
+    encode gzip
+    # Compression Gzip pour la vitesse
+    encode gzip
 
-    # IMPORTANT: /api/* must be checked BEFORE /*
-    # API Proxy
-    handle /api/* {
+    # 1. API Backend : tout ce qui commence par /api va vers le conteneur backend
+    handle_path /api/* {
         reverse_proxy backend:8000
     }
 
-    # Serve static results (PDFs)
-    handle_path /results/* {
-        root * /srv/results
-        file_server
+    # Docs Swagger (optionnel, pour debug)
+    handle_path /docs* {
+        reverse_proxy backend:8000
+    }
+    
+    handle_path /openapi.json {
+        reverse_proxy backend:8000
     }
 
-    handle /* {
+    # 2. Frontend : tout le reste va vers le site React
+    handle {
         reverse_proxy frontend:80
     }
-}
-
-crm.verifdoc.io {
-    reverse_proxy odoo:8069
 }
