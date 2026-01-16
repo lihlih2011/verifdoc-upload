@@ -91,10 +91,10 @@ export default function App() {
           <Route path="/terms" element={<TermsOfServicePage />} />
 
           <Route path="/v2" element={<LandingPageV2 />} />
+          <Route path="/" element={<LandingPageV2 />} />
 
           {/* Landing Page Layout for other public pages */}
           <Route element={<SaaSLayout />}>
-            <Route path="/" element={<LandingPageV2 />} />
             <Route path="/solutions" element={<SolutionsPage />} />
             <Route path="/solutions/real-estate" element={<RealEstatePage />} />
             <Route path="/solutions/banking" element={<BankingPage />} />
