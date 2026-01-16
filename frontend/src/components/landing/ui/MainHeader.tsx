@@ -75,14 +75,24 @@ export default function MainHeader() {
         <div className={`hidden md:flex items-center gap-1 p-1 rounded-full border backdrop-blur-sm transition-all
           ${theme === 'dark' || top ? 'bg-white/5 border-white/5' : 'bg-slate-100/50 border-slate-200'}
         `}>
-          {['solutions', 'developers', 'company'].map((item) => (
-            <Link key={item} to={`/${item}`} className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
-              <span className="relative z-10">{t(`nav.${item}`) || item}</span>
-            </Link>
+          {[
+            { key: 'product', path: '/#features' },
+            { key: 'use_cases', path: '/use-cases' },
+            { key: 'solutions', path: '/solutions' },
+            { key: 'about', path: '/company' },
+            { key: 'developers', path: '/developers' },
+            { key: 'pricing', path: '/#pricing' }
+          ].map(({ key, path }) => (
+            path.startsWith('/#') ? (
+              <a key={key} href={path} className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
+                <span className="relative z-10">{t(`nav.${key}`)}</span>
+              </a>
+            ) : (
+              <Link key={key} to={path} className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
+                <span className="relative z-10">{t(`nav.${key}`)}</span>
+              </Link>
+            )
           ))}
-          <Link to="/resources" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
-            <span className="relative z-10">Blog</span>
-          </Link>
           <Link to="/join-us" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
             <span className="relative z-10">{t('nav.careers')}</span>
@@ -119,10 +129,12 @@ export default function MainHeader() {
       {mobileMenuOpen && (
         <div className={`md:hidden border-t p-4 ${theme === 'dark' ? 'bg-[#020617] border-white/10' : 'bg-white border-slate-100'}`}>
           <div className="flex flex-col gap-4">
+            <a href="/#features" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.product')}</a>
+            <Link to="/use-cases" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.use_cases')}</Link>
             <Link to="/solutions" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.solutions')}</Link>
+            <Link to="/company" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.about')}</Link>
             <Link to="/developers" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.developers')}</Link>
-            <Link to="/company" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.company')}</Link>
-            <Link to="/resources" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>Blog</Link>
+            <a href="/#pricing" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.pricing')}</a>
             <button onClick={toggleTheme} className="flex items-center gap-2 text-blue-500 font-medium">
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
               {theme === 'dark' ? 'Mode Clair' : 'Mode Sombre'}

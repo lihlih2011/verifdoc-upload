@@ -100,8 +100,12 @@
         }
     },
     "nav": {
+        "product": "Product",
+        "use_cases": "Use Cases",
         "solutions": "Solutions",
+        "about": "About",
         "developers": "Developers",
+        "pricing": "Pricing",
         "company": "Company",
         "careers": "Careers",
         "login": "Login",

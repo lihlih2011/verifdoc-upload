@@ -108,8 +108,12 @@
         }
     },
     "nav": {
+        "product": "Produit",
+        "use_cases": "Cas d'Usage",
         "solutions": "Solutions",
+        "about": "À propos de",
         "developers": "Développeurs",
+        "pricing": "Tarifs",
         "company": "Entreprise",
         "careers": "Carrières",
         "login": "Connexion",
