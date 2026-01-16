@@ -19,12 +19,12 @@ RUN apt-get update && apt-get install -y \
 # Assuming build context is project root, so we COPY backend/requirements.txt
 # If build context is backend/, we COPY requirements.txt
 # We will standardize on building from project root for docker-compose.
-COPY backend/requirements.txt ./requirements.txt
+COPY requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend code to /app/backend
 # allow imports like 'from backend.app import ...'
-COPY backend/ ./backend/
+COPY . ./backend/
 
 # Create uploads directory
 RUN mkdir -p /app/backend/uploads
