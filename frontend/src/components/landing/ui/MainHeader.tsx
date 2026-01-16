@@ -62,7 +62,11 @@ export default function MainHeader() {
           <Link to="/" className="relative flex items-center gap-2">
             {/* USER REQUESTED HTML STRUCTURE */}
             <div className="header-logo-container">
-              <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" />
+              <img
+                src={theme === 'dark' ? "/logo-verifdoc-light.svg" : "/logo-verifdoc-dark.svg"}
+                alt="VerifDoc"
+                className="h-8 w-auto transition-all duration-300"
+              />
             </div>
           </Link>
         </div>

@@ -1007,7 +1007,7 @@ export default function LandingPageV2() {
             </section>
 
             {/* SECTORS SECTION (NEW 12 GRID) */}
-            <section id="sectors" className="py-24 bg-white relative">
+            <section id="sectors" className="py-24 bg-white dark:bg-[#020617] relative transition-colors duration-300">
                 <div className="absolute top-0 left-0 w-full h-[500px] bg-slate-50 -skew-y-3 origin-top-left -z-10"></div>
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
@@ -1024,75 +1024,75 @@ export default function LandingPageV2() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-1 transition-all border border-slate-100">
+                        <div className="group bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-1 transition-all border border-slate-100 dark:border-white/5">
                             <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Building2 size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">{t('sectors.bank.title')}</h3>
-                            <p className="text-slate-500 text-sm">{t('sectors.bank.desc')}</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('sectors.bank.title')}</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">{t('sectors.bank.desc')}</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-emerald-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Home size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">{t('sectors.real_estate.title')}</h3>
-                            <p className="text-slate-500 text-sm">{t('sectors.real_estate.desc')}</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('sectors.real_estate.title')}</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">{t('sectors.real_estate.desc')}</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-purple-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Users size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">{t('sectors.recruitment.title')}</h3>
-                            <p className="text-slate-500 text-sm">{t('sectors.recruitment.desc')}</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('sectors.recruitment.title')}</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">{t('sectors.recruitment.desc')}</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-pink-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Scale size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">{t('sectors.legal.title')}</h3>
-                            <p className="text-slate-500 text-sm">{t('sectors.legal.desc')}</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('sectors.legal.title')}</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">{t('sectors.legal.desc')}</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-orange-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Zap size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">{t('sectors.fintech.title')}</h3>
-                            <p className="text-slate-500 text-sm">{t('sectors.fintech.desc')}</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('sectors.fintech.title')}</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">{t('sectors.fintech.desc')}</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-cyan-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-cyan-100 text-cyan-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><ShieldAlert size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">{t('sectors.insurance.title')}</h3>
-                            <p className="text-slate-500 text-sm">{t('sectors.insurance.desc')}</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{t('sectors.insurance.title')}</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">{t('sectors.insurance.desc')}</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-indigo-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><FileSpreadsheet size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">Expertise Comptable</h3>
-                            <p className="text-slate-500 text-sm">Automatisez la confiance. Auditez 100% de vos factures et notes de frais pour rejeter les faux automatiquement.</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Expertise Comptable</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Automatisez la confiance. Auditez 100% de vos factures et notes de frais pour rejeter les faux automatiquement.</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-red-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Car size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">Mobilité & Location</h3>
-                            <p className="text-slate-500 text-sm">Validez permis et justificatifs en un clic pour éviter vols et impayés. Ne laissez plus partir vos véhicules au hasard.</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Mobilité & Location</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Validez permis et justificatifs en un clic pour éviter vols et impayés. Ne laissez plus partir vos véhicules au hasard.</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-stone-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-stone-100 text-stone-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><ScrollText size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">Notariat</h3>
-                            <p className="text-slate-500 text-sm">Garantissez la chaîne de confiance. Protégez vos actes authentiques contre l'usurpation d'identité sophistiquée.</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Notariat</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Garantissez la chaîne de confiance. Protégez vos actes authentiques contre l'usurpation d'identité sophistiquée.</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-blue-800/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-blue-800 text-white rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Landmark size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">Secteur Public</h3>
-                            <p className="text-slate-500 text-sm">Justesse et équité. Assurez-vous que chaque prestation sociale va au bon bénéficiaire en écartant les dossiers frauduleux.</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Secteur Public</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Justesse et équité. Assurez-vous que chaque prestation sociale va au bon bénéficiaire en écartant les dossiers frauduleux.</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-yellow-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><ShoppingBag size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">Marketplaces</h3>
-                            <p className="text-slate-500 text-sm">Vérifiez vos vendeurs à l'échelle. Un onboarding KYB ultra-rapide pour une plateforme de confiance.</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Marketplaces</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Vérifiez vos vendeurs à l'échelle. Un onboarding KYB ultra-rapide pour une plateforme de confiance.</p>
                         </div>
                         <div className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-teal-900/10 hover:-translate-y-1 transition-all border border-slate-100">
                             <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><Briefcase size={24} /></div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">Intérim</h3>
-                            <p className="text-slate-500 text-sm">Accélérez vos placements. Validez des milliers de documents candidats par heure et soyez réactif.</p>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Intérim</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Accélérez vos placements. Validez des milliers de documents candidats par heure et soyez réactif.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* TESTIMONIALS SECTION (SPECIFIC PROFILES) */}
-            <section className="py-24 bg-slate-50 border-y border-slate-200">
+            <section className="py-24 bg-slate-50 dark:bg-[#0B1120] border-y border-slate-200 dark:border-white/5 transition-colors duration-300">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                             Approuvé par des entreprises <br />
                             <span className="text-blue-600">du monde entier</span>
                         </h2>
@@ -1103,8 +1103,8 @@ export default function LandingPageV2() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* 1. BENMOULOUD M.R. - NUMIDIT */}
-                        <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-slate-100 flex flex-col">
-                            <div className="mb-6 text-slate-600 italic leading-relaxed flex-grow">
+                        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-slate-100 dark:border-white/5 flex flex-col">
+                            <div className="mb-6 text-slate-600 dark:text-slate-300 italic leading-relaxed flex-grow">
                                 "Dans le cadre de nos missions de conseil et d'ingénierie numérique, la fiabilité documentaire est un enjeu majeur.
                                 <br /><br />
                                 <strong className="text-slate-900">VerifDoc</strong> nous a permis d'automatiser des Contrôles complexes et d'identifier des anomalies critiques sur des documents contractuels et techniques. La plateforme s'intègre parfaitement dans un environnement professionnel exigeant."
@@ -1112,9 +1112,9 @@ export default function LandingPageV2() {
                             <div className="flex items-center gap-4 mt-auto pt-6 border-t border-slate-50">
                                 <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150" alt="Benmouloud M.R." className="w-16 h-16 rounded-full object-cover border-2 border-blue-100" />
                                 <div>
-                                    <div className="font-bold text-slate-900">Benmouloud M.R.</div>
+                                    <div className="font-bold text-slate-900 dark:text-white">Benmouloud M.R.</div>
                                     <div className="text-xs text-blue-600 font-bold uppercase tracking-wide mb-1">Directeur des opérations</div>
-                                    <div className="text-sm font-bold text-slate-700">COE NUMIDIT</div>
+                                    <div className="text-sm font-bold text-slate-700 dark:text-slate-200">COE NUMIDIT</div>
                                     <div className="text-xs text-slate-500">Ingénierie & services numériques</div>
                                 </div>
                             </div>
@@ -1122,7 +1122,7 @@ export default function LandingPageV2() {
 
                         {/* 2. ME BENBRAHAM - AVOCATE */}
                         <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-slate-100 flex flex-col">
-                            <div className="mb-6 text-slate-600 italic leading-relaxed flex-grow">
+                            <div className="mb-6 text-slate-600 dark:text-slate-300 italic leading-relaxed flex-grow">
                                 "Dans le cadre de dossiers complexes, la capacité de VerifDoc à analyser les documents est essentielle.
                                 <br /><br />
                                 Lorsqu'on doit prouver l'intégrité d'un contrat ou d'un acte, la plateforme permet de détecter des altérations qui pourraient avoir des conséquences juridiques importantes. C'est un outil indispensable dans notre gestion des litiges."
@@ -1130,9 +1130,9 @@ export default function LandingPageV2() {
                             <div className="flex items-center gap-4 mt-auto pt-6 border-t border-slate-50">
                                 <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150" alt="Me Benbraham" className="w-16 h-16 rounded-full object-cover border-2 border-purple-100" />
                                 <div>
-                                    <div className="font-bold text-slate-900">Me Benbraham</div>
+                                    <div className="font-bold text-slate-900 dark:text-white">Me Benbraham</div>
                                     <div className="text-xs text-purple-600 font-bold uppercase tracking-wide mb-1">Avocate</div>
-                                    <div className="text-sm font-bold text-slate-700">Cabinet de Me Benbraham</div>
+                                    <div className="text-sm font-bold text-slate-700 dark:text-slate-200">Cabinet de Me Benbraham</div>
                                     <div className="text-xs text-slate-500">Affaires & contentieux</div>
                                 </div>
                             </div>
@@ -1140,7 +1140,7 @@ export default function LandingPageV2() {
 
                         {/* 3. KACI M. - IMMOBILIER */}
                         <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-slate-100 flex flex-col">
-                            <div className="mb-6 text-slate-600 italic leading-relaxed flex-grow">
+                            <div className="mb-6 text-slate-600 dark:text-slate-300 italic leading-relaxed flex-grow">
                                 "Dans le secteur de la gestion immobilière, la vérification des documents est essentielle pour sécuriser les transactions.
                                 <br /><br />
                                 VerifDoc nous aide à contrôler rapidement des actes, contrats et pièces administratives tout en réduisant les risques liés aux documents falsifiés. C'est une solution fiable, adaptée aux exigences du marché."
@@ -1148,9 +1148,9 @@ export default function LandingPageV2() {
                             <div className="flex items-center gap-4 mt-auto pt-6 border-t border-slate-50">
                                 <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150" alt="KACI M." className="w-16 h-16 rounded-full object-cover border-2 border-emerald-100" />
                                 <div>
-                                    <div className="font-bold text-slate-900">KACI M.</div>
+                                    <div className="font-bold text-slate-900 dark:text-white">KACI M.</div>
                                     <div className="text-xs text-emerald-600 font-bold uppercase tracking-wide mb-1">Groupe KACI Immobilier</div>
-                                    <div className="text-sm font-bold text-slate-700">Gestion de biens</div>
+                                    <div className="text-sm font-bold text-slate-700 dark:text-slate-200">Gestion de biens</div>
                                     <div className="text-xs text-slate-500">Immobilier professionnel</div>
                                 </div>
                             </div>
@@ -1348,7 +1348,7 @@ export default function LandingPageV2() {
 
 
             {/* NOTRE HISTOIRE - SECTION */}
-            <section className="py-24 bg-white border-t border-slate-100 border-b">
+            <section className="py-24 bg-white dark:bg-[#020617] border-t border-slate-100 dark:border-white/5 border-b transition-colors duration-300">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex flex-col lg:flex-row items-center gap-16">
                         {/* Image Side */}
