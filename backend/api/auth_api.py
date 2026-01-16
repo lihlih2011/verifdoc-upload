@@ -62,6 +62,13 @@ def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = 
     fake_token = str(uuid.uuid4())
     background_tasks.add_task(email_service.send_verification_email, user.email, fake_token)
 
+    # 🚀 NEW: SALES AUTOMATION
+    # 1. Send PERSUASIVE welcome email with demo offer
+    background_tasks.add_task(email_service.send_welcome_sales_email, user.email, name=user.full_name or "Partenaire")
+    
+    # 2. Notify ADMIN (You) immediately so you can grab the lead
+    background_tasks.add_task(email_service.notify_admin_new_lead, lead_email=user.email)
+
     # Sync to External CRM (HubSpot/Brevo/Log)
     if background_tasks:
         background_tasks.add_task(

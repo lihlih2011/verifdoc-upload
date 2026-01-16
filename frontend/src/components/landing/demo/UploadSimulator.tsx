@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, UploadCloud, CheckCircle2, Check, Loader2, User, ShieldAlert, MousePointer2 } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
@@ -213,6 +214,10 @@ export default function UploadSimulator() {
                                         </p>
                                     </div>
                                 </div>
+
+                                <Link to="/register" className="mt-auto w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-[10px] font-bold text-center transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
+                                    Détecter mes faux documents <MousePointer2 size={10} />
+                                </Link>
                             </div>
                         </motion.div>
                     )}
