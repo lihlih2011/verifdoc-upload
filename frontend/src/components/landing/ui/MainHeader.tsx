@@ -1,57 +1,36 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export default function MainHeader() {
   const [top, setTop] = useState<boolean>(true)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<'light' | 'dark'>('light'); // Default to LIGHT
   const { t, i18n } = useTranslation();
 
-  // Initialize Theme from localStorage or Default
+  // FORCE DARK MODE on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    } else {
-      setTheme('light');
-      document.documentElement.classList.remove('dark');
+    document.documentElement.classList.add('dark');
+    // Ensure scroll listener to handle transparency
+    const scrollHandler = () => {
+      window.scrollY > 10 ? setTop(false) : setTop(true)
     }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-  };
+    scrollHandler()
+    window.addEventListener('scroll', scrollHandler)
+    return () => window.removeEventListener('scroll', scrollHandler)
+  }, [])
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'fr' ? 'en' : 'fr';
     i18n.changeLanguage(newLang);
   };
 
-  const scrollHandler = () => {
-    window.scrollY > 10 ? setTop(false) : setTop(true)
-  }
-
-  useEffect(() => {
-    scrollHandler()
-    window.addEventListener('scroll', scrollHandler)
-    return () => window.removeEventListener('scroll', scrollHandler)
-  }, [top])
-
-  // Dynamic Styles based on Theme and Scroll
+  // Dynamic Styles (Now exclusively dark-themed)
   const headerClass = !top
-    ? (theme === 'dark' ? 'bg-[#020617]/80 backdrop-blur-xl border-b border-white/10 shadow-lg' : 'bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm')
-    : 'bg-transparent border-transparent'; // Keep transparent ONLY at very top to show hero, but ensure text is readable
+    ? 'bg-[#020617]/80 backdrop-blur-xl border-b border-white/10 shadow-lg'
+    : 'bg-transparent border-transparent';
 
-  // FORCE High Contrast Text Colors
-  const textClass = theme === 'dark'
-    ? 'text-white font-bold hover:text-blue-400'
-    : 'text-slate-900 font-bold hover:text-blue-700';
+  const textClass = 'text-white font-bold hover:text-blue-400';
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}>
@@ -60,11 +39,9 @@ export default function MainHeader() {
         {/* Site branding */}
         <div className="flex items-center group cursor-pointer">
           <Link to="/" className="relative flex items-center gap-2">
-            {/* USER REQUESTED HTML STRUCTURE - CLEANED */}
             <div className="flex items-center">
-              {/* Dynamic Logo based on Theme/Scroll */}
               <img
-                src={theme === 'dark' || (top && theme === 'light') ? "/logo-verifdoc-light.svg" : "/logo-verifdoc-dark.svg"}
+                src="/logo-verifdoc-light.svg"
                 alt="VerifDoc"
                 className="h-14 w-auto transition-all duration-300"
               />
@@ -73,9 +50,7 @@ export default function MainHeader() {
         </div>
 
         {/* Desktop navigation */}
-        <div className={`hidden md:flex items-center gap-1 p-1 rounded-full border backdrop-blur-sm transition-all
-          ${theme === 'dark' || top ? 'bg-white/5 border-white/5' : 'bg-slate-100/50 border-slate-200'}
-        `}>
+        <div className="hidden md:flex items-center gap-1 p-1 rounded-full border backdrop-blur-sm transition-all bg-white/5 border-white/5">
           {[
             { key: 'product', path: '/#features' },
             { key: 'use_cases', path: '/use-cases' },
@@ -102,11 +77,6 @@ export default function MainHeader() {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-4">
-          {/* THEME TOGGLE */}
-          <button onClick={toggleTheme} className={`p-2 rounded-full transition-colors ${theme === 'dark' || top ? 'text-slate-400 hover:text-white hover:bg-white/10' : 'text-slate-500 hover:text-blue-600 hover:bg-slate-100'}`}>
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-
           <button onClick={toggleLanguage} className={`font-medium text-sm transition-colors ${textClass}`}>
             {i18n.language === 'fr' ? 'EN' : 'FR'}
           </button>
@@ -120,7 +90,7 @@ export default function MainHeader() {
         </div>
 
         {/* Mobile menu button */}
-        <button className={`md:hidden p-2 ${theme === 'dark' || top ? 'text-white' : 'text-slate-800'}`} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <button className="md:hidden p-2 text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
 
@@ -128,22 +98,27 @@ export default function MainHeader() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className={`md:hidden border-t p-4 ${theme === 'dark' ? 'bg-[#020617] border-white/10' : 'bg-white border-slate-100'}`}>
+        <div className="md:hidden border-t p-4 bg-[#020617] border-white/10 shadow-2xl">
           <div className="flex flex-col gap-4">
-            <a href="/#features" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.product')}</a>
-            <Link to="/use-cases" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.use_cases')}</Link>
-            <Link to="/solutions" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.solutions')}</Link>
-            <Link to="/company" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.about')}</Link>
-            <Link to="/developers" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.developers')}</Link>
-            <a href="/#pricing" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.pricing')}</a>
-            <button onClick={toggleTheme} className="flex items-center gap-2 text-blue-500 font-medium">
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              {theme === 'dark' ? 'Mode Clair' : 'Mode Sombre'}
+            <a href="/#features" className="text-slate-300 hover:text-white transition-colors">{t('nav.product')}</a>
+            <Link to="/use-cases" className="text-slate-300 hover:text-white transition-colors">{t('nav.use_cases')}</Link>
+            <Link to="/solutions" className="text-slate-300 hover:text-white transition-colors">{t('nav.solutions')}</Link>
+            <Link to="/company" className="text-slate-300 hover:text-white transition-colors">{t('nav.about')}</Link>
+            <Link to="/developers" className="text-slate-300 hover:text-white transition-colors">{t('nav.developers')}</Link>
+            <a href="/#pricing" className="text-slate-300 hover:text-white transition-colors">{t('nav.pricing')}</a>
+
+            <div className="h-px bg-white/10 my-2" />
+
+            <button onClick={toggleLanguage} className="text-left text-slate-300 font-bold uppercase">
+              {i18n.language === 'fr' ? 'English (EN)' : 'Français (FR)'}
             </button>
-            <Link to="/login" className="text-blue-600 font-bold">{t('nav.login')}</Link>
+            <Link to="/login" className="text-blue-500 font-bold">{t('nav.login')}</Link>
+            <Link to="/contact" className="w-full py-3 bg-blue-600 text-white rounded-lg text-center font-bold">
+              {t('nav.book_demo')}
+            </Link>
           </div>
         </div>
       )}
     </header>
-  )
+  );
 }
