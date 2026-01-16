@@ -112,8 +112,11 @@ const ComparisonSlider = () => {
 
                 // 7. Pulse/Click on Alert
                 setIsClicking(true); await wait(300);
+                if (!isMountedRef.current) break;
                 setIsClicking(false); await wait(300);
+                if (!isMountedRef.current) break;
                 setIsClicking(true); await wait(300);
+                if (!isMountedRef.current) break;
                 setIsClicking(false); await wait(2000); // Hold
 
                 if (!isMountedRef.current) break;
@@ -322,6 +325,7 @@ const UploadSimulator = () => {
                 // 4. Button
                 setCursorPos({ x: 50, y: 85 });
                 await wait(800);
+                if (!isMountedRef.current) break;
 
                 // 5. Verify
                 setStep(3);
@@ -330,6 +334,7 @@ const UploadSimulator = () => {
 
                 // 6. Dashboard
                 await wait(500);
+                if (!isMountedRef.current) break;
                 setStep(4);
 
                 // 7. Tooltip
