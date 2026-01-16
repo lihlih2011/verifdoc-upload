@@ -1187,7 +1187,7 @@ export default function LandingPageV2() {
                     <p className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-12">{t('trust.title')}</p>
 
                     {/* TECH GIANTS - UNIFIED TILES */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16 items-center">
                         {[
                             { name: 'Microsoft', src: '/images/partners/microsoft.png' },
                             { name: 'Google', src: '/images/partners/google.png' },
@@ -1196,36 +1196,36 @@ export default function LandingPageV2() {
                             { name: 'OVHcloud', src: '/images/partners/ovh.png' },
                             { name: 'Xolo', src: '/images/partners/xolo.jpg', label: t('trust.estonia') }
                         ].map((partner, index) => (
-                            <div key={index} className="group bg-white rounded-xl h-24 flex flex-col items-center justify-center p-4 shadow-lg hover:shadow-blue-500/20 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                            <div key={index} className="group flex flex-col items-center justify-center relative">
                                 <img
                                     src={partner.src}
                                     alt={partner.name}
-                                    className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-100 mix-blend-multiply"
+                                    className="h-8 w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500"
                                 />
                                 {partner.label && (
-                                    <span className="absolute bottom-1 text-[9px] text-blue-600 font-bold uppercase tracking-wider">{partner.label}</span>
+                                    <span className="absolute -bottom-6 text-[9px] text-blue-500 font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">{partner.label}</span>
                                 )}
                             </div>
                         ))}
                     </div>
                 </div>
 
-                <div className="h-px w-full max-w-sm bg-gradient-to-r from-transparent via-slate-800 to-transparent mx-auto mb-12"></div>
+                <div className="h-px w-full max-w-sm bg-gradient-to-r from-transparent via-white/10 to-transparent mx-auto mb-12"></div>
 
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-8 text-center">{t('trust.bodies')}</p>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-12 text-center">{t('trust.bodies')}</p>
 
                 {/* INSTITUTIONAL BODIES - UNIFIED TILES */}
-                <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
+                <div className="flex flex-wrap justify-center gap-12 md:gap-20 max-w-4xl mx-auto items-center">
                     {[
                         { name: 'ANSSI', src: '/images/partners/anssi.png' },
                         { name: 'CNIL', src: '/images/partners/cnil.png' },
                         { name: 'INEC', src: '/images/partners/inec.jpg' }
                     ].map((partner, index) => (
-                        <div key={index} className="group bg-white rounded-xl w-44 h-24 flex items-center justify-center p-4 shadow-lg hover:shadow-emerald-500/20 hover:-translate-y-1 transition-all duration-300">
+                        <div key={index} className="group flex items-center justify-center">
                             <img
                                 src={partner.src}
                                 alt={partner.name}
-                                className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100 mix-blend-multiply"
+                                className="h-12 w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500"
                             />
                         </div>
                     ))}
