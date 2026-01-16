@@ -65,7 +65,7 @@ export default function MainHeader() {
               <img
                 src="/images/verifdoc-logo-2026-transparent.png"
                 alt="VerifDoc"
-                className="h-10 w-auto transition-all duration-300 dark:brightness-0 dark:invert"
+                className="h-16 w-auto transition-all duration-300 dark:brightness-0 dark:invert"
               />
             </div>
           </Link>

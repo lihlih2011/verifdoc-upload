@@ -15,7 +15,7 @@ export const PublicFooter = () => {
                             <img
                                 src="/images/verifdoc-logo-2026-transparent.png"
                                 alt="VerifDoc"
-                                className="h-16 w-auto transition-all hover:brightness-110 dark:brightness-0 dark:invert"
+                                className="h-24 w-auto transition-all hover:brightness-110 dark:brightness-0 dark:invert"
                             />
                         </div>
                         <p className="mb-6 leading-relaxed text-slate-500 dark:text-slate-400">
