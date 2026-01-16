@@ -27,8 +27,6 @@ import HistoryPage from "./pages/Dashboard/HistoryPage";
 import Webhooks from "./pages/Dashboard/Webhooks";
 import { HRTeam, LegalDocs, LiveChat, KnowledgeBase, GpuHealth, AdminSettings, CompliancePage, ApiKeysPage } from "./pages/Dashboard/AdminPlaceholders";
 
-import LandingLayout from "./layout/LandingLayout";
-import LandingPageV2 from "./pages/LandingPageV2";
 import SimpleLegalPage from "./components/common/SimpleLegalPage";
 import { TERMS_OF_SERVICE_CONTENT } from "./data/legalContent";
 
@@ -36,17 +34,18 @@ import CookieConsent from "./components/common/CookieConsent";
 import ChatWidget from "./components/common/ChatWidget";
 import ErrorBoundary from "./components/common/ErrorBoundary";
 
-import AppLayout from "./layout/AppLayout";
+import AdminKitLayout from "./layout/AdminKitLayout";
+import SaaSLayout from "./layout/SaaSLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
-import AdminDashboard from "./pages/Dashboard/AdminDashboard";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 import CRM from "./pages/Dashboard/CRM";
 import Developer from "./pages/Dashboard/Developer";
 import SolutionsPage from "./pages/Landing/SolutionsPage";
 import ResourcesPage from "./pages/Landing/ResourcesPage";
 import CompanyPage from "./pages/Landing/CompanyPage";
 import ContactPage from "./pages/Landing/ContactPage";
-import ProDashboard from "./pages/Dashboard/ProDashboard";
+import { ProDashboard } from "./pages/Dashboard/ProDashboard";
 import PartnersPage from "./pages/Landing/PartnersPage"; // NEW IMPORT
 import CareersPage from "./pages/Landing/CareersPage";
 import ResourcePost from "./pages/Landing/ResourcePost"; // NEW IMPORT
@@ -61,6 +60,8 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { AdminToolbox } from "./pages/Admin/AdminToolbox";
 import OnboardingWizard from "./pages/Onboarding/OnboardingWizard";
 import ChatSupport from "./components/common/ChatSupport";
+import LandingPageV3 from "./pages/LandingPageV3";
+import LandingPageV2 from "./pages/LandingPageV2";
 
 
 export default function App() {
@@ -80,15 +81,20 @@ export default function App() {
         <CookieConsent />
         <ChatWidget />
 
+
+
         <Routes>
-          {/* Standalone New Landing Page V2 */}
-          <Route path="/" element={<LandingPageV2 />} />
+          {/* Standalone New Landing Page V3 (Shadcn Style) */}
+
           <Route path="/join-us" element={<CareersPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsOfServicePage />} />
 
+          <Route path="/v2" element={<LandingPageV2 />} />
+
           {/* Landing Page Layout for other public pages */}
-          <Route element={<LandingLayout />}>
+          <Route element={<SaaSLayout />}>
+            <Route path="/" element={<LandingPageV2 />} />
             <Route path="/solutions" element={<SolutionsPage />} />
             <Route path="/solutions/real-estate" element={<RealEstatePage />} />
             <Route path="/solutions/banking" element={<BankingPage />} />
@@ -152,7 +158,7 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={
               <ErrorBoundary>
-                <AppLayout />
+                <AdminKitLayout />
               </ErrorBoundary>
             }>
               <Route index element={<Home />} />
@@ -212,24 +218,17 @@ export default function App() {
           </Route>
 
           {/* Auth Layout */}
+          <Route path="/demo" element={<ProDashboard />} />
+          <Route path="/demo-admin" element={<AdminDashboard />} />
           <Route path="/pro" element={<ProDashboard />} />
           <Route path="/signin" element={<AuthPage />} />
           <Route path="/signup" element={<AuthPage />} />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/onboarding" element={
-            <ProtectedRoute>
-              {/* Note: In a real app, wrap this to allow NEW users only */}
-              <OnboardingWizard />
-            </ProtectedRoute>
-          } />
-
-          {/* Admin Tools */}
-          <Route path="/admin/toolbox" element={
-            <ProtectedRoute>
-              <AdminToolbox />
-            </ProtectedRoute>
-          } />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/onboarding" element={<OnboardingWizard />} />
+            <Route path="/admin/toolbox" element={<AdminToolbox />} />
+          </Route>
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
