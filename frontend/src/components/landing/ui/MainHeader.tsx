@@ -63,7 +63,7 @@ export default function MainHeader() {
             {/* USER REQUESTED HTML STRUCTURE - CLEANED */}
             <div className="flex items-center">
               <img
-                src="/images/verifdoc-logo-2026.png"
+                src="/images/verifdoc-logo-2026-transparent.png"
                 alt="VerifDoc"
                 className="h-10 w-auto transition-all duration-300 dark:brightness-0 dark:invert"
               />
