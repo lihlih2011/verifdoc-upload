@@ -50,35 +50,48 @@ const ComparisonSlider = () => {
     const handleMouseEnter = () => { setIsAutoPlaying(false); }; // Stop auto play on hover
 
     // --- ANIMATION SEQUENCE ---
+    const isMountedRef = useRef(true);
+
+    useEffect(() => {
+        isMountedRef.current = true;
+        return () => { isMountedRef.current = false; };
+    }, []);
+
     useEffect(() => {
         if (!isAutoPlaying) return;
 
         const sequence = async () => {
             const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
-            const easeInOut = (t: number) => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // Helper for smooth movement
+            const easeInOut = (t: number) => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
-            while (isAutoPlaying) {
+            while (isAutoPlaying && isMountedRef.current) {
+                if (!isMountedRef.current) break;
                 // 1. Start at center (50%)
                 setCursorPos({ x: 50, y: 50 });
                 setSliderPosition(50);
                 await wait(1000);
+                if (!isMountedRef.current) break;
 
                 // 2. Click Grip
                 setIsClicking(true);
                 await wait(300);
+                if (!isMountedRef.current) break;
 
-                // 3. Slide Left (Reveal Original)
+                // 3. Slide Left
                 for (let i = 0; i <= 100; i++) {
-                    const p = 50 - (30 * easeInOut(i / 100)); // Go to 20%
+                    if (!isMountedRef.current || !isAutoPlaying) break;
+                    const p = 50 - (30 * easeInOut(i / 100));
                     setSliderPosition(p);
                     setCursorPos({ x: p, y: 50 });
                     await wait(10);
                 }
                 await wait(500);
+                if (!isMountedRef.current) break;
 
-                // 4. Slide Right (Reveal Fake / Alert)
+                // 4. Slide Right
                 for (let i = 0; i <= 100; i++) {
-                    const p = 20 + (60 * easeInOut(i / 100)); // Go to 80%
+                    if (!isMountedRef.current || !isAutoPlaying) break;
+                    const p = 20 + (60 * easeInOut(i / 100));
                     setSliderPosition(p);
                     setCursorPos({ x: p, y: 50 });
                     await wait(10);
@@ -88,77 +101,51 @@ const ComparisonSlider = () => {
                 setIsClicking(false);
                 await wait(500);
 
-                // 6. Move cursor to Alert Box (Upper Right)
-                // Target approx: 80% X, 25% Y (Top Right Alert)
-                const startX = 80;
-                const startY = 50;
-                const endX = 85;
-                const endY = 28;
-
+                // 6. Move cursor to Alert
+                const startX = 80; const startY = 50; const endX = 85; const endY = 28;
                 for (let i = 0; i <= 100; i++) {
+                    if (!isMountedRef.current || !isAutoPlaying) break;
                     const t = easeInOut(i / 100);
-                    setCursorPos({
-                        x: startX + (endX - startX) * t,
-                        y: startY + (endY - startY) * t
-                    });
+                    setCursorPos({ x: startX + (endX - startX) * t, y: startY + (endY - startY) * t });
                     await wait(5);
                 }
 
                 // 7. Pulse/Click on Alert
-                setIsClicking(true);
-                await wait(300);
-                setIsClicking(false);
-                await wait(300);
-                setIsClicking(true);
-                await wait(300);
-                setIsClicking(false);
-                await wait(2000); // Hold to show user
+                setIsClicking(true); await wait(300);
+                setIsClicking(false); await wait(300);
+                setIsClicking(true); await wait(300);
+                setIsClicking(false); await wait(2000); // Hold
 
-                // 8. Reset and Switch Document
-                setSliderPosition(50); // Reset slider
-                nextDoc(); // Switch image
-                await wait(1000); // Wait before restarting loop
+                if (!isMountedRef.current) break;
+
+                // 8. Reset and Switch
+                setSliderPosition(50);
+                nextDoc();
+                await wait(1000);
             }
         };
 
         sequence();
-    }, [isAutoPlaying]); // Removed nextDoc from dependency to avoid infinite re-renders on logic
+        // Note: The loop condition `while (isAutoPlaying)` uses the captured value!
+        // So effectively this loop runs once per effect instantiation, which is correct.
+        // The isMountedRef check prevents zombie updates.
+
+    }, [isAutoPlaying]);
 
     // --- DOCUMENT ROTATION ---
     const docs = [
-        {
-            original: '/images/demo/invoice.jpg',
-            fake: '/images/demo/invoice.jpg', // Ideally this should be the 'fake' version image but using same with filter logic for now as per code
-            name: 'Facture'
-        },
-        {
-            original: '/images/demo/payslip.png',
-            fake: '/images/demo/payslip.png',
-            name: 'Fiche de Paie'
-        },
-        {
-            original: '/images/demo/cpam.jpg',
-            fake: '/images/demo/cpam.jpg',
-            name: 'Attestation'
-        },
-        {
-            original: '/images/demo/order.jpg',
-            fake: '/images/demo/order.jpg',
-            name: 'Bon de Commande'
-        }
+        { original: '/images/demo/invoice.jpg', fake: '/images/demo/invoice.jpg', name: 'Facture' },
+        { original: '/images/demo/payslip.png', fake: '/images/demo/payslip.png', name: 'Fiche de Paie' },
+        { original: '/images/demo/cpam.jpg', fake: '/images/demo/cpam.jpg', name: 'Attestation' },
+        { original: '/images/demo/order.jpg', fake: '/images/demo/order.jpg', name: 'Bon de Commande' }
     ];
 
     const [currentDocIndex, setCurrentDocIndex] = useState(0);
-
-    // Function to rotate documents for external hook (not used in loop directly)
-    // We use a ref to access the latest state inside the useEffect closure cleanly
-
     const indexRef = useRef(0);
     const nextDoc = () => {
         indexRef.current = (indexRef.current + 1) % docs.length;
         setCurrentDocIndex(indexRef.current);
     };
-
     const currentDoc = docs[currentDocIndex];
 
     return (
@@ -291,51 +278,64 @@ const UploadSimulator = () => {
 
     const currentDoc = docs[currentDocIndex];
 
+    const isMountedRef = useRef(true);
+
+    useEffect(() => {
+        isMountedRef.current = true;
+        return () => { isMountedRef.current = false; };
+    }, []);
+
     useEffect(() => {
         const runSimulation = async () => {
             const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
 
-            while (true) {
+            while (isMountedRef.current) {
+                if (!isMountedRef.current) break;
                 // RESET
                 setStep(0);
                 setIsChecked(false);
-                setCursorPos({ x: 110, y: 110 }); // Start off-screen
+                setCursorPos({ x: 110, y: 110 });
                 await wait(1000);
+                if (!isMountedRef.current) break;
 
-                // 1. Move Cursor to File (Simulated) & Drag to Dropzone
-                setCursorPos({ x: 90, y: 20 }); // "Pick up" file position (imaginary right side)
+                // 1. Move Cursor
+                setCursorPos({ x: 90, y: 20 });
                 await wait(500);
-                setStep(1); // Start dragging state
-                // Move to center of dropzone
+                if (!isMountedRef.current) break;
+                setStep(1);
                 setCursorPos({ x: 50, y: 40 });
                 await wait(1000);
+                if (!isMountedRef.current) break;
 
                 // 2. Drop File
-                setStep(2); // File dropped
+                setStep(2);
                 await wait(500);
+                if (!isMountedRef.current) break;
 
-                // 3. Move to Checkbox
-                setCursorPos({ x: 15, y: 65 }); // Checkbox position relative to card
+                // 3. Checkbox
+                setCursorPos({ x: 15, y: 65 });
                 await wait(800);
-                // Click
                 setIsChecked(true);
                 await wait(300);
+                if (!isMountedRef.current) break;
 
-                // 4. Move to Button
-                setCursorPos({ x: 50, y: 85 }); // Button center
+                // 4. Button
+                setCursorPos({ x: 50, y: 85 });
                 await wait(800);
 
-                // 5. Click Verify
-                setStep(3); // Loading start (SCANNING)
-                await wait(2000); // Allow time for scan animation
+                // 5. Verify
+                setStep(3);
+                await wait(2000);
+                if (!isMountedRef.current) break;
 
-                // 6. Transition to Dashboard
-                await wait(500); // Fake Loading transition
-                setStep(4); // Dashboard Reveal
+                // 6. Dashboard
+                await wait(500);
+                setStep(4);
 
-                // 7. Show Free Credits Tooltip
-                setCursorPos({ x: 80, y: 10 }); // Move cursor away
-                await wait(3500); // Let user read
+                // 7. Tooltip
+                setCursorPos({ x: 80, y: 10 });
+                await wait(3500);
+                if (!isMountedRef.current) break;
 
                 // 8. Next Document
                 setCurrentDocIndex(prev => (prev + 1) % docs.length);
