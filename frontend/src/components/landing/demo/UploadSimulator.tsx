@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, UploadCloud, CheckCircle2, Check, Loader2, User, ShieldAlert, MousePointer2 } from 'lucide-react';
+import { FileText, UploadCloud, CheckCircle2, Check, Loader2, ShieldAlert, MousePointer2 } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

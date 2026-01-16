@@ -144,7 +144,7 @@ export const AuthPage: React.FC = () => {
             <div className="hidden lg:flex w-1/2 bg-[#4F46E5] relative overflow-hidden flex-col justify-between p-12 text-white">
                 <div className="z-10 relative">
                     <div className="flex items-center">
-                        <img src="/images/verifdoc-logo-v3.png" alt="VerifDoc" className="h-24 w-auto object-contain mix-blend-screen invert grayscale brightness-200 contrast-200 drop-shadow-xl" />
+                        <img src="/logo-verifdoc-light.svg" alt="VerifDoc" className="h-16 w-auto object-contain drop-shadow-xl" />
                     </div>
                 </div>
 
