@@ -76,9 +76,9 @@ export default function MainHeader() {
           ${theme === 'dark' || top ? 'bg-white/5 border-white/5' : 'bg-slate-100/50 border-slate-200'}
         `}>
           {['solutions', 'developers', 'company'].map((item) => (
-            <a key={item} href={`/#${item}`} className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
+            <Link key={item} to={`/${item}`} className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
               <span className="relative z-10">{t(`nav.${item}`) || item}</span>
-            </a>
+            </Link>
           ))}
           <Link to="/resources" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
             <span className="relative z-10">Blog</span>
@@ -119,7 +119,9 @@ export default function MainHeader() {
       {mobileMenuOpen && (
         <div className={`md:hidden border-t p-4 ${theme === 'dark' ? 'bg-[#020617] border-white/10' : 'bg-white border-slate-100'}`}>
           <div className="flex flex-col gap-4">
-            <a href="/#features" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.solutions')}</a>
+            <Link to="/solutions" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.solutions')}</Link>
+            <Link to="/developers" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.developers')}</Link>
+            <Link to="/company" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>{t('nav.company')}</Link>
             <Link to="/resources" className={theme === 'dark' ? 'text-slate-300' : 'text-slate-600'}>Blog</Link>
             <button onClick={toggleTheme} className="flex items-center gap-2 text-blue-500 font-medium">
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
