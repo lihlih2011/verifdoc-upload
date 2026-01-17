@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 
 export default function SaaSHeader() {
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
@@ -36,30 +36,41 @@ export default function SaaSHeader() {
 
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    <Link to="/" className="flex items-center gap-2">
-                        <img src="/logo-verifdoc.png" alt="VerifDoc Logo" className="h-40 w-auto scale-110 dark:brightness-0 dark:invert dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all" />
+                    <Link to="/" className="flex items-center">
+                        <img
+                            src="/logo-verifdoc-light.svg"
+                            alt="VerifDoc"
+                            className="h-10 w-auto transition-all hidden dark:block"
+                        />
+                        <img
+                            src="/logo-verifdoc-dark.svg"
+                            alt="VerifDoc"
+                            className="h-10 w-auto transition-all block dark:hidden"
+                        />
                     </Link>
                 </div>
 
-                {/* Desktop Nav */}
-                <Link to="/" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
-                    Produit
-                </Link>
-                <Link to="/use-cases" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
-                    Cas d'Usage
-                </Link>
-                <Link to="/solutions" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
-                    Solutions
-                </Link>
-                <Link to="/company" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
-                    À Propos
-                </Link>
-                <Link to="/developers" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
-                    Développeurs
-                </Link>
-                <Link to="/pricing" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
-                    Tarifs
-                </Link>
+                {/* Desktop Nav - Internationalized */}
+                <div className="hidden md:flex items-center gap-6">
+                    <Link to="/" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        {t('nav.product')}
+                    </Link>
+                    <Link to="/use-cases" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        {t('nav.use_cases')}
+                    </Link>
+                    <Link to="/solutions" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        {t('nav.solutions')}
+                    </Link>
+                    <Link to="/company" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        {t('nav.about')}
+                    </Link>
+                    <Link to="/developers" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        {t('nav.developers')}
+                    </Link>
+                    <Link to="/#pricing" className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        {t('nav.pricing')}
+                    </Link>
+                </div>
 
                 {/* Actions */}
                 <div className="hidden md:flex items-center gap-4">
@@ -73,7 +84,7 @@ export default function SaaSHeader() {
                         Connexion
                     </Link>
                     <Link to="/contact" className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-blue-600/20">
-                        Réserver une démo
+                        {t('nav.book_demo')}
                     </Link>
                 </div>
 
