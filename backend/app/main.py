@@ -174,7 +174,7 @@ async def read_root(request: Request):
 
 from sqlalchemy.sql import text
 
-@app.get("/health")
+@app.get("/api/health")
 async def health_check(db: Session = Depends(get_db)):
     """
     Production Health Check.
