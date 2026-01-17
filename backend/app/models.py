@@ -20,6 +20,8 @@ class User(Base):
     # Billing
     credits_balance = Column(Integer, default=10) # Freemium Start: 10 Credits
     is_active = Column(Boolean, default=True)
+    is_verified = Column(Boolean, default=False) # MUST verify email before login
+    verification_token = Column(String, nullable=True) # Token sent by mail
     created_at = Column(DateTime, default=datetime.utcnow)
 
     # Relationships

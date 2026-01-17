@@ -62,6 +62,7 @@ import OnboardingWizard from "./pages/Onboarding/OnboardingWizard";
 import ChatSupport from "./components/common/ChatSupport";
 import LandingPageV3 from "./pages/LandingPageV3";
 import LandingPageV2 from "./pages/LandingPageV2";
+import VerifyEmailPage from "./pages/VerifyEmailPage";
 
 
 export default function App() {
@@ -92,6 +93,7 @@ export default function App() {
 
           <Route path="/v2" element={<LandingPageV2 />} />
           <Route path="/" element={<LandingPageV2 />} />
+          <Route path="/verify-email" element={<VerifyEmailPage />} />
 
           {/* Landing Page Layout for other public pages */}
           <Route element={<SaaSLayout />}>

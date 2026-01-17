@@ -46,21 +46,23 @@ def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = 
     # Hash Password
     hashed_pwd = SecurityUtils.get_password_hash(user.password)
     
-    # Create User
+    # Create User with Verification Token
+    token = str(uuid.uuid4())
     new_user = User(
         email=user.email, 
         hashed_password=hashed_pwd, 
         full_name=user.full_name,
-        credits_balance=10, # Welcome Bonus
-        organization_id=1   # Default Org
+        credits_balance=10, 
+        organization_id=1,
+        is_verified=False,
+        verification_token=token
     )
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
 
-    # Send Verification Email (Mock)
-    fake_token = str(uuid.uuid4())
-    background_tasks.add_task(email_service.send_verification_email, user.email, fake_token)
+    # Send Verification Email
+    background_tasks.add_task(email_service.send_verification_email, user.email, token)
 
     # 🚀 NEW: SALES AUTOMATION
     # 1. Send PERSUASIVE welcome email with demo offer
@@ -78,7 +80,19 @@ def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = 
             source="Signup Flow"
         )
 
-    return {"message": "User created successfully", "user_id": new_user.id}
+    return {"message": "Utilisateur créé. Veuillez vérifier votre email pour activer votre compte.", "user_id": new_user.id}
+
+@router.get("/verify/{token}")
+def verify_email(token: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.verification_token == token).first()
+    if not user:
+        raise HTTPException(status_code=400, detail="Lien de vérification invalide ou expiré.")
+    
+    user.is_verified = True
+    user.verification_token = None # Clear token
+    db.commit()
+    
+    return {"message": "Email vérifié avec succès ! Vous pouvez maintenant vous connecter."}
 
 from datetime import datetime, timedelta
 
@@ -138,8 +152,14 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
         print("DEBUG: Invalid Credentials")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Identifiants incorrects.",
             headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    if not user.is_verified:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Votre compte n'est pas encore vérifié. Veuillez cliquer sur le lien envoyé par email."
         )
     
     access_token_expires = timedelta(minutes=30)

@@ -24,6 +24,6 @@ def remove_white_background(input_path, output_path):
 
 if __name__ == "__main__":
     # Paths are relative to where the command is run, usually root
-    input_file = r"c:\Users\chaou\Desktop\VerifDoc Beta\frontend\public\logo-verifdoc.png"
-    output_file = r"c:\Users\chaou\Desktop\VerifDoc Beta\frontend\public\logo-verifdoc.png"
+    input_file = r"c:\Users\chaou\Desktop\VerifDoc Beta\frontend\public\images\verifdoc-logo-2026.png"
+    output_file = r"c:\Users\chaou\Desktop\VerifDoc Beta\frontend\public\images\verifdoc-logo-2026-transparent.png"
     remove_white_background(input_file, output_file)
