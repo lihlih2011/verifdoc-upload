@@ -6,7 +6,7 @@ import os
 
 # Use SQLite for simplicity, can be changed to PostgreSQL/MySQL later
 # Gestion dynamique de la base de données (SQLite Local vs PostgreSQL Prod)
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./verifdoc.db")
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:////app/verifdoc.db")
 
 # Ajustement pour Render : L'URL de base commence parfois par postgres:// au lieu de postgresql://
 if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
