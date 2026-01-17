@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, UploadCloud, CheckCircle2, Check, Loader2, ShieldAlert, MousePointer2 } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
@@ -10,16 +11,57 @@ function cn(...inputs: ClassValue[]) {
 }
 
 export default function UploadSimulator() {
+    const { t } = useTranslation();
     const [step, setStep] = useState(0);
     const [cursorPos, setCursorPos] = useState({ x: 100, y: 100 });
     const [isChecked, setIsChecked] = useState(false);
     const [currentDocIndex, setCurrentDocIndex] = useState(0);
 
     const docs = [
-        { name: 'attestation_caf_rsa_2022.pdf', size: '450 KB', type: 'Attestation CAF', score: '99.5%', alert: 'Montant Incohérent', zone: 'Zone Montant RSA', color: 'red', coords: { top: '42%', left: '60%', w: '25%', h: '4%' }, image: '/images/demo/demo_caf.png' },
-        { name: 'indemnites_cpam_2024.pdf', size: '890 KB', type: 'Attestation CPAM', score: '96.2%', alert: 'Période Modifiée', zone: 'Dates Indemnisation', color: 'orange', coords: { top: '25%', left: '55%', w: '30%', h: '3%' }, image: '/images/demo/demo_cpam.jpg' },
-        { name: 'bulletin_paie_mars_2020.pdf', size: '1.4 MB', type: 'Bulletin de Paie', score: '99.8%', alert: 'Salaire Net Falsifié', zone: 'Net à Payer', color: 'red', coords: { top: '75%', left: '50%', w: '15%', h: '3%' }, image: '/images/demo/demo_paie.png' },
-        { name: 'avis_impot_2021.pdf', size: '890 KB', type: 'Avis Impôt', score: '99.9%', alert: 'Code 2D Invalide', zone: 'Barre 2D / Cachet', color: 'red', coords: { top: '15%', left: '10%', w: '25%', h: '15%' }, image: '/images/demo/demo_impot.jpg' },
+        {
+            name: 'attestation_caf_rsa_2022.pdf',
+            size: '450 KB',
+            type: t('simulator_demo.types.caf'),
+            score: '99.5%',
+            alert: t('simulator_demo.alerts.caf'),
+            zone: t('simulator_demo.zones.rsa'),
+            color: 'red',
+            coords: { top: '42%', left: '60%', w: '25%', h: '4%' },
+            image: '/images/demo/demo_caf.png'
+        },
+        {
+            name: 'indemnites_cpam_2024.pdf',
+            size: '890 KB',
+            type: t('simulator_demo.types.cpam'),
+            score: '96.2%',
+            alert: t('simulator_demo.alerts.cpam'),
+            zone: t('simulator_demo.zones.period'),
+            color: 'orange',
+            coords: { top: '25%', left: '55%', w: '30%', h: '3%' },
+            image: '/images/demo/demo_cpam.jpg'
+        },
+        {
+            name: 'bulletin_paie_mars_2020.pdf',
+            size: '1.4 MB',
+            type: t('simulator_demo.types.paie'),
+            score: '99.8%',
+            alert: t('simulator_demo.alerts.paie'),
+            zone: t('simulator_demo.zones.net'),
+            color: 'red',
+            coords: { top: '75%', left: '50%', w: '15%', h: '3%' },
+            image: '/images/demo/demo_paie.png'
+        },
+        {
+            name: 'avis_impot_2021.pdf',
+            size: '890 KB',
+            type: t('simulator_demo.types.impot'),
+            score: '99.9%',
+            alert: t('simulator_demo.alerts.2d_doc'),
+            zone: t('simulator_demo.zones.cachet'),
+            color: 'red',
+            coords: { top: '15%', left: '10%', w: '25%', h: '15%' },
+            image: '/images/demo/demo_impot.jpg'
+        },
     ];
 
     const currentDoc = docs[currentDocIndex];
