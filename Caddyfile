@@ -10,7 +10,7 @@ www.verifdoc.io, verifdoc.io {
     encode gzip
 
     # 1. API Backend : tout ce qui commence par /api va vers le conteneur backend
-    handle_path /api/* {
+    handle /api/* {
         reverse_proxy backend:8000
     }
 
