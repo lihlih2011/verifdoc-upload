@@ -157,7 +157,6 @@ for router in all_superadmin_routers:
 app.include_router(admin_export_router, prefix="/api")
 app.include_router(admin_stats_history_router, prefix="/api")
 app.include_router(admin_maintenance_router, prefix="/api")
-app.include_router(admin_report_router, prefix="/api")
 
 # Public Demo API
 from backend.api import public_api
