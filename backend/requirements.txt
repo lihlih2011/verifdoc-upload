@@ -36,3 +36,12 @@ torch
 torchvision
 transformers
 matplotlib
+# Valid/Lint/Security Tools
+bandit
+safety
+mypy
+flake8
+pre-commit
+pytest
+httpx
+pytest-asyncio

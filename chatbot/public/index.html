@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerifDoc AI - Assistant d'Analyse</title>
+    <style>
+        :root {
+            --primary: #4F46E5; /* Indigo/Blue to match VerifDoc brand */
+            --bg: #F8FAFC;
+            --chat-bg: #FFFFFF;
+            --user-msg-bg: #4F46E5;
+            --ai-msg-bg: #F1F5F9;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Widget Container */
+        .verifdoc-chat-widget {
+            width: 400px;
+            height: 600px;
+            background: var(--chat-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+        }
+
+        /* Header */
+        .chat-header {
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header img {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 6px;
+            padding: 2px;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .chat-header p {
+            margin: 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Messages Area */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--user-msg-bg);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: var(--ai-msg-bg);
+            color: #1E293B;
+            border-bottom-left-radius: 4px;
+            white-space: pre-wrap; /* Preserve formatting */
+        }
+
+        .disclaimer {
+            font-size: 10px;
+            color: #94A3B8;
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Input Area */
+        .chat-input-area {
+            border-top: 1px solid #E2E8F0;
+            padding: 16px;
+            background: #FAFAFA;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        textarea {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            resize: none;
+            height: 40px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+        }
+
+        button.send-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 44px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button.send-btn:hover {
+            background: #4338CA;
+        }
+        
+        button.send-btn:disabled {
+            background: #94A3B8;
+            cursor: not-allowed;
+        }
+
+        /* Loading Indicator */
+        .typing-indicator {
+            display: none;
+            padding: 8px 16px;
+            background: var(--ai-msg-bg);
+            border-radius: 12px;
+            align-self: flex-start;
+            color: #64748B;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="verifdoc-chat-widget">
+        <!-- Header -->
+        <div class="chat-header">
+            <!-- Icon Placeholder -->
+            <div style="width:32px;height:32px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4F46E5;font-weight:bold;">V</div>
+            <div>
+                <h3>VerifDoc AI</h3>
+                <p>Assistant d'analyse documentaire</p>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="chat-messages" id="chat-messages">
+            <div class="message ai">
+                Bonjour, je suis VerifDoc AI. Décrivez une situation ou copiez le contenu textuel d'un document, je l'analyserai pour détecter d'éventuelles anomalies.
+            </div>
+            <div class="typing-indicator" id="typing-indicator">VerifDoc AI analyse...</div>
+        </div>
+
+        <!-- Input -->
+        <div class="chat-input-area">
+            <div class="input-group">
+                <textarea id="user-input" placeholder="Ex: J'ai reçu un RIB d'un fournisseur avec une adresse Gmail..." onkeydown="handleEnter(event)"></textarea>
+                <button class="send-btn" onclick="sendMessage()" id="send-btn">
+                    ➤
+                </button>
+            </div>
+            <div class="disclaimer">
+                VerifDoc AI ne fournit pas d'avis juridique. Vérifiez toujours les originaux.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3001/chat';
+
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const messagesDiv = document.getElementById('chat-messages');
+            const typingIndicator = document.getElementById('typing-indicator');
+            const sendBtn = document.getElementById('send-btn');
+            
+            const text = input.value.trim();
+            if (!text) return;
+
+            // 1. Add User Message
+            addMessage(text, 'user');
+            input.value = '';
+            
+            // 2. Show Loading
+            typingIndicator.style.display = 'block';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            sendBtn.disabled = true;
+
+            try {
+                // 3. Call Backend API
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        message: text,
+                        context: 'general' // Could be dynamic
+                    })
+                });
+
+                const data = await response.json();
+
+                // 4. Add AI Response
+                typingIndicator.style.display = 'none';
+                if (data.error) {
+                    addMessage("Erreur: " + data.error, 'ai');
+                } else {
+                    addMessage(data.response, 'ai');
+                }
+
+            } catch (error) {
+                typingIndicator.style.display = 'none';
+                addMessage("Erreur de connexion au serveur d'analyse.", 'ai');
+                console.error(error);
+            } finally {
+                sendBtn.disabled = false;
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('chat-messages');
+            const indicator = document.getElementById('typing-indicator');
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender);
+            msgDiv.textContent = text;
+            
+            messagesDiv.insertBefore(msgDiv, indicator);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>
