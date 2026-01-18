@@ -1184,7 +1184,7 @@ export default function LandingPageV2() {
             {/* TRUST ECOSYSTEM SECTION - REDESIGNED */}
             <section className="py-20 bg-[#020617] relative">
                 <div className="max-w-7xl mx-auto px-6 text-center">
-                    <p className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-16">{t('trust.title')}</p>
+                    <p className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-16 animate-fade-in-up">{t('trust.title')}</p>
 
                     {/* TECH GIANTS */}
                     <div className="flex flex-wrap justify-center gap-12 md:gap-20 mb-20 items-center opacity-60">
@@ -1196,7 +1196,11 @@ export default function LandingPageV2() {
                             { name: 'OVHcloud', src: '/images/partners/ovh.png' },
                             { name: 'Xolo', src: '/images/partners/xolo.jpg', label: t('trust.estonia') }
                         ].map((partner, index) => (
-                            <div key={index} className="relative group">
+                            <div
+                                key={index}
+                                className="relative group animate-fade-in-up"
+                                style={{ animationDelay: `${index * 100}ms` }}
+                            >
                                 <div className="h-8 md:h-10 w-32 bg-slate-800/50 rounded flex items-center justify-center transition-all duration-500 group-hover:bg-transparent">
                                     <img
                                         src={partner.src}
@@ -1211,7 +1215,7 @@ export default function LandingPageV2() {
                         ))}
                     </div>
 
-                    <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-12 text-center">{t('trust.bodies')}</p>
+                    <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-12 text-center animate-fade-in-up" style={{ animationDelay: '600ms' }}>{t('trust.bodies')}</p>
 
                     {/* INSTITUTIONAL BODIES */}
                     <div className="flex flex-wrap justify-center gap-16 md:gap-24 max-w-5xl mx-auto items-center opacity-60">
@@ -1220,7 +1224,11 @@ export default function LandingPageV2() {
                             { name: 'CNIL', src: '/images/partners/cnil.png' },
                             { name: 'INEC', src: '/images/partners/inec.jpg' }
                         ].map((partner, index) => (
-                            <div key={index} className="group flex items-center justify-center">
+                            <div
+                                key={index}
+                                className="group flex items-center justify-center animate-fade-in-up"
+                                style={{ animationDelay: `${(index + 6) * 100}ms` }}
+                            >
                                 <div className="h-12 md:h-16 w-32 bg-slate-800/50 rounded flex items-center justify-center transition-all duration-500 group-hover:bg-transparent">
                                     <img
                                         src={partner.src}
