@@ -1182,12 +1182,12 @@ export default function LandingPageV2() {
             </section>
 
             {/* TRUST ECOSYSTEM SECTION - REDESIGNED */}
-            <section className="py-20 border-t border-white/5 bg-[#020617]">
+            <section className="py-20 bg-[#020617] relative">
                 <div className="max-w-7xl mx-auto px-6 text-center">
-                    <p className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-12">{t('trust.title')}</p>
+                    <p className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-16">{t('trust.title')}</p>
 
-                    {/* TECH GIANTS - UNIFIED TILES */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16 items-center">
+                    {/* TECH GIANTS */}
+                    <div className="flex flex-wrap justify-center gap-12 md:gap-20 mb-20 items-center opacity-60">
                         {[
                             { name: 'Microsoft', src: '/images/partners/microsoft.png' },
                             { name: 'Google', src: '/images/partners/google.png' },
@@ -1196,39 +1196,41 @@ export default function LandingPageV2() {
                             { name: 'OVHcloud', src: '/images/partners/ovh.png' },
                             { name: 'Xolo', src: '/images/partners/xolo.jpg', label: t('trust.estonia') }
                         ].map((partner, index) => (
-                            <div key={index} className="group flex flex-col items-center justify-center relative">
-                                <img
-                                    src={partner.src}
-                                    alt={partner.name}
-                                    className="h-8 w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500"
-                                />
+                            <div key={index} className="relative group">
+                                <div className="h-8 md:h-10 w-32 bg-slate-800/50 rounded flex items-center justify-center transition-all duration-500 group-hover:bg-transparent">
+                                    <img
+                                        src={partner.src}
+                                        alt={partner.name}
+                                        className="h-full w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500 grayscale"
+                                    />
+                                </div>
                                 {partner.label && (
-                                    <span className="absolute -bottom-6 text-[9px] text-blue-500 font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">{partner.label}</span>
+                                    <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] text-blue-500 font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{partner.label}</span>
                                 )}
                             </div>
                         ))}
                     </div>
-                </div>
 
-                <div className="h-px w-full max-w-sm bg-gradient-to-r from-transparent via-white/10 to-transparent mx-auto mb-12"></div>
+                    <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-12 text-center">{t('trust.bodies')}</p>
 
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-12 text-center">{t('trust.bodies')}</p>
-
-                {/* INSTITUTIONAL BODIES - UNIFIED TILES */}
-                <div className="flex flex-wrap justify-center gap-12 md:gap-20 max-w-4xl mx-auto items-center">
-                    {[
-                        { name: 'ANSSI', src: '/images/partners/anssi.png' },
-                        { name: 'CNIL', src: '/images/partners/cnil.png' },
-                        { name: 'INEC', src: '/images/partners/inec.jpg' }
-                    ].map((partner, index) => (
-                        <div key={index} className="group flex items-center justify-center">
-                            <img
-                                src={partner.src}
-                                alt={partner.name}
-                                className="h-12 w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500"
-                            />
-                        </div>
-                    ))}
+                    {/* INSTITUTIONAL BODIES */}
+                    <div className="flex flex-wrap justify-center gap-16 md:gap-24 max-w-5xl mx-auto items-center opacity-60">
+                        {[
+                            { name: 'ANSSI', src: '/images/partners/anssi.png' },
+                            { name: 'CNIL', src: '/images/partners/cnil.png' },
+                            { name: 'INEC', src: '/images/partners/inec.jpg' }
+                        ].map((partner, index) => (
+                            <div key={index} className="group flex items-center justify-center">
+                                <div className="h-12 md:h-16 w-32 bg-slate-800/50 rounded flex items-center justify-center transition-all duration-500 group-hover:bg-transparent">
+                                    <img
+                                        src={partner.src}
+                                        alt={partner.name}
+                                        className="h-full w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500 grayscale"
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
