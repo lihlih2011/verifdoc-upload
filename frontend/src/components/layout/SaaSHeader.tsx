@@ -16,9 +16,11 @@ export default function SaaSHeader() {
         i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr');
     };
 
+    const textClass = 'text-white font-bold hover:text-blue-400';
+
     return (
-        <header className="fixed top-0 w-full z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/10 transition-colors duration-300">
-            <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <header className="fixed top-0 w-full z-50 bg-[#020617]/80 backdrop-blur-xl border-b border-white/10 shadow-lg transition-all duration-300">
+            <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
                 {/* Logo */}
                 <div className="flex items-center gap-2">
@@ -26,48 +28,48 @@ export default function SaaSHeader() {
                         <img
                             src="/logo-verifdoc-light.svg"
                             alt="VerifDoc"
-                            className="h-12 w-auto transition-all"
+                            className="h-14 w-auto transition-all"
                         />
                     </Link>
                 </div>
 
                 {/* Desktop Nav - Internationalized */}
-                <div className="hidden md:flex items-center gap-6">
-                    <Link to="/" className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors">
+                <div className="hidden md:flex items-center gap-1 p-1 rounded-full border backdrop-blur-sm transition-all bg-white/5 border-white/5">
+                    <Link to="/" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
                         {t('nav.product')}
                     </Link>
-                    <Link to="/use-cases" className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors">
+                    <Link to="/use-cases" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
                         {t('nav.use_cases')}
                     </Link>
-                    <Link to="/solutions" className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors">
+                    <Link to="/solutions" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
                         {t('nav.solutions')}
                     </Link>
-                    <Link to="/company" className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors">
+                    <Link to="/company" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
                         {t('nav.about')}
                     </Link>
-                    <Link to="/developers" className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors">
+                    <Link to="/developers" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
                         {t('nav.developers')}
                     </Link>
-                    <Link to="/#pricing" className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors">
+                    <Link to="/#pricing" className={`px-4 py-2 text-sm font-medium rounded-full transition-all relative overflow-hidden group flex items-center gap-2 ${textClass}`}>
                         {t('nav.pricing')}
                     </Link>
                 </div>
 
                 {/* Actions */}
                 <div className="hidden md:flex items-center gap-4">
-                    <button onClick={toggleLanguage} className="text-sm font-bold text-slate-300 uppercase hover:text-blue-400">
+                    <button onClick={toggleLanguage} className={`font-medium text-sm transition-colors ${textClass}`}>
                         {i18n.language === 'fr' ? 'EN' : 'FR'}
                     </button>
-                    <Link to="/login" className="text-sm font-semibold text-white hover:text-blue-400 transition-colors">
+                    <Link to="/login" className={`text-sm font-medium transition-colors relative group ${textClass}`}>
                         Connexion
                     </Link>
-                    <Link to="/contact" className="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-blue-600/20">
+                    <Link to="/contact" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg transition-all shadow-lg hover:shadow-blue-500/30 hover:scale-105 active:scale-95">
                         {t('nav.book_demo')}
                     </Link>
                 </div>
 
                 {/* Mobile Menu Toggle */}
-                <button className="md:hidden p-2 text-slate-300" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                <button className="md:hidden p-2 text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                     {mobileMenuOpen ? <X /> : <Menu />}
                 </button>
             </div>
