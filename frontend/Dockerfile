@@ -4,6 +4,7 @@ FROM node:20-bookworm as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+ENV BUILD_TIMESTAMP=20260119-force-refresh
 COPY . .
 RUN npm run build
 
