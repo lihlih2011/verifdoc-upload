@@ -1205,7 +1205,7 @@ export default function LandingPageV2() {
                                 Notre moteur d'IA analyse plus de 500 points de contrôle invisibles à l'œil nu. Métadonnées, compression, incohérences de pixels... rien ne lui échappe.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-                                <Link to="/auth?mode=demo" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 group">
+                                <Link to="/login?mode=demo" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 group">
                                     Lancer une Analyse Live <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
                                 <a href="#features" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all flex items-center justify-center">
