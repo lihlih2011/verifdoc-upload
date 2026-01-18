@@ -1181,63 +1181,96 @@ export default function LandingPageV2() {
                 </div>
             </section>
 
-            {/* TRUST ECOSYSTEM SECTION - REDESIGNED */}
-            <section className="py-20 bg-[#020617] relative">
-                <div className="max-w-7xl mx-auto px-6 text-center">
-                    <p className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-16 animate-fade-in-up">{t('trust.title')}</p>
+            {/* LIVE DEMO MARKETING SECTION - REPLACEMENT FOR TRUST ECOSYSTEM */}
+            <section className="py-32 bg-[#020617] relative overflow-hidden">
+                {/* Background ambient effects */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+                    <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px]" />
+                </div>
 
-                    {/* TECH GIANTS */}
-                    <div className="flex flex-wrap justify-center gap-12 md:gap-20 mb-20 items-center opacity-60">
-                        {[
-                            { name: 'Microsoft', src: '/images/partners/microsoft.png' },
-                            { name: 'Google', src: '/images/partners/google.png' },
-                            { name: 'GitHub', src: '/images/partners/github.jpg' },
-                            { name: 'Adobe', src: '/images/partners/adobe.png' },
-                            { name: 'OVHcloud', src: '/images/partners/ovh.png' },
-                            { name: 'Xolo', src: '/images/partners/xolo.jpg', label: t('trust.estonia') }
-                        ].map((partner, index) => (
-                            <div
-                                key={index}
-                                className="relative group animate-fade-in-up"
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                <div className="h-8 md:h-10 w-32 bg-slate-800/50 rounded flex items-center justify-center transition-all duration-500 group-hover:bg-transparent">
-                                    <img
-                                        src={partner.src}
-                                        alt={partner.name}
-                                        className="h-full w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500 grayscale"
-                                    />
-                                </div>
-                                {partner.label && (
-                                    <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] text-blue-500 font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{partner.label}</span>
-                                )}
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+
+                        {/* Text Marketing Side */}
+                        <div className="w-full lg:w-1/2 text-center lg:text-left">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 tracking-wide uppercase animate-fade-in-up">
+                                <ScanLine size={14} /> Technology Preview
                             </div>
-                        ))}
-                    </div>
+                            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+                                Ne croyez pas sur parole. <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Voyez par vous-même.</span>
+                            </h2>
+                            <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+                                Notre moteur d'IA analyse plus de 500 points de contrôle invisibles à l'œil nu. Métadonnées, compression, incohérences de pixels... rien ne lui échappe.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+                                <Link to="/auth?mode=demo" className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 group">
+                                    Lancer une Analyse Live <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                                <a href="#features" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all flex items-center justify-center">
+                                    Voir la vidéo
+                                </a>
+                            </div>
+                        </div>
 
-                    <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-12 text-center animate-fade-in-up" style={{ animationDelay: '600ms' }}>{t('trust.bodies')}</p>
+                        {/* Interactive Visual Side */}
+                        <div className="w-full lg:w-1/2">
+                            <div className="relative rounded-2xl bg-slate-900 border border-slate-800 p-1 shadow-2xl animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+                                {/* Fake UI Header */}
+                                <div className="absolute top-0 left-0 w-full h-12 bg-slate-950/50 rounded-t-2xl flex items-center px-4 gap-2 border-b border-white/5 z-20">
+                                    <div className="flex gap-1.5">
+                                        <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50" />
+                                        <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
+                                        <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
+                                    </div>
+                                    <div className="ml-4 px-3 py-1 bg-slate-900 rounded-md text-[10px] text-slate-500 font-mono border border-white/5 flex items-center gap-2">
+                                        <Lock size={10} /> verifdoc-scanner-v2.exe
+                                    </div>
+                                </div>
 
-                    {/* INSTITUTIONAL BODIES */}
-                    <div className="flex flex-wrap justify-center gap-16 md:gap-24 max-w-5xl mx-auto items-center opacity-60">
-                        {[
-                            { name: 'ANSSI', src: '/images/partners/anssi.png' },
-                            { name: 'CNIL', src: '/images/partners/cnil.png' },
-                            { name: 'INEC', src: '/images/partners/inec.jpg' }
-                        ].map((partner, index) => (
-                            <div
-                                key={index}
-                                className="group flex items-center justify-center animate-fade-in-up"
-                                style={{ animationDelay: `${(index + 6) * 100}ms` }}
-                            >
-                                <div className="h-12 md:h-16 w-32 bg-slate-800/50 rounded flex items-center justify-center transition-all duration-500 group-hover:bg-transparent">
-                                    <img
-                                        src={partner.src}
-                                        alt={partner.name}
-                                        className="h-full w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-500 grayscale"
-                                    />
+                                {/* Main Scanner Area */}
+                                <div className="relative h-[400px] bg-[#0B1120] rounded-xl overflow-hidden pt-12 flex items-center justify-center">
+
+                                    {/* Grid Background */}
+                                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)]" />
+
+                                    {/* Document Icon Placeholder which simulates being scanned */}
+                                    <div className="relative w-48 h-64 bg-white rounded-lg shadow-2xl flex flex-col items-center justify-center p-4 transform transition-transform duration-1000">
+                                        <div className="w-full h-4 bg-slate-200 rounded mb-2" />
+                                        <div className="w-3/4 h-3 bg-slate-100 rounded mb-4" />
+                                        <div className="w-full h-32 bg-slate-50 rounded mb-4 flex items-center justify-center border-2 border-dashed border-slate-200">
+                                            <div className="w-16 h-16 rounded-full bg-slate-200" />
+                                        </div>
+                                        <div className="w-full h-2 bg-slate-100 rounded mb-1" />
+                                        <div className="w-full h-2 bg-slate-100 rounded mb-1" />
+                                        <div className="w-2/3 h-2 bg-slate-100 rounded" />
+
+                                        {/* Scanning Beam Loop */}
+                                        <div className="absolute top-0 left-0 w-full h-1 bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,1)] animate-scan opacity-80" />
+
+                                        {/* Scan Overlay Result - Appears after delay (simulated via CSS opacity toggle if we had complex CSS, but here static for visual impact) */}
+                                        <div className="absolute inset-0 bg-red-900/20 border-2 border-red-500/50 rounded-lg flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity backdrop-blur-[2px] cursor-crosshair">
+                                            <div className="bg-red-500 text-white px-3 py-1 rounded font-bold text-xs shadow-lg animate-bounce">
+                                                ANOMALIE DÉTECTÉE
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Floating Detection Tags */}
+                                    <div className="absolute top-1/3 right-12 bg-slate-800/90 backdrop-blur border border-white/10 px-3 py-1.5 rounded-lg text-xs font-mono text-emerald-400 flex items-center gap-2 shadow-xl animate-pulse">
+                                        <CheckCircle2 size={12} /> Métadonnées OK
+                                    </div>
+                                    <div className="absolute bottom-1/3 left-12 bg-slate-800/90 backdrop-blur border border-red-500/30 px-3 py-1.5 rounded-lg text-xs font-mono text-red-400 flex items-center gap-2 shadow-xl">
+                                        <AlertTriangle size={12} /> Compression Suspecte
+                                    </div>
+
                                 </div>
                             </div>
-                        ))}
+
+                            {/* Reflection/Glow below */}
+                            <div className="mx-auto w-[90%] h-4 bg-blue-500/20 blur-xl rounded-full -mt-2" />
+                        </div>
                     </div>
                 </div>
             </section>
